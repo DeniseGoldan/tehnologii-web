@@ -29,71 +29,19 @@
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                        <li data-target="#myCarousel" data-slide-to="4"></li>
-                        <li data-target="#myCarousel" data-slide-to="5"></li>
-                        <li data-target="#myCarousel" data-slide-to="6"></li>
-                        <li data-target="#myCarousel" data-slide-to="7"></li>
-                        <li data-target="#myCarousel" data-slide-to="8"></li>
-                        <li data-target="#myCarousel" data-slide-to="9"></li>
-                        <li data-target="#myCarousel" data-slide-to="10"></li>
-                        <li data-target="#myCarousel" data-slide-to="11"></li>
+
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
 
                         <div class="item active">
-                            <img  src="data/images/house1/1.jpg" alt="1">
+                            <img  src="https://img2.imonet.ro/X3H7/3H71000A5S2/apartament-de-vanzare-5-camere-bucuresti-herastrau-76117272_620x465.jpg" alt="1">
                         </div>
 
                         <div class="item">
-                            <img  src="data/images/house1/2.jpg" alt="2">
+                            <img  src="https://img2.imonet.ro/X3H7/3H71000A5S2/apartament-de-vanzare-5-camere-bucuresti-herastrau-76117274_620x465.jpg" alt="2">
                         </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/3.jpg" alt="3">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/4.jpg" alt="4">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/5.jpg" alt="5">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/6.jpg" alt="6">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/7.jpg" alt="7">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/8.jpg" alt="8">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/9.jpg" alt="9">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/10.jpg" alt="10">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/11.jpg" alt="5">
-                        </div>
-
-                        <div class="item">
-                            <img  src="data/images/house1/12.jpg" alt="5">
-                        </div>
-
-
-
                     </div>
 
                     <!-- Left and right controls -->
@@ -144,7 +92,7 @@
             </div>
             <div class="col-sm-4 text-center">
                 <div class="jumbotron" >
-                    <img src="data/images/userph.png" class="img-responsive center-block" alt="user_placeholder" style="width: 50%; height: auto">
+                    <img src="user_placeholder.png" class="img-responsive center-block" alt="user_placeholder" style="width: 50%; height: auto">
                     <h4>Ion Vasilescu</h4>
                     <h4><span class="glyphicon glyphicon-phone-alt"></span> +40 737 665 283</h4>
                     <h4>Send a message: </h4>
