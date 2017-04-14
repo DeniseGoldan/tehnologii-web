@@ -1,0 +1,41 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	/*Properties for the image on the background*/
+	background: url(images/home-office.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	/*Properties for the font of the body*/
+	font-family: 'Montserrat Alternates';
+	/*Distance to margins of the screen*/
+	margin: 20px 20px 20px 20px;
+}
+
+.my-error-class {
+	color : #cc0000; /*red*/
+}
+
+.well {
+	background-color: rgba(245, 245, 245, 0.7);
+}
+
+h1 {
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: #333333; /*grey*/
+}
+
+.btn {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+position: fixed;
+}*/

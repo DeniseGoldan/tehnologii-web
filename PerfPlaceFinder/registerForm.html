@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!--Online font-->
+	<link href='//fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+	<!--Bootstrap related-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--Stylesheet-->
+	<link rel="stylesheet" href="registerForm_styles.css">
+	<!--Validate form-->
+	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
+	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
+	<script type="text/javascript" src="validateRegisterForm.js"></script>
+	<script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
+	<title>Perfect Place Finder</title>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid navbar-left">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"><strong>Perfect Place Finder</strong></a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">Page 1</a></li>
+				<li><a href="#">Page 2</a></li>
+				<li><a href="#">Page 3</a></li>
+			</ul>
+		</div>
+		<div class="container-fluid dropdown navbar-right">
+			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+				Login
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li class="dropdown-header">Already have an account?</li>
+				<form class="well container-fluid" method="post" id="signInForm">
+					<div class="form-group input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input id="signInUsername" name="signInUsername" placeholder="Username" class="form-control" type="text">
+					</div>
+					<div class="form-group input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input id="signInPassword" name="signInPassword" placeholder="Password" class="form-control" type="password">
+					</div>
+					<input type="submit" name="signInButton" class="submit btn btn-default center-block" value="Sign in" onclick="">
+				</form>
+				<li class="divider"></li>
+				<li class="dropdown-header">New here?</li>
+				<li><a href="registerForm">Join us</a></li>
+			</ul>
+		</div>
+	</nav>
+	<form class="well container-fluid" method="post" id="registerForm">
+		<h1>Register and share dream homes with our viewers! </h1>
+		<div class="container-fluid col-md-offset-4 col-md-4">
+			<div class="form-group input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input id="desiredUsername" name="desiredUsername" placeholder="Username" class="form-control" type="text">
+			</div>
+			<div class="form-group input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input id="firstName" name="firstName" placeholder="First name" class="form-control" type="text">
+			</div>
+			<div class="form-group input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input id="lastName" name="lastName" placeholder="Last name" class="form-control" type="text">
+			</div>
+			<div class="form-group input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input id="desiredPassword" name="desiredPassword" placeholder="Password" class="form-control" type="password">
+			</div>
+			<div class="form-group input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></i></span>
+				<input id="confirmPassword" name="confirmPassword" placeholder="Confirm password" class="form-control" type="password">
+			</div>
+			<div class="form-group input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+				<input id="email" name="email" placeholder="Email" class="form-control" type="email">
+			</div>
+			<input type="submit" name="signInButton" class="submit btn btn-default center-block" value="Register" onclick="validateRegisterForm()">
+		</div>
+	</form>
+</body>
+</html>
