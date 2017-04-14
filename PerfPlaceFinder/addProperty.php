@@ -10,11 +10,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>
-    <script type="text/javascript" src="add_propriety.js"></script>
+    <script type="text/javascript" src="addPropertyGmap.js"></script>
+    <script type="text/javascript" src="addPropertyHideShow.js"></script>
 </head>
 <body>
 	<div class="container">
-		<form class="well" actionmethod="get" id="addProperty">
+		<form class="well" actionmethod="get" id="addPropertyForm">
 			<!--Define the location of the property-->
 			<fieldset>
 				<legend>Location</legend>
@@ -39,10 +40,10 @@
 				<legend>Property type</legend>
 				<div class="form-group required">
 					<div class="radio">
-						<label><input type="radio" name="propertyType">House</label>
+						<label><input type="radio" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="propertyType">Apartment</label>
+						<label><input type="radio" name="propertyType" id="apartmentCheck" onclick="houseOrApartmentCheck();" checked ="checked">Apartment</label>
 					</div>
 				</div>
 			</fieldset>
@@ -52,14 +53,18 @@
 				<legend>Add information about property</legend>
 				<div class="form-group">
 					<div class="input-group required">
-						<input type="text" class="form-control" name="propertyNumberOfRooms" placeholder="Number of rooms">
+						<input type="text" class="form-control" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
 					</div>
 					<div class="input-group required">
 						<input type="text" class="form-control" name="propertySurface" placeholder="Surface">
 					</div>
-					<div class="input-group required">
-						<input type="text" class="form-control" name="propertyFloor" placeholder="Floor">
+					<div  class="input-group required">
+						<input type="number" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of Floors">
+
 					</div>
+                    <div class="input-group required">
+                        <input type="number" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
+                    </div>
 				</div>
 			</fieldset>
 			<!--Select if the property is for sale or for rent-->
@@ -95,7 +100,6 @@
 
 
     </script>
-
 
 	</body>
 	</html>
