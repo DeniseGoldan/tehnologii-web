@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Add property</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!--Online font-->
+	<link href='//fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+	<!--Bootstrap elements needed-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--Map-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>
+	<!--Scripts related to the form-->
+	<script type="text/javascript" src="addPropertyGmap.js"></script>
+	<script type="text/javascript" src="addPropertyHideShow.js"></script>
+	<!--Styles-->
+	<link rel="stylesheet" href="addProperty_styles.css">
+	<!--Adjust body when using navbar-->
+	<script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid navbar-left">
+			<div class="navbar-header">
+				<a class="navbar-brand"><strong>Perfect Place Finder</strong></a>
+			</div>
+			<!-- Dropdown for Menu -->
+			<div class="container-fluid navbar-left dropdown">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li class="active"><a href="homePage.html">Home</a></li>
+							<li><a href="addProperty.html">Add property</a></li>
+							<li><a href="singleProperty.html">Single property example</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Dropdown for Logging in -->
+		<div class="container-fluid navbar-right dropdown">
+			<ul class="nav navbar-nav">
+				<!-- Begin custom dropdown menu for Log in -->
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Log in <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li class="dropdown-header">Already have an account?</li>
+						<li>
+							<!-- Begin Sign in form -->
+							<form class="well container-fluid center" method="post" id="signInForm">
+								<div class="form-group input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+									<input id="signInUsername" name="signInUsername" placeholder="Username" class="form-control" type="text">
+								</div>
+								<div class="form-group input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+									<input id="signInPassword" name="signInPassword" placeholder="Password" class="form-control" type="password">
+								</div>
+								<input type="submit" name="signInButton" class="submit btn btn-default center-block custom-sign-in-button" value="Sign in" onclick="">
+							</form>
+						</li>
+						<!-- End of Sign in form -->
+						<!-- Begin Register -->
+						<li class="dropdown-header">New here?</li>
+						<li><a href="registerForm.html">Join us</a></li>
+						<!--End Register-->
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<form class="well container-fluid" method="post" id="searchForm">
+		<h1 class="well">Add a new dream home</h1>
+		<div class="col-sm-8 location">
+			<!--Define the location of the property-->
+			<fieldset>
+				<legend>Location</legend>
+				<div class="form-group col-sm-12 input-group required">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+					<input name="search" placeholder="Enter a city" id="pac-input" class="form-control" type="text">
+				</div>
+				<div id="googleMap" style="width:100%;height:500px;"></div>
+				<div id="infowindow-content">
+					<span id="place-name"  class="title"></span><br>
+					<span id="place-address"></span>
+				</div>
+				<div name="LatLng">
+					<input name="lat" type ="hidden" id="lat">
+					<input name="lng" type ="hidden" id="lng">
+				</div>
+			</fieldset>
+		</div>
+		<div class="col-sm-4">
+			<!--Select the type of property-->
+			<fieldset>
+				<legend>Property type</legend>
+				<div class="form-group required">
+					<div class="radio">
+						<label><input type="radio" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="propertyType" id="apartmentCheck" onclick="houseOrApartmentCheck();" checked ="checked">Apartment</label>
+					</div>
+				</div>
+			</fieldset>
+			<!--Details about property-->
+			<fieldset>
+				<legend>Details</legend>
+				<div class="form-group">
+					<div class="input-group required">
+						<input type="text" class="form-control" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
+					</div>
+					<div class="input-group required">
+						<input type="number" class="form-control" name="propertySurface" id="propertySurface" placeholder="Surface (square meters)">
+					</div>
+					<div  class="input-group required">
+						<input type="number" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of floors">
+					</div>
+					<div class="input-group required">
+						<input type="number" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
+					</div>
+				</div>
+			</fieldset>
+			<!--Select if the property is for sale or for rent-->
+			<fieldset>
+				<legend>Transaction type</legend>
+				<div class="form-group required">
+					<div class="radio">
+						<label><input type="radio" name="propertyTransactionType">Rent</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="propertyTransactionType">Sale</label>
+					</div>
+				</div>
+			</fieldset>
+			<!--Select currency and set a price-->
+			<fieldset>
+				<legend>Set a price</legend>
+				<div class="form-group">
+					<div class="input-group required">
+						<input type="text" class="form-control" name="propertyPrice" placeholder="Price">
+					</div>
+					<div class="input-group required">
+						<input type="text" class="form-control" name="propertyCurrency" placeholder="Currency">
+					</div>
+				</div>
+			</fieldset>
+			<!--Submit data for further validation-->
+			<input type="submit" name="submitButton" class="submit btn btn-default " value="Submit" onclick="validateAddPropertyForm()">
+		</div>
+	</form>
+</body>
+</html>

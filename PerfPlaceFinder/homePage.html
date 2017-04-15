@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+	<title>Perfect Place Finder</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<!--Online font-->
 	<link href='//fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+	<link href='//fonts.googleapis.com/css?family=Pinyon Script' rel='stylesheet'>
 	<!--Bootstrap related-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!--Stylesheet-->
-	<link rel="stylesheet" href="registerForm_styles.css">
-	<!--Validate Register form-->
-	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
-	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
-	<script type="text/javascript" src="validateRegisterForm.js"></script>
+	<link rel="stylesheet" href="homePage_styles.css">
 	<!--Adjust body when using navbar-->
 	<script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
 </head>
@@ -71,34 +68,13 @@
 			</ul>
 		</div>
 	</nav>
-	<form class="well container-fluid" method="post" id="registerForm">
-		<h1 class="well">Register and share dream homes with our viewers! </h1>
-		<div class="container-fluid col-md-offset-4 col-md-4">
-			<div class="form-group input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input id="desiredUsername" name="desiredUsername" placeholder="Username" class="form-control" type="text">
+	<form class="well container-fluid" method="post" id="searchForm">
+		<h1 class="well"> Find the perfect place for you</h1>
+		<div class="col-md-offset-4 col-md-4">
+			<div class="form-group col-md-12 input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
+				<input name="searchStartingPoint" placeholder="Search by country or city" class="form-control" type="text">
 			</div>
-			<div class="form-group input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input id="firstName" name="firstName" placeholder="First name" class="form-control" type="text">
-			</div>
-			<div class="form-group input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input id="lastName" name="lastName" placeholder="Last name" class="form-control" type="text">
-			</div>
-			<div class="form-group input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="desiredPassword" name="desiredPassword" placeholder="Password" class="form-control" type="password">
-			</div>
-			<div class="form-group input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></i></span>
-				<input id="confirmPassword" name="confirmPassword" placeholder="Confirm password" class="form-control" type="password">
-			</div>
-			<div class="form-group input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-				<input id="email" name="email" placeholder="Email" class="form-control" type="email">
-			</div>
-			<input type="submit" name="registerButton" class="submit btn btn-default center-block" value="Register" onclick="validateRegisterForm()">
 		</div>
 	</form>
 </body>
