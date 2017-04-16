@@ -1,0 +1,58 @@
+.topSection{
+	margin-top:50px;
+	margin-bottom:50px;
+}
+
+.carousel-controls{
+	position:relative;
+	width:300px;
+	margin:0 auto;
+}
+
+.carousel-indicators{
+	top:0px;
+}
+
+#myCarousel .carousel-inner .item {
+	height:200px;
+	max-height:200px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	#myCarousel .carousel-inner .item {
+		height:300px;
+		max-height:300px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	#myCarousel .carousel-inner .item {
+		height:400px;
+		max-height:400px;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	#myCarousel .carousel-inner .item {
+		height:500px;
+		max-height:500px;
+	}
+}
+
+#myCarousel .carousel-inner .item img {
+	max-height: 100%;
+	width: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+textarea {
+	resize:none;
+}
