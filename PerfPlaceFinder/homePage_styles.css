@@ -45,3 +45,9 @@ h1 {
 .custom-sign-in-button {
 	font-size: 15px;
 }
+
+.transaction-type {
+	display: inline;
+	float: left;
+	font-size: 20px;
+}
