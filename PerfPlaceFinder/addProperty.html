@@ -21,62 +21,56 @@
 	<script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="homePage.html"><strong>Perfect Place Finder</strong></a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="addProperty.html">Add Property</a></li>
-        <li><a href="singleProperty.html">Single property example</a></li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in<span class="caret"></span></a>
-          <!--
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-          -->
-          <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header">Already have an account?</li>
-              <li>
-                <!-- Begin Sign in form -->
-                <form class="well container-fluid center" method="post" id="signInForm">
-                  <div class="form-group input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="signInUsername" name="signInUsername" placeholder="Username" class="form-control" type="text">
-                  </div>
-                  <div class="form-group input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="signInPassword" name="signInPassword" placeholder="Password" class="form-control" type="password">
-                  </div>
-                  <input type="submit" name="signInButton" class="submit btn btn-default center-block custom-sign-in-button" value="Sign in" onclick="">
-                </form>
-              </li>
-              <!-- End of Sign in form -->
-              <!-- Begin Register -->
-              <li class="dropdown-header">New here?</li>
-              <li><a href="registerForm.html">Join us</a></li>
-              <!--End Register-->
-            </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid navbar-left">
+		<div class="navbar-header">
+			<a class="navbar-brand"><strong>Perfect Place Finder</strong></a>
+		</div>
+		<!-- Dropdown for Menu -->
+		<div class="container-fluid navbar-left dropdown">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li class="active"><a href="homePage.html">Home</a></li>
+						<li><a href="addProperty.html">Add property</a></li>
+						<li><a href="singleProperty.html">Single property example</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Dropdown for Logging in -->
+	<div class="container-fluid navbar-right dropdown">
+		<ul class="nav navbar-nav">
+			<!-- Begin custom dropdown menu for Log in -->
+			<li>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Log in <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li class="dropdown-header">Already have an account?</li>
+					<li>
+						<!-- Begin Sign in form -->
+						<form class="well container-fluid center" method="post" id="signInForm">
+							<div class="form-group input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+								<input id="signInUsername" name="signInUsername" placeholder="Username" class="form-control" type="text">
+							</div>
+							<div class="form-group input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+								<input id="signInPassword" name="signInPassword" placeholder="Password" class="form-control" type="password">
+							</div>
+							<input type="submit" name="signInButton" class="submit btn btn-default center-block custom-sign-in-button" value="Sign in" onclick="">
+						</form>
+					</li>
+					<!-- End of Sign in form -->
+					<!-- Begin Register -->
+					<li class="dropdown-header">New here?</li>
+					<li><a href="registerForm.html">Join us</a></li>
+					<!--End Register-->
+				</ul>
+			</li>
+		</ul>
+	</div>
 </nav>
 	<form class="well container-fluid" method="post" id="searchForm">
 		<h1 class="well">Add a new dream home</h1>
@@ -94,8 +88,8 @@
 					<span id="place-address"></span>
 				</div>
 				<div name="LatLng">
-					<input name="lat" type ="hidden" id="lat">
-					<input name="lng" type ="hidden" id="lng">
+					<input name="lat" type ="hidden" class="numberInput" id="lat">
+					<input name="lng" type ="hidden" class="numberInput" id="lng">
 				</div>
 			</fieldset>
 		</div>
@@ -117,16 +111,16 @@
 				<legend>Details</legend>
 				<div class="form-group">
 					<div class="input-group required">
-						<input type="number" class="form-control" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
+						<input type="number" min="0" class="form-control numberInput" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms" >
 					</div>
 					<div class="input-group required">
-						<input type="number" class="form-control" name="propertySurface" id="propertySurface" placeholder="Surface (square meters)">
+						<input type="text" class="form-control numberInput" name="propertySurface" id="propertySurface" placeholder="Surface">
 					</div>
 					<div  class="input-group required">
-						<input type="number" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of floors">
+						<input type="number"  min= "1" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of floors">
 					</div>
 					<div class="input-group required">
-						<input type="number" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
+						<input type="number" min="0" class="form-control"  name="floorNumber" id="floorNumber" placeholder="Floor number">
 					</div>
 				</div>
 			</fieldset>
@@ -147,12 +141,18 @@
 				<legend>Set a price</legend>
 				<div class="form-group">
 					<div class="input-group required">
-						<input type="number" class="form-control" name="propertyPrice" placeholder="Price (euro)">
+						<input type="text" class="form-control numberInput" name="propertyPrice" placeholder="Price (euro)">
 					</div>
-				</fieldset>
 				<!--Submit data for further validation-->
-				<input type="submit" name="submitButton" class="submit btn btn-default " value="Submit" onclick="validateAddPropertyForm()">
-			</div>
-		</form>
-	</body>
-	</html>
+				</div>
+			</fieldset>
+			<fieldset>
+				<input type="file" name="photos[]" multiple />
+			</fieldset>
+
+			<input type="submit" name="submitButton" class="submit btn btn-default " value="Submit" onclick="validateAddPropertyForm()">
+
+		</div>
+	</form>
+</body>
+</html>
