@@ -111,7 +111,7 @@
 				<legend>Details</legend>
 				<div class="form-group">
 					<div class="input-group required">
-						<input type="text" class="form-control" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
+						<input type="number" class="form-control" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
 					</div>
 					<div class="input-group required">
 						<input type="number" class="form-control" name="propertySurface" id="propertySurface" placeholder="Surface (square meters)">
@@ -141,16 +141,12 @@
 				<legend>Set a price</legend>
 				<div class="form-group">
 					<div class="input-group required">
-						<input type="text" class="form-control" name="propertyPrice" placeholder="Price">
+						<input type="number" class="form-control" name="propertyPrice" placeholder="Price (euro)">
 					</div>
-					<div class="input-group required">
-						<input type="text" class="form-control" name="propertyCurrency" placeholder="Currency">
-					</div>
-				</div>
-			</fieldset>
-			<!--Submit data for further validation-->
-			<input type="submit" name="submitButton" class="submit btn btn-default " value="Submit" onclick="validateAddPropertyForm()">
-		</div>
-	</form>
-</body>
-</html>
+				</fieldset>
+				<!--Submit data for further validation-->
+				<input type="submit" name="submitButton" class="submit btn btn-default " value="Submit" onclick="validateAddPropertyForm()">
+			</div>
+		</form>
+	</body>
+	</html>
