@@ -4,17 +4,21 @@
 }
 
 body {
-	/*Properties for the image on the background*/
-	background: url(images/curled-stairs.jpg) no-repeat center center fixed;
+	/*Properties for the font of the body*/
+	background: url(images/stairs-small.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-
-	/*Properties for the font of the body*/
 	font-family: 'Montserrat Alternates';
-
 	margin-top: 40px;
+}
+
+/* For width 400px and larger: */
+@media only screen and (min-width: 400px) {
+	body {
+		background: url(images/stairs-big.jpg) no-repeat center center fixed;
+	}
 }
 
 .nav {
@@ -50,4 +54,16 @@ h1 {
 	display: inline;
 	float: left;
 	font-size: 20px;
+}
+
+
+.full-sized-photo {
+	height: auto;
+	justify-content: inherit;
+	align-items: inherit;
+}
+
+.photo img {
+	width: 100%;
+	display: block;
 }

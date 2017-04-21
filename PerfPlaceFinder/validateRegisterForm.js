@@ -28,6 +28,11 @@ function validateRegisterForm() {
 				minlength: 8,
 				maxlength: 50
 			},
+			phoneNumber: {
+				required: true,
+				minlength: 10,
+				maxlength: 20
+			},
 			email: {
 				required: true,
 				minlength: 3,
@@ -49,6 +54,9 @@ function validateRegisterForm() {
 			},
 			confirmPassword: {
 				equalTo: "The two passwords must match!",
+			},
+			phoneNumber: {
+				minlength: "You need to insert at least 10 characters."
 			}
 		}
 	});

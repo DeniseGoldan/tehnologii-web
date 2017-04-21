@@ -5,16 +5,11 @@
 }
 
 body {
-	/*Properties for the image on the background*/
-	background: url(images/chateau.jpg) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	background: #116466;
 
 	/*Properties for the font of the body*/
 	font-family: 'Montserrat Alternates';
-
+	font-weight: bold;
 	margin-top: 40px;
 }
 
@@ -23,31 +18,79 @@ body {
 	z-index: 1;
 }
 
-.my-error-class {
-	color : #cc0000; /*red*/
-}
-
 .well {
-	padding-top: 40px;
-	padding-bottom: 40px;
-	background-color: rgba(245, 245, 245, 0.7);
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: rgba(245, 245, 245, 0.8);
 	border-radius: 0 !important; /*Get rid of rounded corners*/
 }
 
 h1 {
-	padding-bottom: 20px;
 	font-size: 30px;
 	text-align: center;
 	font-weight: bold;
 	color: #333333; /*grey*/
 }
 
-.btn {
-	font-size: 25px;
-	font-weight: bold;
+.add-line-on-top {
+	border-top: 2px solid #bcbcbc;
+}
+
+.owner-info {
+	margin-top: 20px;
 }
 
 /*Menu related*/
 .custom-sign-in-button {
 	font-size: 15px;
+}
+
+.carousel-controls{
+	position:relative;
+	width:150px;
+	margin:0 auto;
+}
+
+.carousel-indicators{
+	top:0px;
+}
+
+.myCarousel .carousel-inner .item {
+	height:100px;
+	max-height:100px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.myCarousel .carousel-inner .item {
+		height:150px;
+		max-height:150px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.myCarousel .carousel-inner .item {
+		height:200px;
+		max-height:200px;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.myCarousel .carousel-inner .item {
+		height:250px;
+		max-height:250px;
+	}
+}
+
+.myCarousel .carousel-inner .item img {
+	max-height: 100%;
+	width: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 }

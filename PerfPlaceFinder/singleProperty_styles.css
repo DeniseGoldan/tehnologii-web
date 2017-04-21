@@ -5,12 +5,7 @@
 }
 
 body {
-	/*Properties for the image on the background*/
-	background: url(images/architecture.jpg) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	background: #116466;
 
 	/*Properties for the font of the body*/
 	font-family: 'Montserrat Alternates';
