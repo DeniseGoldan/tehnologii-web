@@ -1,0 +1,109 @@
+* {
+	margin: 0;
+	padding: 0;
+	border-radius: 0 !important;
+}
+
+body {
+	background: #116466;
+
+	/*Properties for the font of the body*/
+	font-family: 'Montserrat Alternates';
+	font-weight: bold;
+	margin-top: 40px;
+}
+
+.nav {
+	position: relative;
+	z-index: 1;
+}
+
+.well {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: rgba(245, 245, 245, 0.8);
+	border-radius: 0 !important; /*Get rid of rounded corners*/
+}
+
+h1 {
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: #333333; /*grey*/
+}
+
+.query-element {
+	float: left;
+	border: 1px solid #bcbcbc;
+	background-color: rgba(245, 245, 245, 0.6);
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+}
+
+.link-to-edit {
+	font-size: 20px;
+}
+
+.add-line-on-top {
+	border-top: 2px solid #bcbcbc;
+}
+
+.owner-info {
+	margin-top: 20px;
+}
+
+/*Menu related*/
+.custom-sign-in-button {
+	font-size: 15px;
+}
+
+.carousel-controls{
+	position:relative;
+	width:150px;
+	margin:0 auto;
+}
+
+.carousel-indicators{
+	top:0px;
+}
+
+.myCarousel .carousel-inner .item {
+	height:100px;
+	max-height:100px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.myCarousel .carousel-inner .item {
+		height:150px;
+		max-height:150px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.myCarousel .carousel-inner .item {
+		height:200px;
+		max-height:200px;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.myCarousel .carousel-inner .item {
+		height:250px;
+		max-height:250px;
+	}
+}
+
+.myCarousel .carousel-inner .item img {
+	max-height: 100%;
+	width: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
