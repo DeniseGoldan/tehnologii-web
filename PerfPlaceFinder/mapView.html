@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add property</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--Online font-->
+    <link href='//fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+    <!--Bootstrap elements needed-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--Scripts related to the form-->
+    <script type="text/javascript" src="mapView.js"></script>
+    <!--Styles-->
+    <link rel="stylesheet" href="addProperty_styles.css">
+    <!--Adjust body when using navbar-->
+    <script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid navbar-left">
+        <div class="navbar-header">
+            <a class="navbar-brand"><strong>Perfect Place Finder</strong></a>
+        </div>
+        <!-- Dropdown for Menu -->
+        <div class="container-fluid navbar-left dropdown">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false">Menu<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="active"><a href="homePage.html">Home</a></li>
+                        <li><a href="addProperty.html">Add property</a></li>
+                        <li><a href="singleProperty.html">Single property example</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Dropdown for Logging in -->
+    <div class="container-fluid navbar-right dropdown">
+        <ul class="nav navbar-nav">
+            <!-- Begin custom dropdown menu for Log in -->
+            <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Log in
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Already have an account?</li>
+                    <li>
+                        <!-- Begin Sign in form -->
+                        <form class="well container-fluid center" method="post" id="signInForm">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="signInUsername" name="signInUsername" placeholder="Username"
+                                       class="form-control" type="text">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input id="signInPassword" name="signInPassword" placeholder="Password"
+                                       class="form-control" type="password">
+                            </div>
+                            <input type="submit" name="signInButton"
+                                   class="submit btn btn-default center-block custom-sign-in-button" value="Sign in"
+                                   onclick="">
+                        </form>
+                    </li>
+                    <!-- End of Sign in form -->
+                    <!-- Begin Register -->
+                    <li class="dropdown-header">New here?</li>
+                    <li><a href="registerForm.html">Join us</a></li>
+                    <!--End Register-->
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid well">
+    <form class="well container-fluid col-sm-3" method="post" id="searchForm">
+        <fieldset>
+            <legend>Transaction</legend>
+            <div class="form-group required">
+                <label><input type="radio" name="transactionType">Buy</label>
+                <label><input type="radio" name="transactionType">Rent</label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Property type</legend>
+            <div class="form-group required">
+                <label><input type="radio" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
+                <label><input type="radio" name="propertyType" id="apartmentCheck"
+                              onclick="houseOrApartmentCheck();" checked="checked">Apartment</label>
+                <label><input type="radio" name="propertyType" id="bothCheck" onclick="houseOrApartmentCheck();"
+                              checked="checked">Both</label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Price</legend>
+            <div class="form-group">
+                <label>Between</label>
+                <input type="text" class="numberInput" style="width:50px;">
+                <label> and </label>
+                <input type="text" class="numberInput" style="width:50px;">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Number of rooms</legend>
+            <div class="form-group">
+                <label>Between</label>
+                <input type="text" class="numberInput" style="width:50px;">
+                <label> and </label>
+                <input type="text" class="numberInput" style="width:50px;">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Surface</legend>
+            <div class="form-group">
+                <label>Between</label>
+                <input type="text" class="numberInput" style="width:50px;">
+                <label> and </label>
+                <input type="text" class="numberInput" style="width:50px;">
+            </div>
+        </fieldset>
+        <input type="submit" value="Search homes" class="submit btn btn-default ">
+    </form>
+
+
+    <div class="col-sm-9">
+        <div class="input-group">
+            <fieldset>
+                <legend>Location</legend>
+                <input name="search" placeholder="Enter a locations" id="pac-input" class="form-control" type="text"
+                       style="width:500px;">
+            </fieldset>
+            <div class="btn-group">
+                <button type="button" id="pollutionLayer" onclick="togglePollution()" class="btn  btn-default">
+                    Pollution
+                </button>
+                <button type="button" id="noiseLayer" class="btn btn-default" onclick="toggleNoise()">Noise</button>
+                <button type="button" id="criminalityLayer" class="btn btn-default" onclick="toggleCriminality()">
+                    Criminality
+                </button>
+            </div>
+            </span>
+        </div>
+        <div id="googleMap" style="width:100%;height:500px;"></div>
+        <div id="infowindow-content">
+            <span id="place-name" class="title"></span><br>
+            <span id="place-address"></span>
+        </div>
+        <div name="LatLng">
+            <input name="lat" class="numberInput" type="hidden" id="lat">
+            <input name="lng" class="numberInput" type="hidden" id="lng">
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+<!--Map-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places,visualization&callback=initMap"
+        async defer></script>
+
+</html>
