@@ -10,7 +10,7 @@
 
 body {
 	background: #116466;
-	
+
 	/*Properties for the font of the body*/
 	font-family: 'Montserrat Alternates';
 	font-weight: bold;
@@ -22,11 +22,27 @@ body {
 	z-index: 1;
 }
 
+.my-error-class {
+	color : #cc0000; /*red*/
+}
+
+.add-padding-to-photos {
+	margin-left: 10px;
+}
+
 .well {
-	padding-top: 40px;
-	padding-bottom: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	background-color: rgba(245, 245, 245, 0.7);
 	border-radius: 0 !important; /*Get rid of rounded corners*/
+}
+
+.replace-with-photo {
+	float: left;
+	border: 1px solid #bcbcbc;
+	background-color: rgba(7, 145, 44, 0.6);
+	padding: 60px;
+	margin: 10px;
 }
 
 h1 {

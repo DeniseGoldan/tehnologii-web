@@ -29,6 +29,14 @@ body {
 	border-radius: 0 !important; /*Get rid of rounded corners*/
 }
 
+.replace-with-photo {
+	float: left;
+	border: 1px solid #bcbcbc;
+	background-color: rgba(7, 145, 44, 0.6);
+	padding: 60px;
+	margin: 10px;
+}
+
 h1 {
 	padding-bottom: 40px;
 	font-size: 30px;
