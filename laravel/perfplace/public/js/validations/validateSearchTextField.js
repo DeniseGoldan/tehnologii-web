@@ -16,7 +16,7 @@ function validateSearchTextField() {
 	});
 }
 
-/*
+
 $('#searchForm').on('keyup keypress',function(e){
 	var keyCode = e.keyCode || e.which;
 	if(keyCode === 13){
@@ -24,4 +24,4 @@ $('#searchForm').on('keyup keypress',function(e){
 		return false;
 	}
 });
-*/
+

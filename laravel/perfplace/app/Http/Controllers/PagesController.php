@@ -30,4 +30,12 @@ class PagesController extends Controller{
 	public function getUserProperties(){
 		return view('pages.userProperties');
 	}
+
+	public function getEditProperty(){
+		return view('pages.editProperty');
+	}
+
+	public function getMap(){
+		return view('pages.map');
+	}
 }

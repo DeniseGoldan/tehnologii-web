@@ -10,7 +10,7 @@
 
 	<div class="well container-fluid">
 		<h1 class ="well">The results of your search</h1>
-		<a class="link-to-edit" href="/"><span class="glyphicon glyphicon-edit"></span> Get back to edit search criteria</a>
+		<a class="link-to-edit" href="/map"><span class="glyphicon glyphicon-edit"></span> Get back to edit search criteria</a>
 		<div >
 			<div class="query-element">2+ rooms</div>
 			<div class="query-element">sale</div>

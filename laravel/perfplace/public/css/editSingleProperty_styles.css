@@ -22,14 +22,6 @@ body {
 	z-index: 1;
 }
 
-.my-error-class {
-	color : #cc0000; /*red*/
-}
-
-.add-padding-to-photos {
-	margin-left: 10px;
-}
-
 .well {
 	padding-top: 10px;
 	padding-bottom: 10px;

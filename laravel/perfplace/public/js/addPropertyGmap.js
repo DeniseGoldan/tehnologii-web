@@ -5,7 +5,7 @@ function initMap() {
 		center: {lat: -33.8688, lng: 151.2195},
 		zoom: 13
 	});
-	var input = document.getElementById('pac-input');
+	var input = document.getElementById('placeAutocomplete');
 
 	var autocomplete = new google.maps.places.Autocomplete(input);
 

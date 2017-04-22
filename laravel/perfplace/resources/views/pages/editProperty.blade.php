@@ -1,78 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Edit property</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<!--Online font-->
-	<link href='http://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
-	<!--Bootstrap elements needed-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!--Scripts related to the form-->
-	<script type="text/javascript" src="addPropertyGmap.js"></script>
-	<script type="text/javascript" src="addPropertyHideShow.js"></script>
-	<!--Styles-->
-	<link rel="stylesheet" href="editSingleProperty_styles.css">
-	<!--Adjust body when using navbar-->
-	<script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
-</head>
-<body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="homePage.html"><strong>Perfect Place Finder</strong></a>
-			</div>
+@extends('main')
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="addProperty.html">Add Property</a></li>
-					<li><a href="singleProperty.html">Single property example</a></li>
-				</ul>
+@section('stylesheets')
 
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li class="dropdown-header">Already have an account?</li>
-							<li>
-								<!-- Begin Sign in form -->
-								<form class="well container-fluid center" method="post" id="signInForm">
-									<div class="form-group input-group">
-										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										<input id="signInUsername" name="signInUsername" placeholder="Username" class="form-control" type="text">
-									</div>
-									<div class="form-group input-group">
-										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-										<input id="signInPassword" name="signInPassword" placeholder="Password" class="form-control" type="password">
-									</div>
-									<input type="submit" name="signInButton" class="submit btn btn-default center-block custom-sign-in-button" value="Sign in" onclick="">
-								</form>
-							</li>
-							<!-- End of Sign in form -->
-							<!-- Begin Register -->
-							<li class="dropdown-header">New here?</li>
-							<li><a href="registerForm.html">Join us</a></li>
-							<!--End Register-->
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="well">
-		<h1 class="well">Edit the property</h1>
-	</div>
+	<link rel="stylesheet" href="css/editSingleProperty_styles.css">
 
+@stop
 
-	</div>
+@section('content')
+
 	<form class="well container-fluid" method="post" id="searchForm">
 		<div class="container-fluid">
 			<div class="col-sm-3">
@@ -134,7 +69,7 @@
 					<legend>Location</legend>
 					<div class="form-group col-sm-12 input-group required">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-						<input name="search" placeholder="Enter a city" id="pac-input" class="form-control" type="text">
+						<input name="search" placeholder="Enter a city" id="placeAutocomplete" class="form-control" type="text">
 					</div>
 					<div id="googleMap" style="width:100%;height:400px;"></div>
 					<div id="infowindow-content">
@@ -180,7 +115,13 @@
 
 			</form>
 
-			</body>
-<!--Map-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>
-</html>
+
+@stop
+
+@section('scripts')
+
+	<script type="text/javascript" src="js/addPropertyGmap.js"></script>
+	<script type="text/javascript" src="js/addPropertyHideShow.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>
+
+@stop

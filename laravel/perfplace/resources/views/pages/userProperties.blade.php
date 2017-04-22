@@ -59,9 +59,11 @@
 					</div>
 					<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:40px;">
 						<p data-placement="top" data-toggle="tooltip" title="Edit">
+							<a href="/editProperty">
 							<button class="btn btn-primary btn-lg" data-title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</button>
+							</a>
 						</p>
 					</div>
 					<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:40px;">
@@ -145,9 +147,11 @@
 					</div>
 					<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:40px;">
 						<p data-placement="top" data-toggle="tooltip" title="Edit">
+							<a href="/editProperty">
 							<button class="btn btn-primary btn-lg" data-title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</button>
+							</a>
 						</p>
 					</div>
 					<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:40px;">
@@ -227,9 +231,11 @@
 					</div>
 					<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:40px;">
 						<p data-placement="top" data-toggle="tooltip" title="Edit">
+							<a href="/editProperty">
 							<button class="btn btn-primary btn-lg" data-title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</button>
+							</a>
 						</p>
 					</div>
 					<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:40px;">

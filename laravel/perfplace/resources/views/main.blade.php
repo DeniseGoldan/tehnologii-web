@@ -10,7 +10,7 @@
 
     @include('partials._javascript')
 
-    @yield('scripts')
+    
 
   </head>
 
@@ -27,9 +27,9 @@
             @include('partials._footer')
 
         </div> 
-
-    
-
+  
   </body>
+
+  @yield('scripts')
 
 </html>

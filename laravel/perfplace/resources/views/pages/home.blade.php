@@ -12,7 +12,7 @@
 
 @section('content')
 
-<form class="well container-fluid" method="get" id="searchForm" action="/results">
+<form class="well container-fluid" method="get" id="searchForm" action="/map">
 	<h1 class="well"> Find the perfect place for you</h1>
 	<div class="col-sm-offset-3 col-sm-6">
 		<div class="input-group">
