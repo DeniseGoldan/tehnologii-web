@@ -1,0 +1,69 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	/*Properties for the font of the body*/
+	background: url(../img/stairs-small.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	font-family: 'Montserrat Alternates';
+	margin-top: 40px;
+}
+
+/* For width 400px and larger: */
+@media only screen and (min-width: 400px) {
+	body {
+		background: url(../img/stairs-big.jpg) no-repeat center center fixed;
+	}
+}
+
+.nav {
+	position: relative;
+	z-index: 1;
+}
+
+.my-error-class {
+	color : #cc0000; /*red*/
+}
+
+.well {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 0 !important; /*Get rid of rounded corners*/
+}
+
+h1 {
+	padding-bottom: 20px;
+	font-size: 80px;
+	text-align: center;
+	font-family: 'Pinyon Script';
+	color: #333333; /*grey*/
+}
+
+/*Menu related*/
+.custom-sign-in-button {
+	font-size: 15px;
+}
+
+.transaction-type {
+	display: inline;
+	float: left;
+	font-size: 20px;
+}
+
+
+.full-sized-photo {
+	height: auto;
+	justify-content: inherit;
+	align-items: inherit;
+}
+
+.photo img {
+	width: 100%;
+	display: block;
+}
