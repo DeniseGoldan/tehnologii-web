@@ -10,8 +10,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!--Map-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>
+
 	<!--Scripts related to the form-->
 	<script type="text/javascript" src="addPropertyGmap.js"></script>
 	<script type="text/javascript" src="addPropertyHideShow.js"></script>
@@ -79,14 +78,14 @@
 					<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
 					<input name="search" placeholder="Enter a city" id="pac-input" class="form-control" type="text">
 				</div>
-				<div id="googleMap" style="width:100%;height:500px;"></div>
+				<div id="googleMap" style="width:100%;height:700px;"></div>
 				<div id="infowindow-content">
 					<span id="place-name"  class="title"></span><br>
 					<span id="place-address"></span>
 				</div>
 				<div name="LatLng">
-					<input name="lat" type ="hidden" id="lat">
-					<input name="lng" type ="hidden" id="lng">
+					<input name="lat" class="numberInput" type ="hidden" id="lat">
+					<input name="lng" class="numberInput" type ="hidden" id="lng">
 				</div>
 			</fieldset>
 		</div>
@@ -108,16 +107,16 @@
 				<legend>Details</legend>
 				<div class="form-group">
 					<div class="input-group required">
-						<input type="number" class="form-control" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
+						<input type="number"  min="1" class="form-control numberInput" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
 					</div>
 					<div class="input-group required">
-						<input type="number" class="form-control" name="propertySurface" id="propertySurface" placeholder="Surface (square meters)">
+						<input type="text" class="form-control numberInput" name="propertySurface" id="propertySurface" placeholder="Surface (square meters)">
 					</div>
 					<div  class="input-group required">
-						<input type="number" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of floors">
+						<input type="number"  min="1" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of floors">
 					</div>
 					<div class="input-group required">
-						<input type="number" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
+						<input type="number"  min="0" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
 					</div>
 				</div>
 			</fieldset>
@@ -129,7 +128,7 @@
 						<label><input type="radio" name="propertyTransactionType">Rent</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="propertyTransactionType">Sale</label>
+						<label><input type="radio" checked='checked' name="propertyTransactionType">Sale</label>
 					</div>
 				</div>
 			</fieldset>
@@ -138,12 +137,23 @@
 				<legend>Set a price</legend>
 				<div class="form-group">
 					<div class="input-group required">
-						<input type="number" class="form-control" name="propertyPrice" placeholder="Price (euro)">
+						<input type="text" class="form-control numberInput" name="propertyPrice" placeholder="Price (euro)">
 					</div>
-				</fieldset>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Description</legend>
+				<div class="form-group">
+					<div class="input-group required">
+						<textarea rows="4" cols="50" class="form-control" name="description" placeholder="Add a description"></textarea>
+					</div>
+				</div>
+			</fieldset>
 				<!--Submit data for further validation-->
 				<input type="submit" name="submitButton" class="submit btn btn-default " value="Submit" onclick="validateAddPropertyForm()">
 			</div>
 		</form>
 	</body>
+<!--Map-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>
 	</html>
