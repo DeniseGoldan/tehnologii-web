@@ -13,6 +13,8 @@
 	<!--Scripts related to the form-->
 	<script type="text/javascript" src="addPropertyGmap.js"></script>
 	<script type="text/javascript" src="addPropertyHideShow.js"></script>
+	<script type="text/javascript" src="addPropertyForceNumeric.js"></script>
+	<script type="text/javascript" src="addPropertyUploadThumbnails.js"></script>
 	<!--Validate add property-->
 	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
 	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
@@ -22,7 +24,9 @@
 	<!--Adjust body when using navbar-->
 	<script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
 </head>
+
 <body>
+
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -154,14 +158,35 @@
 				<legend class="add-padding-to-photos">Photos</legend>
 				<div class="form-group">
 					<div >
-						<div class="replace-with-photo"></div>
-						<div class="replace-with-photo"></div>
-						<div class="replace-with-photo"></div>
-						<div class="replace-with-photo"></div>
-						<div class="replace-with-photo"></div>
-						<br style="clear: left;">
+						<div class="image-upload">
+							<label for="file-input-1">
+								<img id="pic-1" src="images/housePlaceholder.jpg" height="90" width="90">
+							</label>
+							<label for="file-input-2">
+								<img id="pic-2" src="images/housePlaceholder.jpg" height="90" width="90">
+							</label>
+							<label for="file-input-3">
+								<img id="pic-3" src="images/housePlaceholder.jpg" height="90" width="90">
+							</label>
+							<label for="file-input-4">
+								<img id="pic-4" src="images/housePlaceholder.jpg" height="90" width="90">
+							</label>
+							<label for="file-input-5">
+								<img id="pic-5" src="images/housePlaceholder.jpg" height="90" width="90">
+							</label>
+							<input id="file-input-1" type="file"/>
+                            <input id="file-input-2" type="file"/>
+                            <input id="file-input-3" type="file"/>
+                            <input id="file-input-4" type="file"/>
+                            <input id="file-input-5" type="file"/>
+						</div>
 					</div>
 				</div>
+
+				<style>.image-upload > input
+				{
+					display: none;
+				}</style>
 			</fieldset>
 			<!--Submit data for further validation-->
 			<div class="row">
