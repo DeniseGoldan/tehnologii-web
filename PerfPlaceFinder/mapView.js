@@ -1,9 +1,26 @@
+
 var markers = [
-    ['1', 37.785397, -122.400857],
-    ['2', 37.785397, -122.400857],
-    ['3', 37.785357, -122.400857],
-    ['4', 37.785347, -122.400857],
-    ['5', 37.785397, -122.400857]
+    [2,37.78850715,-122.41763405],
+    [3,37.77577036,-122.45223483],
+    [4,37.78216389,-122.40420324],
+    [5,37.78493895,-122.43150648],
+    [6,37.78355341,-122.44523488],
+    [7,37.79653126,-122.41942076],
+    [8,37.76610266,-122.4498689],
+    [9,37.7516354,-122.40476647],
+    [10,37.75859843,-122.44309784],
+    [1,37.7815459,-122.4226602],
+    [11,37.76687074,-122.4248328],
+    [12,37.77773231,-122.44754364],
+    [13,37.80028819,-122.41216287],
+    [14,37.78360454,-122.43289592],
+    [15,37.78511746,-122.42184657],
+    [16,37.76065642,-122.44635506],
+    [17,37.795434,-122.4393271],
+    [18,37.756579,-122.41044467],
+    [19,37.76578988,-122.42926281],
+    [20,37.78102954,-122.42904337]
+
 ];
 //Blue
 var gradientNoise = [
@@ -13,52 +30,35 @@ var gradientNoise = [
     'rgba(0, 200, 255, 1)',
     'rgba(0, 175, 255, 1)',
     'rgba(0, 160, 255, 1)',
-    'rgba(0, 145, 223, 1)',
-    'rgba(0, 125, 191, 1)',
-    'rgba(0, 110, 255, 1)',
-    'rgba(0, 100, 255, 1)',
-    'rgba(0, 75, 255, 1)',
-    'rgba(0, 50, 255, 1)',
-    'rgba(0, 25, 255, 1)',
-    'rgba(0, 0, 255, 1)'
+    'rgba(0, 160, 255, 1)',
+    'rgba(0, 140, 255, 1)',
+    'rgba(0, 130, 255, 1)',
+    'rgba(0, 120, 255, 1)',
+
 ]
 // Red - negative
 var gradientCriminality = [
-    'rgba(255, 255, 0, 0)',
-    'rgba(255, 255, 0, 1)',
-    'rgba(255, 225, 0, 1)',
-    'rgba(255, 200, 0, 1)',
-    'rgba(255, 175, 0, 1)',
-    'rgba(255, 160, 0, 1)',
-    'rgba(255, 145, 0, 1)',
-    'rgba(255, 125, 0, 1)',
-    'rgba(255, 110, 0, 1)',
-    'rgba(255, 100, 0, 1)',
-    'rgba(255, 75, 0, 1)',
+    'rgba(255, 0, 0, 0)',
+    'rgba(255, 80, 0, 1)',
+    'rgba(255, 80, 0, 1)',
     'rgba(255, 50, 0, 1)',
-    'rgba(255, 25, 0, 1)',
+    'rgba(255, 50, 0, 1)',
+    'rgba(255, 30, 0, 1)',
+    'rgba(255, 20, 0, 1)',
     'rgba(255, 0, 0, 1)'
 ];
+
 var gradientPollution = [
-    'rgba(255,0, 255, 0)',
-    'rgba(255,0, 255, 1)',
-    'rgba(225,0, 255, 1)',
-    'rgba(200,0, 255, 1)',
-    'rgba(175,0, 255, 1)',
-    'rgba(160,0, 255, 1)',
-    'rgba(145,0, 223, 1)',
-    'rgba(125,0, 191, 1)',
-    'rgba(110,0, 255, 1)',
-    'rgba(100,0, 255, 1)',
-    'rgba(75,0, 255, 1)',
-    'rgba(50,0, 255, 1)',
-    'rgba(25,0, 255, 1)',
-    'rgba(0,0, 255, 1)'
+    'rgba(255, 220, 0, 0)',
+    'rgba(255, 200, 0, 1)',
+    'rgba(255, 190, 10, 1)',
+    'rgba(255, 180, 10, 1)',
+    'rgba(255, 160, 20, 1)'
 ];
-var map;
-var pollutionHeatmap;
-var noiseHeatmap;
-var criminalityHeatmap;
+var map=null;
+var pollutionHeatmap=null;
+var noiseHeatmap=null;
+var criminalityHeatmap=null;
 
 function getPollutionPoints() {
     return [
@@ -554,6 +554,50 @@ function getCriminalityPoints(){
         new google.maps.LatLng(37.781574, -122.404911)
     ];
 }
+
+
+function toggleHeatmap(heatmap) {
+    heatmap.setMap(heatmap.getMap() ? null : map);
+}
+
+function togglePollution() {
+    if(pollutionHeatmap==null){
+        pollutionHeatmap = new google.maps.visualization.HeatmapLayer({
+            data: getPollutionPoints(),
+            map: map,
+        });
+        pollutionHeatmap.set('gradient', gradientPollution);
+    }
+    else{
+        toggleHeatmap(pollutionHeatmap);
+    }
+}
+function toggleNoise() {
+    if(noiseHeatmap==null){
+        noiseHeatmap = new google.maps.visualization.HeatmapLayer({
+            data: getNoisePoints(),
+            map: map
+        });
+        noiseHeatmap.set('gradient', gradientNoise);
+    }
+    else{
+        toggleHeatmap(noiseHeatmap);
+    }
+}
+function toggleCriminality() {
+    if(criminalityHeatmap==null){
+        criminalityHeatmap = new google.maps.visualization.HeatmapLayer({
+            data: getCriminalityPoints(),
+            map: map
+        });
+        criminalityHeatmap.set('gradient',gradientCriminality);
+    }
+    else{
+        toggleHeatmap(criminalityHeatmap);
+    }
+
+}
+
 function displayMarkers(map,markers) {
     var infowindow = new google.maps.InfoWindow(), marker, i;
     for (i = 0; i < markers.length; i++) {
@@ -564,8 +608,10 @@ function displayMarkers(map,markers) {
     }
 
 }
+
 function initMap() {
-    var latlng = new google.maps.LatLng(-33.92, 151.25);
+    var center = new google.maps.LatLng(0, 0);
+    var latlng = new google.maps.LatLng(37.7749,-122.4194);
     var myOptions = {
         zoom: 10,
         center: latlng,
@@ -573,6 +619,7 @@ function initMap() {
         mapTypeControl: false
     };
     map = new google.maps.Map(document.getElementById("googleMap"),myOptions);
+    console.log(map);
     var input = document.getElementById('pac-input');
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -580,14 +627,9 @@ function initMap() {
     // so that the autocomplete requests use the current map bounds for the
     // bounds option in the request.
     autocomplete.bindTo('bounds', map);
-
-    var infowindow = new google.maps.InfoWindow();
-    var infowindowContent = document.getElementById('infowindow-content');
-    infowindow.setContent(infowindowContent);
     autocomplete.addListener('place_changed', function() {
-        infowindow.close();
-        marker.setVisible(false);
         var place = autocomplete.getPlace();
+        var searchedLocation=document.getElementById('searchedLocation');
         if (!place.geometry) {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
@@ -597,14 +639,11 @@ function initMap() {
 
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
+            searchedLocation.value=input.value;
         } else {
             map.setCenter(place.geometry.location);
             map.setZoom(17);  // Why 17? Because it looks good.
         }
-        marker.setPosition(place.geometry.location);
-        marker.setVisible(true);
-
         var address = '';
         if (place.address_components) {
             address = [
@@ -613,50 +652,14 @@ function initMap() {
                 (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
         }
-        infowindowContent.children['place-name'].textContent = place.name;
-        infowindowContent.children['place-address'].textContent = address;
-        infowindow.open(map, marker);
     });
     displayMarkers(map,markers);
-    pollutionHeatmap = new google.maps.visualization.HeatmapLayer({
-        data: getPollutionPoints(),
-        map: map
-    });
-    noiseHeatmap = new google.maps.visualization.HeatmapLayer({
-        data: getNoisePoints(),
-        map: map
-    });
-    criminalityHeatmap = new google.maps.visualization.HeatmapLayer({
-        data: getCriminalityPoints(),
-        map: map
-    });
-
 }
-function toggleHeatmap(heatmap) {
-    heatmap.setMap(heatmap.getMap() ? null : map);
+
+function focusMap(searchedLocation){
+    console.log(map);
+    map.setCenter(center);
+    map.setZoom(17);  // Why 17? Because it looks good.
 
 }
 
-function togglePollution() {
-    toggleHeatmap(pollutionHeatmap);
-    pollutionHeatmap.set('gradient', gradientPollution);
-}
-function toggleNoise() {
-    toggleHeatmap(noiseHeatmap);
-    noiseHeatmap.set('gradient', gradientNoise);
-}
-function toggleCriminality() {
-    toggleHeatmap(criminalityHeatmap);
-    criminalityHeatmap('gradient',gradientCriminality);
-}
-
-
-function changeRadius() {
-    heatmap.set('radius', heatmap.get('radius') ? null : 20);
-}
-
-function changeOpacity() {
-    heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-}
-
-// Heatmap data: 500 Points

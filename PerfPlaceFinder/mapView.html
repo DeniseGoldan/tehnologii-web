@@ -12,12 +12,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--Scripts related to the form-->
     <script type="text/javascript" src="mapView.js"></script>
+    <script type="text/javascript" src="mapViewForceNumeric.js"></script>
     <!--Styles-->
     <link rel="stylesheet" href="addProperty_styles.css">
     <!--Adjust body when using navbar-->
     <script type="text/javascript" src="adjustBodyOffsetWhenResizing.js"></script>
 </head>
+
 <body>
+
+<!--<?php-->
+<!--if(isset($_GET['searchedLocation'])){-->
+    <!--echo '<script type="text/javascript">'.'focusMap("'.$_GET['searchedLocation'].'");</script>';-->
+<!--}-->
+<!--?>-->
+
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid navbar-left">
         <div class="navbar-header">
@@ -76,85 +86,87 @@
     </div>
 </nav>
 <div class="container-fluid well">
-    <form class="well container-fluid col-sm-3" method="post" id="searchForm">
-        <fieldset>
-            <legend>Transaction</legend>
-            <div class="form-group required">
-                <label><input type="radio" name="transactionType">Buy</label>
-                <label><input type="radio" name="transactionType">Rent</label>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Property type</legend>
-            <div class="form-group required">
-                <label><input type="radio" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
-                <label><input type="radio" name="propertyType" id="apartmentCheck"
-                              onclick="houseOrApartmentCheck();" checked="checked">Apartment</label>
-                <label><input type="radio" name="propertyType" id="bothCheck" onclick="houseOrApartmentCheck();"
-                              checked="checked">Both</label>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Price</legend>
-            <div class="form-group">
-                <label>Between</label>
-                <input type="text" class="numberInput" style="width:50px;">
-                <label> and </label>
-                <input type="text" class="numberInput" style="width:50px;">
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Number of rooms</legend>
-            <div class="form-group">
-                <label>Between</label>
-                <input type="text" class="numberInput" style="width:50px;">
-                <label> and </label>
-                <input type="text" class="numberInput" style="width:50px;">
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Surface</legend>
-            <div class="form-group">
-                <label>Between</label>
-                <input type="text" class="numberInput" style="width:50px;">
-                <label> and </label>
-                <input type="text" class="numberInput" style="width:50px;">
-            </div>
-        </fieldset>
-        <input type="submit" value="Search homes" class="submit btn btn-default ">
-    </form>
+    <div class="row">
+        <form class="well container-fluid col-sm-3" method="GET" id="filterForm">
+            <input type="text" name="searchedLocation" id="searchedLocation" hidden>
+            <fieldset>
+                <legend>Transaction</legend>
+                <div class="form-group required">
+                    <label><input type="radio" name="transactionType">Buy</label>
+                    <label><input type="radio" name="transactionType">Rent</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Property type</legend>
+                <div class="form-group required">
+                    <label><input type="radio" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
+                    <label><input type="radio" name="propertyType" id="apartmentCheck"
+                                  onclick="houseOrApartmentCheck();" checked="checked">Apartment</label>
+                    <label><input type="radio" name="propertyType" id="bothCheck" onclick="houseOrApartmentCheck();"
+                                  checked="checked">Both</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Price</legend>
+                <div class="form-group">
+                    <label>Between</label>
+                    <input type="text" class="numberInput" id="priceMin" name="priceMin" style="width:50px;">
+                    <label> and </label>
+                    <input type="text" class="numberInput" id="priceMax" name="priceMin" style="width:50px;">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Number of rooms</legend>
+                <div class="form-group">
+                    <label>Between</label>
+                    <input type="text" class="numberInput" id="roomsMin" name="roomsMin" style="width:50px;">
+                    <label> and </label>
+                    <input type="text" class="numberInput" id="roomsMax" name="roomsMax" style="width:50px;">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Surface</legend>
+                <div class="form-group">
+                    <label>Between</label>
+                    <input type="text" class="numberInput" id="surfaceMin" name="surfaceMin" style="width:50px;">
+                    <label> and </label>
+                    <input type="text" class="numberInput" id="surfaceMax" name="surfaceMax" style="width:50px;">
+                </div>
+            </fieldset>
 
+            <input type="submit" value="Search homes" class="submit btn btn-default ">
+        </form>
 
-    <div class="col-sm-9">
-        <div class="input-group">
+        <div class="col-sm-9">
             <fieldset>
                 <legend>Location</legend>
-                <input name="search" placeholder="Enter a locations" id="pac-input" class="form-control" type="text"
-                       style="width:500px;">
+                <div class="input-group">
+                        <input name="search" placeholder="Enter a locations" id="pac-input" class="form-control" type="text"
+                               style="width:500px;">
+                    <div class="input-group-btn">
+                        <button type="button" id="pollutionLayer" onclick="togglePollution()" class="btn-sm  btn-default" style="background-color:#ffc800;">
+                            Pollution
+                        </button>
+                        <button type="button" id="noiseLayer" class="btn-sm btn-default" onclick="toggleNoise()" style="background-color:#00ffff;">Noise</button>
+                        <button type="button" id="criminalityLayer" class="btn-sm btn-default" onclick="toggleCriminality()" style="background-color:red">
+                            Criminality
+                        </button>
+                    </div>
+
+                </div>
             </fieldset>
-            <div class="btn-group">
-                <button type="button" id="pollutionLayer" onclick="togglePollution()" class="btn  btn-default">
-                    Pollution
-                </button>
-                <button type="button" id="noiseLayer" class="btn btn-default" onclick="toggleNoise()">Noise</button>
-                <button type="button" id="criminalityLayer" class="btn btn-default" onclick="toggleCriminality()">
-                    Criminality
-                </button>
+            <div id="googleMap" style="width:100%;height:510px;"></div>
+            <div name="LatLng">
+                <input name="lat" class="numberInput" type="hidden" id="lat">
+                <input name="lng" class="numberInput" type="hidden" id="lng">
             </div>
-            </span>
-        </div>
-        <div id="googleMap" style="width:100%;height:500px;"></div>
-        <div id="infowindow-content">
-            <span id="place-name" class="title"></span><br>
-            <span id="place-address"></span>
-        </div>
-        <div name="LatLng">
-            <input name="lat" class="numberInput" type="hidden" id="lat">
-            <input name="lng" class="numberInput" type="hidden" id="lng">
         </div>
     </div>
-
+    <div class="row">
+        <input type="submit" value="List homes" class="submit btn btn-default ">
+    </div>
 </div>
+
 
 
 </body>
