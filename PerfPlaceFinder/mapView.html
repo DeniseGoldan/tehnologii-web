@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--Online font-->
-    <link href='http://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+    <link href='//fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
     <!--Bootstrap elements needed-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -86,8 +86,13 @@
     </div>
 </nav>
 <div class="container-fluid well">
+
     <div class="row">
         <form class="well container-fluid col-sm-3" method="GET" id="filterForm">
+            <fieldset>
+                <legend>Location</legend>
+                <input name="search" placeholder="Enter a location" id="pac-input" class="form-control" type="text">
+            </fieldset>
             <input type="text" name="searchedLocation" id="searchedLocation" hidden>
             <fieldset>
                 <legend>Transaction</legend>
@@ -137,29 +142,18 @@
             <input type="submit" value="Search homes" class="submit btn btn-default ">
         </form>
 
-        <div class="col-sm-9">
-            <fieldset>
-                <legend>Location</legend>
+        <div class="container-fluid col-sm-9">
+            <div id="googleMap" style="width:100%;height:590px;"></div>
                 <div class="input-group">
-                        <input name="search" placeholder="Enter a locations" id="pac-input" class="form-control" type="text"
-                               style="width:500px;">
                     <div class="input-group-btn">
                         <button type="button" id="pollutionLayer" onclick="togglePollution()" class="btn-sm  btn-default" style="background-color:#ffc800;">
                             Pollution
                         </button>
                         <button type="button" id="noiseLayer" class="btn-sm btn-default" onclick="toggleNoise()" style="background-color:#00ffff;">Noise</button>
                         <button type="button" id="criminalityLayer" class="btn-sm btn-default" onclick="toggleCriminality()" style="background-color:red">
-                            Criminality
-                        </button>
+                            Criminality</button>
                     </div>
-
                 </div>
-            </fieldset>
-            <div id="googleMap" style="width:100%;height:510px;"></div>
-            <div name="LatLng">
-                <input name="lat" class="numberInput" type="hidden" id="lat">
-                <input name="lng" class="numberInput" type="hidden" id="lng">
-            </div>
         </div>
     </div>
     <div class="row">
