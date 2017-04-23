@@ -1,0 +1,71 @@
+.hidden {
+	display: none;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	border-radius: 0 !important;
+}
+
+body {
+	background: #116466;
+
+	/*Properties for the font of the body*/
+	font-family: 'Montserrat Alternates';
+	margin-top: 40px;
+}
+
+.nav {
+	position: relative;
+	z-index: 1;
+}
+
+.my-error-class {
+	color : #cc0000; /*red*/
+}
+
+.add-padding-to-photos {
+	margin-left: 10px;
+}
+
+.well {
+	padding:10px;
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 0 !important; /*Get rid of rounded corners*/
+}
+
+.label-for-checkbox {
+	margin-right:25px;
+}
+
+.add-margin-top {
+	margin-top: 10px;
+}
+
+.myWell {
+	padding:10px;
+	margin-top: 10px;
+	background-color: rgba(245, 245, 245, 0.7);
+	border: 1px solid #c3c3c3;
+}
+
+fieldset {
+	padding:10px;
+	margin-top: 10px;
+	background-color: rgba(245, 245, 245, 0.7);
+	border: 1px solid #c3c3c3;
+}
+
+h4 {
+	color: #116466;
+}
+
+.btn {
+	font-size: 25px;
+}
+
+/*Menu related*/
+.custom-sign-in-button {
+	font-size: 15px;
+}
