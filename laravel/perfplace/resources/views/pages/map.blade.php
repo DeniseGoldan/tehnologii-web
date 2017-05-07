@@ -25,9 +25,11 @@
                     <fieldset>
                         <h4 class="filter-name">Property type</h4>
                         <div class="container">
-                            <label class="label-for-checkbox"><input type="checkbox" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
-                            <label><input type="checkbox" name="propertyType" id="apartmentCheck"
-                                onclick="houseOrApartmentCheck();" checked="checked">Apartment</label>
+                            <label class="label-for-checkbox">
+                                <input type="checkbox" name="propertyType" value = 'houseCheck' id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
+                            <label>
+                                <input type="checkbox" name="propertyType" value = 'apartmentCheck' id="apartmentCheck" onclick="houseOrApartmentCheck();" checked="checked">Apartment
+                            </label>
                             </div>
                         </fieldset>
                         <fieldset>
