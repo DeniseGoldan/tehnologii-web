@@ -19,7 +19,7 @@
 				<!--Select the type of property-->
 				<fieldset>
 					<legend>Property type</legend>
-					<div class="form-group required">
+					<div class="form-group">
 						<div class="radio">
 							<label><input type="radio" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
 						</div>
@@ -32,23 +32,22 @@
 				<fieldset>
 					<legend>Details</legend>
 					<div class="form-group">
-						<div class="input-group required">
+						<div class="input-group width-to-100-percent">
 							<input type="text" class="form-control" id="title" placeholder="Title">
 						</div>
-						<div class="input-group required">
-							<textarea class="form-control" rows="10" id="description" placeholder="Describe the property">
-							</textarea>
+						<div class="input-group width-to-100-percent">
+							<textarea class="form-control" rows="4" id="description" placeholder="Description"></textarea>
 						</div>
-						<div class="input-group required">
+						<div class="input-group width-to-100-percent">
 							<input type="number"  min="1" class="form-control numberInput" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
 						</div>
-						<div class="input-group required">
+						<div class="input-group width-to-100-percent">
 							<input type="text" class="form-control numberInput" name="propertySurface" id="propertySurface" placeholder="Surface (square meters)">
 						</div>
-						<div  class="input-group required">
+						<div  class="input-group width-to-100-percent">
 							<input type="number"  min="1" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of floors">
 						</div>
-						<div class="input-group required">
+						<div class="input-group width-to-100-percent">
 							<input type="number"  min="0" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
 						</div>
 					</div>
@@ -56,7 +55,7 @@
 				<!--Select if the property is for sale or for rent-->
 				<fieldset>
 					<legend>Transaction type</legend>
-					<div class="form-group required">
+					<div class="form-group">
 						<div class="radio">
 							<label><input type="radio" name="propertyTransactionType">Rent</label>
 						</div>
@@ -69,8 +68,8 @@
 				<fieldset>
 					<legend>Price</legend>
 					<div class="form-group">
-						<div class="input-group required">
-							<input id="propertyPrice" type="text" class="form-control numberInput" name="propertyPrice" placeholder="Price (euro)">
+						<div class="input-group">
+							<input id="propertyPrice" type="text" class="form-control numberInput width-to-100-percent" name="propertyPrice" placeholder="Price (euro)">
 						</div>
 					</div>
 				</fieldset>
@@ -79,11 +78,11 @@
 				<!--Define the location of the property-->
 				<fieldset>
 					<legend>Location</legend>
-					<div class="form-group col-sm-12 input-group required">
+					<div class="form-group col-sm-12 input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
 						<input name="search" placeholder="Enter a city" id="placeAutocomplete" name="placeAutocomplete" class="form-control" type="text">
 					</div>
-					<div id="googleMap" style="width:100%;height:400px;"></div>
+					<div id="googleMap" style="width:100%;height:500px;"></div>
 					<div id="infowindow-content">
 						<span id="place-name"  class="title"></span><br>
 						<span id="place-address"></span>

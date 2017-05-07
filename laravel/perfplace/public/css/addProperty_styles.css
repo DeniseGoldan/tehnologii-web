@@ -25,8 +25,17 @@ body {
 	color : #cc0000; /*red*/
 }
 
-.add-padding-to-photos {
+.width-to-100-percent {
+	width: 100%;
+}
+
+.add-padding {
 	margin-left: 10px;
+}
+
+legend {
+	padding: 0;
+	margin: 5px;
 }
 
 .well {
