@@ -33,6 +33,13 @@
 					<legend>Details</legend>
 					<div class="form-group">
 						<div class="input-group required">
+							<input type="text" class="form-control" id="title" placeholder="Title">
+						</div>
+						<div class="input-group required">
+							<textarea class="form-control" rows="10" id="description" placeholder="Describe the property">
+							</textarea>
+						</div>
+						<div class="input-group required">
 							<input type="number"  min="1" class="form-control numberInput" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
 						</div>
 						<div class="input-group required">
