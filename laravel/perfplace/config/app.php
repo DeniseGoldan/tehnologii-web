@@ -178,6 +178,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //MongoDB Provider
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+
     ],
 
     /*
