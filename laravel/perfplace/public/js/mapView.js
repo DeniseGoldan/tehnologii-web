@@ -613,7 +613,7 @@ function initMap() {
     var center = new google.maps.LatLng(0, 0);
     var latlng = new google.maps.LatLng(37.7749,-122.4194);
     var myOptions = {
-        zoom: 10,
+        zoom: 13,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: false

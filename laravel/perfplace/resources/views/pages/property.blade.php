@@ -84,7 +84,7 @@
 			<h3 class="location-tag">Location of the property on the map</h3>
 			<h4 class="location-tag"><strong>Address </strong>Kisselef St., Bucharest, Romania</h4>
 		</div>
-		<div style="width:100%; height: 400px; overflow:hidden; ">
+		<div style="width:100%; height: 400px; overflow: hidden; ">
 			<div id="map" class="property-mark-on-map"></div>
 		</div>
 	</div>
