@@ -15,6 +15,7 @@ class CreateHousesTable extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->increments('id');
+            $table->longText('userId');
             $table->double('latitude');
             $table->double('longitude');
             $table->text('title');
