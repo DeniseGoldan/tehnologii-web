@@ -16,7 +16,9 @@
 	<!--
 	<form class="well container-fluid" method="post" id="addPropertyForm" action="/properties" method="POST">
 	-->
-	{!! Form::open(['route' => 'properties.store','class'=>'well container-fluid']) !!}
+	{!! Form::open(['route' => 'properties.store',
+	'id'=> 'addPropertyForm',
+	'class'=>'well container-fluid']) !!}
 		<div class="container-fluid">
 			<div class="col-sm-3">
 				<!--Select the type of property-->

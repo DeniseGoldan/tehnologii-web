@@ -2,10 +2,35 @@ function validateAddPropertyForm() {
 	var validator = $("#addPropertyForm").validate({
 		errorClass: "my-error-class",
 		rules: {
-			propertyPrice: {
+			title: {
 				required: true,
-				minlength: 1,
-				maxlength: 50
+				minlength: 5,
+				maxlength: 100
+			},
+			description: {
+				required: true,
+				minlength: 10,
+				maxlength: 1000
+			},
+			numberOfRooms: {
+				required: true, 
+				min: 1, 
+				max: 10000000000
+			},
+			surface: {
+				required: true,
+				min: 10, 
+				max: 10000000000
+			},
+			latitude: {
+				required: true,
+				min: -85.05115, 
+				max: 85
+			},
+			longitude: {
+				required: true,
+				min: -180, 
+				max: +180
 			}
 		},
 		messages: {
