@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Request\UploadRequest;
 use App\Apartment;
 use App\House;
 use Session;
@@ -69,25 +69,36 @@ class PropertyController extends Controller
         // Save the property to the database
         $property = null;
         $fields = $request->get('propertyType');
+        $keyValueArray = array();
+        $keyValueArray['title'] = $request->title;
+        $keyValueArray['description'] =  $request->description;
+        $keyValueArray['numberOfRooms'] = $request->numberOfRooms;
+        $keyValueArray['surface'] = $request->surface;
+        $keyValueArray['price'] = $request->price;
+        $keyValueArray['transactionType'] = $request->transactionType;
+        $keyValueArray['latitude'] = $request->latitude;
+        $keyValueArray['longitude'] = $request->longitude;
+        $property=null;
         if(strcmp($fields,'apartment')==0){
-            $property = new Apartment;
-            $property->floorNumber = $request->floorNumber;
+            $keyValueArray['floorNumber'] = $request->floorNumber;
+            $property = Apartment::create(keyValueArray);
         }else{
-            $property = new House;
-            $property->numberOfFloors = $request->numberOfFloors;
+            $keyValueArray['numberOfFloors'] = $request->numberOfFloors;
+            $property = House::create(keyValueArray);
         }
-        $property->title = $request->title;
-        $property->description = $request->description;
-        $property->numberOfRooms = $request->numberOfRooms;
-        $property->surface = $request->surface;
-        $property->price = $request->price;
-        $property->transactionType = $request->get('transactionType');
-        $property->latitude = $request->latitude;
-        $property->longitude = $request->longitude;
-        $property->save();
 
         Session::flash('success','The new property has been succesfully saved!');
+        //////////////////////////////
         
+        foreach ($request->photos as $photo) {
+            $filename = $photo->store('photos');
+            ProductsPhoto::create([
+                'property_id' => $product->id,
+                'filename' => "craciun"
+            ]);
+        }
+
+        //////////////////////////////
        return redirect('userProperties');
 
     }
