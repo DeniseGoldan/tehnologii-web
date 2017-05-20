@@ -54,7 +54,7 @@ class PropertyController extends Controller
     {
 
         $property = null;
-        $fields = $request->get('propertyType',0);
+        $fields = $request->get('propertyType');
         if(strcmp($fields,'apartment')==0){
             $property = new Apartment;
             $property->floorNumber = $request->floorNumber;
@@ -67,10 +67,12 @@ class PropertyController extends Controller
         $property->numberOfRooms = $request->numberOfRooms;
         $property->surface = $request->surface;
         $property->price = $request->price;
-        $property->transactionType = $request->transactionType;
+        $property->transactionType = $request->get('transactionType');
+        $property->latitude = $request->latitude;
+        $property->longitude = $request->longitude;
         $property->save();
         
-        return redirect()->route('properties.index');
+       return redirect()->route('properties.index');
 
     }
 

@@ -60,10 +60,10 @@
 					<legend>Transaction type</legend>
 					<div class="form-group">
 						<div class="radio">
-							<label><input type="radio" name="transactionType">Rent</label>
+							<label><input type="radio" name="transactionType" value="Rent">Rent</label>
 						</div>
 						<div class="radio">
-							<label><input type="radio" checked='checked' name="transactionType">Sale</label>
+							<label><input type="radio" checked='checked' name="transactionType" value="Sale">Sale</label>
 						</div>
 					</div>
 				</fieldset>
