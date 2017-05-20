@@ -12,12 +12,30 @@ body {
 	background: #116466;
 
 	/*Properties for the font of the body*/
+	font-family: 'Montserrat Alternates';
 	margin-top: 40px;
 }
 
 .nav {
 	position: relative;
 	z-index: 1;
+}
+
+.my-error-class {
+	color : #cc0000; /*red*/
+}
+
+.width-to-100-percent {
+	width: 100%;
+}
+
+.add-padding {
+	margin-left: 10px;
+}
+
+legend {
+	padding: 0;
+	margin: 5px;
 }
 
 .well {
