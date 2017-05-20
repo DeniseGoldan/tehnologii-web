@@ -58,9 +58,8 @@ function initMap() {
 	});
 
 	google.maps.event.addListener(marker, 'dragend', function (event) {
-		document.getElementById("lat").value = event.latLng.lat().toFixed(3);
-		document.getElementById("lng").value = event.latLng.lng().toFixed(3);
-		console.log("papanasi");
+		document.getElementById("latitude").value = event.latLng.latitude().toFixed(3);
+		document.getElementById("longitude").value = event.latLng.longitude().toFixed(3);
 	});
 	// document.getElementById('use-strict-bounds')
 	//     .addEventListener('click', function() {
