@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Apartment;
 
 class PagesController extends Controller{
 	public function getIndex(){
@@ -8,6 +9,11 @@ class PagesController extends Controller{
 	}
 
 	public function getAddNewProperty(){
+		$apartment = new Apartment;
+		$apartment->title = 'Apartament Bucureti';
+		$apartment->description = 'Apartament bun bun.';
+		$apartment->numberOfRooms = 4;
+		$apartment->save();
 		return view('pages.add');
 	}
 

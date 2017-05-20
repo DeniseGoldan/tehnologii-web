@@ -31,7 +31,7 @@ Route::get('/editProperty','PagesController@getEditProperty');
 
 Route::get('/map','PagesController@getMap');
 
-Roout::get('properties/ShowFiltered','PagesController@indexFiltered')
+Route::get('properties/ShowFiltered','PagesController@indexFiltered');
 
 Route::resource('properties','PropertyController');
 

@@ -13,7 +13,10 @@
 	<div class="well">
 		<h1 class="well">Add a new dream home</h1>
 	</div>
-	<form class="well container-fluid" method="post" id="addPropertyForm">
+	<!--
+	<form class="well container-fluid" method="post" id="addPropertyForm" action="/properties" method="POST">
+	-->
+	{!! Form::open(['route' => 'properties.store','class'=>'well container-fluid']) !!}
 		<div class="container-fluid">
 			<div class="col-sm-3">
 				<!--Select the type of property-->
@@ -21,10 +24,10 @@
 					<legend>Property type</legend>
 					<div class="form-group">
 						<div class="radio">
-							<label><input type="radio" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
+							<label><input type="radio" value="house" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
 						</div>
 						<div class="radio">
-							<label><input type="radio" name="propertyType" id="apartmentCheck" onclick="houseOrApartmentCheck();" checked ="checked">Apartment</label>
+							<label><input type="radio" value="apartment" name="propertyType" id="apartmentCheck" onclick="houseOrApartmentCheck();" checked ="checked">Apartment</label>
 						</div>
 					</div>
 				</fieldset>
@@ -33,19 +36,19 @@
 					<legend>Details</legend>
 					<div class="form-group">
 						<div class="input-group width-to-100-percent">
-							<input type="text" class="form-control" id="title" placeholder="Title">
+							<input type="text" class="form-control" id="title" placeholder="Title" name="title">
 						</div>
 						<div class="input-group width-to-100-percent">
-							<textarea class="form-control" rows="4" id="description" placeholder="Description"></textarea>
+							<textarea class="form-control" rows="4" id="description" placeholder="Description" name="description"></textarea>
 						</div>
 						<div class="input-group width-to-100-percent">
-							<input type="number"  min="1" class="form-control numberInput" name="nrOfRooms" id="nrOfRooms" placeholder="Number of rooms">
+							<input type="number"  min="1" class="form-control numberInput" name="numberOfRooms" id="numberOfRooms" placeholder="Number of rooms">
 						</div>
 						<div class="input-group width-to-100-percent">
-							<input type="text" class="form-control numberInput" name="propertySurface" id="propertySurface" placeholder="Surface (square meters)">
+							<input type="text" class="form-control numberInput" name="surface" id="surface" placeholder="Surface (square meters)">
 						</div>
 						<div  class="input-group width-to-100-percent">
-							<input type="number"  min="1" class="form-control hidden" name="nrOfFloors" id="nrOfFloors" placeholder="Number of floors">
+							<input type="number"  min="1" class="form-control hidden" name="numberOfFloors" id="numberOfFloors" placeholder="Number of floors">
 						</div>
 						<div class="input-group width-to-100-percent">
 							<input type="number"  min="0" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
@@ -57,10 +60,10 @@
 					<legend>Transaction type</legend>
 					<div class="form-group">
 						<div class="radio">
-							<label><input type="radio" name="propertyTransactionType">Rent</label>
+							<label><input type="radio" name="transactionType">Rent</label>
 						</div>
 						<div class="radio">
-							<label><input type="radio" checked='checked' name="propertyTransactionType">Sale</label>
+							<label><input type="radio" checked='checked' name="transactionType">Sale</label>
 						</div>
 					</div>
 				</fieldset>
@@ -68,8 +71,8 @@
 				<fieldset>
 					<legend>Price</legend>
 					<div class="form-group">
-						<div class="input-group">
-							<input id="propertyPrice" type="text" class="form-control numberInput width-to-100-percent" name="propertyPrice" placeholder="Price (euro)">
+						<div class="input-group width-to-100-percent">
+							<input id="price" type="text" class="form-control numberInput" name="price" placeholder="Price (euro)">
 						</div>
 					</div>
 				</fieldset>
@@ -136,7 +139,7 @@
 				</div>
 			</div>
 		</div>
-	</form>
+	{!! Form::close() !!}
 @stop
 
 @section('scripts')

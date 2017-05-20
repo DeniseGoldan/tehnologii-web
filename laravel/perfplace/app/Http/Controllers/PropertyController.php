@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Apartment;
+use App\House;
+
 class PropertyController extends Controller
 {
     /**
@@ -13,11 +16,12 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $index = Property::all();
+        $index = Apartment::all();
+        return view('pages.home');
     }
     public function indexByUserId($id)
     {
-        $idex = Property::
+        
     }
     public function indexByFilter(Request $request)
     {
@@ -25,7 +29,7 @@ class PropertyController extends Controller
         $results = array();
         foreach ($propertyTypes as $type) {
             if(type == 'apartmentCheck'){
-                results[]=Apartment::where()
+                
             }
         }
 
@@ -37,7 +41,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.add');
     }
 
     /**
@@ -48,7 +52,26 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $property = null;
+        $fields = $request->get('propertyType',0);
+        if(strcmp($fields,'apartment')==0){
+            $property = new Apartment;
+            $property->floorNumber = $request->floorNumber;
+        }else{
+            $property = new House;
+            $property->numberOfFloors = $request->numberOfFloors;
+        }
+        $property->title = $request->title;
+        $property->description = $request->description;
+        $property->numberOfRooms = $request->numberOfRooms;
+        $property->surface = $request->surface;
+        $property->price = $request->price;
+        $property->transactionType = $request->transactionType;
+        $property->save();
+        
+        return redirect()->route('properties.index');
+
     }
 
     /**
