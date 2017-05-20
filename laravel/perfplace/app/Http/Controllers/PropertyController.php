@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Apartment;
 use App\House;
+use Session;
 
 class PropertyController extends Controller
 {
@@ -58,8 +59,6 @@ class PropertyController extends Controller
         $this->validate($request, array(
                 'title' => 'bail|required|max:200',
                 'description' => 'bail|required|max:400',
-                'floorNumber' => 'bail|required|min:0|max:10',
-                'numberOfFloors' => 'min:0|max:100',
                 'numberOfRooms' => 'min:1|max:100',
                 'surface' => 'bail|required|min:0|max:1000',
                 'price' => 'bail|required|min:0|max:1000000000',
@@ -86,8 +85,10 @@ class PropertyController extends Controller
         $property->latitude = $request->latitude;
         $property->longitude = $request->longitude;
         $property->save();
+
+        Session::flash('success','The new property has been succesfully saved!');
         
-       return redirect()->route('properties.index');
+       return redirect('userProperties');
 
     }
 
