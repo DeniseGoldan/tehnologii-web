@@ -52,7 +52,22 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate Request
 
+        // "bail" =  stop running validation rules on an attribute after the first validation failure
+        $this->validate($request, array(
+                'title' => 'bail|required|max:200',
+                'description' => 'bail|required|max:400',
+                'floorNumber' => 'bail|required|min:0|max:10',
+                'numberOfFloors' => 'min:0|max:100',
+                'numberOfRooms' => 'min:1|max:100',
+                'surface' => 'bail|required|min:0|max:1000',
+                'price' => 'bail|required|min:0|max:1000000000',
+                'latitude' => 'bail|required|min:-85.05115|max:85',
+                'longitude' => 'bail|required|min:-180|max:180'
+            ));
+
+        // Save the property to the database
         $property = null;
         $fields = $request->get('propertyType');
         if(strcmp($fields,'apartment')==0){
