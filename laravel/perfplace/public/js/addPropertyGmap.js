@@ -43,7 +43,10 @@ function initMap() {
 		}
 		marker.setPosition(place.geometry.location);
 		marker.setVisible(true);
+		document.getElementById("latitude").value = place.geometry.location.lat();
+    	 document.getElementById("longitude").value = place.geometry.location.lng();
 
+		console.log(document.getElementById("latitude"));
 		var address = '';
 		if (place.address_components) {
 			address = [
@@ -58,8 +61,8 @@ function initMap() {
 	});
 
 	google.maps.event.addListener(marker, 'dragend', function (event) {
-		document.getElementById("latitude").value = event.latLng.latitude().toFixed(3);
-		document.getElementById("longitude").value = event.latLng.longitude().toFixed(3);
+		 document.getElementById("latitude").value = this.getPosition().lat();
+    	 document.getElementById("longitude").value = this.getPosition().lng();
 	});
 	// document.getElementById('use-strict-bounds')
 	//     .addEventListener('click', function() {
