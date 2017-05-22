@@ -610,8 +610,11 @@ function displayMarkers(map,markers) {
 }
 
 function initMap() {
+
+    var latitudeValueFromGET = decodeURIComponent(window.location.search.match(/(\?|&)latitude\=([^&]*)/)[2]);
+    var longitudeValueFromGET = decodeURIComponent(window.location.search.match(/(\?|&)longitude\=([^&]*)/)[2]);
     var center = new google.maps.LatLng(0, 0);
-    var latlng = new google.maps.LatLng(37.7749,-122.4194);
+    var latlng = new google.maps.LatLng(latitudeValueFromGET,longitudeValueFromGET);
     var myOptions = {
         zoom: 13,
         center: latlng,
