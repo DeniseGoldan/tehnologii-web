@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav">
-        <li><a href="/add">Add Property</a></li>
+        <li><a href="/properties/create">Add Property</a></li>
         <li><a href="/userProperties">My Properties</a></li>
         
       </ul>

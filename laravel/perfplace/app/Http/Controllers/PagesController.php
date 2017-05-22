@@ -8,15 +8,6 @@ class PagesController extends Controller{
 		return view('pages.home');
 	}
 
-	public function getAddNewProperty(){
-		$apartment = new Apartment;
-		$apartment->title = 'Apartament Bucureti';
-		$apartment->description = 'Apartament bun bun.';
-		$apartment->numberOfRooms = 4;
-		$apartment->save();
-		return view('pages.add');
-	}
-
 	public function getSingleProperty(){
 		return view('pages.property');
 	}

@@ -16,13 +16,15 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $index = Apartment::all();
+        
         return view('pages.home');
     }
+
     public function indexByUserId($id)
     {
         
     }
+
     public function indexByFilter(Request $request)
     {
         $propertyTypes = $request->input('propertyType');
@@ -32,6 +34,13 @@ class PropertyController extends Controller
                 
             }
         }
+
+    }
+
+    public function showAll(){
+        $properties = Apartment::all();
+        //$properties = $properties[]=House::all();
+        return view('pages.results')->withProperties($properties);
 
     }
     /**

@@ -13,8 +13,6 @@
 
 Route::get('/','PagesController@getIndex');
 
-Route::get('/add','PagesController@getAddNewProperty');
-
 Route::get('/property','PagesController@getSingleProperty');
 
 Route::get('/user','PagesController@getUserProfile');
@@ -32,6 +30,8 @@ Route::get('/editProperty','PagesController@getEditProperty');
 Route::get('/map','PagesController@getMap');
 
 Route::get('properties/ShowFiltered','PagesController@indexFiltered');
+
+Route::get('properties/all','PropertyController@showAll');
 
 Route::resource('properties','PropertyController');
 
