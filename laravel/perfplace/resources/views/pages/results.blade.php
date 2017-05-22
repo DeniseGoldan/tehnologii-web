@@ -69,7 +69,7 @@
 							</div>
 							<br style="clear: left;">
 						</div>
-						<h4 ><strong>Address </strong>Kisselef St., Bucharest, Romania</h4>
+						<h4 ><strong>Address </strong>{{$property->address}}</h4>
 						<h4><strong>For sale</strong> {{$property->price}}&euro;</h4>
 						<div class="add-line-on-top">
 							<div class ="text-center" style="float: left;width:33%;">

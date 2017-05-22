@@ -5,5 +5,5 @@ namespace App;
 use Jenssegers\Mongodb\Eloquent\Model;
 class House extends Model
 {
-   protected $fillable = ['id','userId','title','description','numberOfRooms','surface','price','transactionType','latitude','longitude','numberOfFloors'];
+   protected $fillable = ['id','userId','title','description','numberOfRooms','surface','price','transactionType','latitude','longitude','address.','numberOfFloors'];
 }

@@ -18,6 +18,7 @@ class CreateHousesTable extends Migration
             $table->longText('userId');
             $table->double('latitude');
             $table->double('longitude');
+            $table->string('address');
             $table->text('title');
             $table->longText('description');
             $table->integer('numberOfRooms');

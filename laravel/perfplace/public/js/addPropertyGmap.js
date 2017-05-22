@@ -44,9 +44,8 @@ function initMap() {
 		marker.setPosition(place.geometry.location);
 		marker.setVisible(true);
 		document.getElementById("latitude").value = place.geometry.location.lat();
-    	 document.getElementById("longitude").value = place.geometry.location.lng();
-
-		console.log(document.getElementById("latitude"));
+    	document.getElementById("longitude").value = place.geometry.location.lng();
+    
 		var address = '';
 		if (place.address_components) {
 			address = [
@@ -63,10 +62,22 @@ function initMap() {
 	google.maps.event.addListener(marker, 'dragend', function (event) {
 		 document.getElementById("latitude").value = this.getPosition().lat();
     	 document.getElementById("longitude").value = this.getPosition().lng();
-	});
-	// document.getElementById('use-strict-bounds')
-	//     .addEventListener('click', function() {
-	//         console.log('Checkbox clicked! New state=' + this.checked);
-	//         autocomplete.setOptions({strictBounds: this.checked});
-	//     });
+    	 //Get the formated address from Reverse Geocoding API
+        var geocoder = new google.maps.Geocoder;
+    	var latlng = {lat: this.getPosition().lat(), lng: this.getPosition().lng()};
+ 		geocoder.geocode({'location': latlng}, function(results, status) {
+	    if (status === 'OK') {
+	      if (results[1]) {
+
+    		document.getElementById("address").value = results[1].formatted_address;
+    		console.log(results[1].formatted_address);
+	      } else {
+	        window.alert('No results found');
+	      }
+	    } else {
+	      window.alert('Geocoder failed due to: ' + status);
+	    }
+	  });
+ 	});
+	
 }

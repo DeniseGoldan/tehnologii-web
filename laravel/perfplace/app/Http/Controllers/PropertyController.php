@@ -77,6 +77,7 @@ class PropertyController extends Controller
         $keyValueArray['transactionType'] = $request->transactionType;
         $keyValueArray['latitude'] = $request->latitude;
         $keyValueArray['longitude'] = $request->longitude;
+        $keyValueArray['address'] = $request->address;
         $property=null;
         if(strcmp($fields,'apartment')==0){
             $keyValueArray['floorNumber'] = $request->floorNumber;

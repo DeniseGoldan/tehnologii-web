@@ -95,6 +95,7 @@
 					<div name="LatLng">
 						<input name="latitude" class="numberInput" type ="hidden" id="latitude">
 						<input name="longitude" class="numberInput" type ="hidden" id="longitude">
+						<input name="address" type="hidden" id="address">
 					</div>
 				</fieldset>
 			</div>
