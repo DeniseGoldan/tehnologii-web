@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Request\UploadRequest;
+use App\Http\Requests\CreatePropertyRequest;
 use App\Apartment;
 use App\House;
 use Session;
@@ -51,20 +50,11 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePropertyRequest $request)
     {
         // Validate Request
 
         // "bail" =  stop running validation rules on an attribute after the first validation failure
-        $this->validate($request, array(
-                'title' => 'bail|required|min:5|max:100',
-                'description' => 'bail|required|min:10|max:400',
-                'numberOfRooms' => 'bail|required|integer|between:1,100',
-                'surface' => 'bail|required|integer|between:1,10000',
-                'price' => 'bail|required|integer|between:0,1000000000',
-                'latitude' => 'bail|required|between:-85.05115,85',
-                'longitude' => 'bail|required|between:-180, 180'
-            ));
 
         // Save the property to the database
         $property = null;
@@ -90,34 +80,21 @@ class PropertyController extends Controller
        
         //////////////////////////////
         $picture = '';
-        echo "<pre>";
-       // var_dump($request);
-        echo "</pre>";
         if ($request->hasFile('images')) {
             $files = $request->file('images');
             $counter=0;
             foreach($files as $file){
                 $counter++;
-                // $extension = $file->getClientOriginalExtension();
-                $filename=$property->id.'_'.$counter;
-                $path = $file->storeAs('propertyPictures',$filename);
+                $extension = $file->getClientOriginalExtension();
+                $filename=$property->id.'_'.$counter.'.'.$extension;
+                $path = $file->storeAs('propertyPictures',$filename);   
 
-                var_dump($path);
             }
         }
 
-        /*
-        if (!empty($product['images'])) {
-            $product['images'] = $picture;
-        } else {
-            unset($product['images']);
-        }
-        */
-        
-         Session::flash('success','The new property has been succesfully saved!');
+        Session::flash('success','The new property has been succesfully saved!');
 
-        //////////////////////////////
-       //return redirect('userProperties');
+        return redirect('userProperties');
 
     }
 
