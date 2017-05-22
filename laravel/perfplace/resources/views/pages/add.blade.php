@@ -18,7 +18,7 @@
 	-->
 	{!! Form::open(['route' => 'properties.store',
 	'id'=> 'addPropertyForm',
-	'class'=>'well container-fluid']) !!}
+	'class'=>'well container-fluid','enctype'=>'multipart/form-data']) !!}
 		<div class="container-fluid">
 			<div class="col-sm-3">
 				<!--Select the type of property-->

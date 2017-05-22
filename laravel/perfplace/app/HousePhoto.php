@@ -4,7 +4,7 @@ namespace App;
 
 use Jessengers\Mongodb\Eloquent\Model;
 
-class PropertyPhoto extends Model
+class HousePhoto extends Model
 {
     protected $fillable = ['property_id', 'filename'];
  

@@ -91,15 +91,18 @@ class PropertyController extends Controller
         //////////////////////////////
         $picture = '';
         echo "<pre>";
-        var_dump($request);
+       // var_dump($request);
         echo "</pre>";
         if ($request->hasFile('images')) {
             $files = $request->file('images');
+            $counter=0;
             foreach($files as $file){
-                $filename = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
-                $picture = date('His').$filename;
-                var_dump($picture);
+                $counter++;
+                // $extension = $file->getClientOriginalExtension();
+                $filename=$property->id.'_'.$counter;
+                $path = $file->storeAs('propertyPictures',$filename);
+
+                var_dump($path);
             }
         }
 
@@ -161,7 +164,7 @@ class PropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
