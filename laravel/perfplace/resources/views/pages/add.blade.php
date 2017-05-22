@@ -120,11 +120,11 @@
 							<label for="file-input-5">
 								<img id="pic-5" src="img/housePlaceholder.jpg" height="90" width="90">
 							</label>
-							<input id="file-input-1" type="file"/>
-                            <input id="file-input-2" type="file"/>
-                            <input id="file-input-3" type="file"/>
-                            <input id="file-input-4" type="file"/>
-                            <input id="file-input-5" type="file"/>
+							<input id="file-input-1" type="file" name="images[]" />
+                            <input id="file-input-2" type="file" name="images[]"/>
+                            <input id="file-input-3" type="file" name="images[]"/>
+                            <input id="file-input-4" type="file" name="images[]"/>
+                            <input id="file-input-5" type="file" name="images[]"/>
 						</div>
 					</div>
 				</div>

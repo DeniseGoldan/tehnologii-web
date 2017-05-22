@@ -15,12 +15,12 @@ function validateAddPropertyForm() {
 			numberOfRooms: {
 				required: true, 
 				min: 1, 
-				max: 10000000000
+				max: 100
 			},
 			surface: {
 				required: true,
 				min: 10, 
-				max: 10000000000
+				max: 10000
 			},
 			latitude: {
 				required: true,
@@ -31,6 +31,11 @@ function validateAddPropertyForm() {
 				required: true,
 				min: -180, 
 				max: +180
+			},
+			propertyPrice:{
+				required: true,
+				min: 0,
+				max: 10000000000
 			}
 		},
 		messages: {

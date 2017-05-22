@@ -6,5 +6,5 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class Apartment extends Model
 {
-    protected $fillable = ['property_id', 'filename'];
+    protected $fillable = ['id','title','description','numberOfRooms','surface','price','transactionType','latitude','longitude','floorNumber'];
 }

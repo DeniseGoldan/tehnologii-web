@@ -57,13 +57,13 @@ class PropertyController extends Controller
 
         // "bail" =  stop running validation rules on an attribute after the first validation failure
         $this->validate($request, array(
-                'title' => 'bail|required|max:200',
-                'description' => 'bail|required|max:400',
-                'numberOfRooms' => 'min:1|max:100',
-                'surface' => 'bail|required|min:0|max:1000',
-                'price' => 'bail|required|min:0|max:1000000000',
-                'latitude' => 'bail|required|min:-85.05115|max:85',
-                'longitude' => 'bail|required|min:-180|max:180'
+                'title' => 'bail|required|min:5|max:100',
+                'description' => 'bail|required|min:10|max:400',
+                'numberOfRooms' => 'bail|required|integer|between:1,100',
+                'surface' => 'bail|required|integer|between:1,10000',
+                'price' => 'bail|required|integer|between:0,1000000000',
+                'latitude' => 'bail|required|between:-85.05115,85',
+                'longitude' => 'bail|required|between:-180, 180'
             ));
 
         // Save the property to the database
@@ -81,25 +81,40 @@ class PropertyController extends Controller
         $property=null;
         if(strcmp($fields,'apartment')==0){
             $keyValueArray['floorNumber'] = $request->floorNumber;
-            $property = Apartment::create(keyValueArray);
+            $property = Apartment::create($keyValueArray);
         }else{
             $keyValueArray['numberOfFloors'] = $request->numberOfFloors;
-            $property = House::create(keyValueArray);
+            $property = House::create($keyValueArray);
         }
 
-        Session::flash('success','The new property has been succesfully saved!');
+       
         //////////////////////////////
+        $picture = '';
+        echo "<pre>";
+        var_dump($request);
+        echo "</pre>";
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            foreach($files as $file){
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $picture = date('His').$filename;
+                var_dump($picture);
+            }
+        }
+
+        /*
+        if (!empty($product['images'])) {
+            $product['images'] = $picture;
+        } else {
+            unset($product['images']);
+        }
+        */
         
-        foreach ($request->photos as $photo) {
-            $filename = $photo->store('photos');
-            ProductsPhoto::create([
-                'property_id' => $product->id,
-                'filename' => "craciun"
-            ]);
-        }
+         Session::flash('success','The new property has been succesfully saved!');
 
         //////////////////////////////
-       return redirect('userProperties');
+       //return redirect('userProperties');
 
     }
 
