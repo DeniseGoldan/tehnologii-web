@@ -107,19 +107,19 @@
 					<div >
 						<div class="image-upload">
 							<label for="file-input-1">
-								<img id="pic-1" src="img/housePlaceholder.jpg" height="90" width="90">
+								<img id="pic-1" src="/img/housePlaceholder.jpg" height="90" width="90">
 							</label>
 							<label for="file-input-2">
-								<img id="pic-2" src="img/housePlaceholder.jpg" height="90" width="90">
+								<img id="pic-2" src="/img/housePlaceholder.jpg" height="90" width="90">
 							</label>
 							<label for="file-input-3">
-								<img id="pic-3" src="img/housePlaceholder.jpg" height="90" width="90">
+								<img id="pic-3" src="/img/housePlaceholder.jpg" height="90" width="90">
 							</label>
 							<label for="file-input-4">
-								<img id="pic-4" src="img/housePlaceholder.jpg" height="90" width="90">
+								<img id="pic-4" src="/img/housePlaceholder.jpg" height="90" width="90">
 							</label>
 							<label for="file-input-5">
-								<img id="pic-5" src="img/housePlaceholder.jpg" height="90" width="90">
+								<img id="pic-5" src="/img/housePlaceholder.jpg" height="90" width="90">
 							</label>
 							<input id="file-input-1" type="file" name="images[]" />
                             <input id="file-input-2" type="file" name="images[]"/>
@@ -147,18 +147,18 @@
 
 @section('scripts')
 
-	{{Html::script('js/addPropertyHideShow.js')}}
-	{{Html::script('js/addPropertyGmap.js')}}
+	{{Html::script('/js/addPropertyHideShow.js')}}
+	{{Html::script('/js/addPropertyGmap.js')}}
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>
 
 	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
 	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
 
-	<script type="text/javascript" src="js/addPropertyForceNumeric.js"></script>
-	<script type="text/javascript" src="js/addPropertyUploadThumbnails.js"></script>
+	<script type="text/javascript" src="/js/addPropertyForceNumeric.js"></script>
+	<script type="text/javascript" src="/js/addPropertyUploadThumbnails.js"></script>
 
-	{{Html::script('js/validations/validateAddPropertyForm.js')}}
+	{{Html::script('/js/validations/validateAddPropertyForm.js')}}
 
 
 
