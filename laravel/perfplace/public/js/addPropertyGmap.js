@@ -45,14 +45,14 @@ function initMap() {
 		marker.setVisible(true);
 		document.getElementById("latitude").value = place.geometry.location.lat();
     	document.getElementById("longitude").value = place.geometry.location.lng();
-    
 		var address = '';
-		if (place.address_components) {
-			address = [
-				(place.address_components[0] && place.address_components[0].short_name || ''),
-				(place.address_components[1] && place.address_components[1].short_name || ''),
-				(place.address_components[2] && place.address_components[2].short_name || '')
-			].join(' ');
+		if (place.formatted_address) {
+			 address = place.formatted_address;
+			document.getElementById("country").value = place.address_components[place.address_components.length-1].long_name;
+    	    document.getElementById("city").value = place.address_components[1].long_name;
+    	  	document.getElementById("address").value = place.formatted_address;
+   			console.log(place);
+	        console.log(document.getElementById("country").value+" "+document.getElementById("city").value);
 		}
 		infowindowContent.children['place-name'].textContent = place.name;
 		infowindowContent.children['place-address'].textContent = address;
@@ -65,19 +65,33 @@ function initMap() {
     	 //Get the formated address from Reverse Geocoding API
         var geocoder = new google.maps.Geocoder;
     	var latlng = {lat: this.getPosition().lat(), lng: this.getPosition().lng()};
- 		geocoder.geocode({'location': latlng}, function(results, status) {
-	    if (status === 'OK') {
-	      if (results[1]) {
 
-    		document.getElementById("address").value = results[1].formatted_address;
-    		console.log(results[1].formatted_address);
-	      } else {
-	        window.alert('No results found');
-	      }
-	    } else {
-	      window.alert('Geocoder failed due to: ' + status);
-	    }
-	  });
- 	});
+ 		geocoder.geocode({'location': latlng}, function(results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+          if(results[0]) {
+    		document.getElementById("address").value = results[0].formatted_address;
+            for(var i = 0; i < results[0].address_components.length; i++) {
+              if(results[0].address_components[i].types[0] == "country") {
+                document.getElementById("country").value =  results[0].address_components[i].long_name;
+              }
+              if(results[0].address_components[i].types[0] == "locality") {
+                document.getElementById("city").value =  results[0].address_components[i].long_name;
+              }
+            }
+          }
+          else {
+            alert("No results");
+          }
+        }
+        else {
+          alert("Status: " + status);
+        }
+      });
+ 		address = document.getElementById("address").value;
+ 		infowindow.close();
+ 		infowindowContent.children['place-name'].textContent = ' ';
+		infowindowContent.children['place-address'].textContent = address;
+		infowindow.open(map, this);
+    });
 	
 }

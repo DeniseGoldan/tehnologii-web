@@ -18,7 +18,9 @@ class CreateApartmentsTable extends Migration
             $table->longText('userId');
             $table->double('latitude');
             $table->double('longitude');
-            $table->adress('address');
+             $table->string('country');
+            $table->string('city');
+            $table->string('address');
             $table->text('title');
             $table->longText('description');
             $table->integer('numberOfRooms');

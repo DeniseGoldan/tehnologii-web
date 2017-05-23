@@ -38,7 +38,7 @@ class PropertyController extends Controller
     }
 
     public function showAll(){
-        $properties = Apartment::all();
+        $properties = array_merge(Apartment::all(),House::all()) ;
         //$properties = $properties[]=House::all();
         return view('pages.results')->withProperties($properties);
 
@@ -77,6 +77,8 @@ class PropertyController extends Controller
         $keyValueArray['transactionType'] = $request->transactionType;
         $keyValueArray['latitude'] = $request->latitude;
         $keyValueArray['longitude'] = $request->longitude;
+        $keyValueArray['country'] = $request->country;
+        $keyValueArray['city'] = $request->city;
         $keyValueArray['address'] = $request->address;
         $property=null;
         if(strcmp($fields,'apartment')==0){
