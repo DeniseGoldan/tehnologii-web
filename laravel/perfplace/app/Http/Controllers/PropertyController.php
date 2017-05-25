@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Apartment;
 use App\House;
+use App\User;
 use Session;
 
 class PropertyController extends Controller
@@ -18,14 +19,6 @@ class PropertyController extends Controller
     {
         
         return view('pages.home');
-    }
-
-    public function indexByPropertyId($propertyId)
-    {
-        $house = House::find($propertyId);
-        $apartment = Apartment::find($propertyId);
-        $property = $house->merge($apartment);
-        return view('pages.property')->withProperties($property);
     }
 
     public function indexByFilter(Request $request)
@@ -124,13 +117,17 @@ class PropertyController extends Controller
     public function show($id)
     {
         $house = null;
-        $house = House::where('id', '=', $id)->take(1)->get();
+        $house = House::find($id);
         $apartment = null;
-        $apartment = Apartment::where('id', '=', $id)->take(1)->get();
-        if($house == null)
+        $apartment = Apartment::find($id);
+        if($house!=null){
             $property = $house;
-        else $property = $apartment;
-       return view('pages.property')->withProperties($property);
+        }
+        else if($apartment!=null){
+            $property = $apartment;
+        }
+        $user = User::find($property->userId);
+        return view('pages.property')->with('property',$property)->with('user',$user);
     }
 
     /**

@@ -36,17 +36,14 @@
 						</ol>
 
 						<div class="carousel-inner" role="listbox">
-								@if($property->getImage(1)!=false)
 								
 								<div class="item active">
-									<img src = "{{$property->getImage(1)}}" alt="1">
+									<img src = "https://www.w3schools.com/css/img_fjords.jpg" alt="1">
 								</div>
-								@endif
-
 								@for($i = 2 ; $i <= 5 ;$i++)
 								@if($property->getImage($i)!=false)
 								<div class="item">
-									<img src = "{{$property->getImage($i)}}" alt="1">
+									<img src = "{{$property->getImage($i)}}" alt="{{$i}}">
 								</div>
 								@endif
 								@endfor
@@ -80,7 +77,7 @@
 							<br style="clear: left;">
 						</div>
 						<h4 ><strong>Address </strong>{{$property->address}}</h4>
-						<h4><strong>For {{$property->transactionType}}</strong> {{$property->price}}&euro;</h4>
+						<h4><strong>For {{$property->transactionType}}</strong> {{number_format($property->price)}}&euro;</h4>
 						<div class="add-line-on-top">
 							<div class ="text-center" style="float: left;width:33%;">
 								<h4><strong>Surface</strong></h4>

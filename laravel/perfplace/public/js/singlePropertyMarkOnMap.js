@@ -1,12 +1,18 @@
 function initMap() {
-	var position = {lat: 44.465626, lng: 26.078406};
+	var latitude = document.getElementById("latitude").innerHTML;
+	var longitude = document.getElementById("longitude").innerHTML;
+	var myLatlng = new google.maps.LatLng(latitude,longitude);
+	var mapOptions = {
+          center: myLatlng,
+          zoom: 8
+        };
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 17,
-		center: {lat: 44.462912,lng: 26.078966}
-	});
-	map.setMapTypeId('roadmap');
+          center: myLatlng,
+          zoom: 8
+        });
+
 	var marker = new google.maps.Marker({
-		position: position,
+		position: myLatlng,
 		map: map
 	});
 }

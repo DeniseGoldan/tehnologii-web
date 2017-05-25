@@ -35,7 +35,11 @@ Route::get('properties/all','PropertyController@showAll');
 
 Route::get('properties/{id}','PropertyController@show');
 
-Route::resource('properties','PropertyController');
+Route::get('properties/create','PropertyController@store');
+
+//Route::resource('properties','PropertyController');
+
+Route::post('properties/{id}/send', 'ContactUser@send');
 
 
 
