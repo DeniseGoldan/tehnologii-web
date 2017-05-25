@@ -18,7 +18,7 @@ class CreateApartmentsTable extends Migration
             $table->longText('userId');
             $table->double('latitude');
             $table->double('longitude');
-             $table->string('country');
+            $table->string('country');
             $table->string('city');
             $table->string('address');
             $table->text('title');
@@ -27,6 +27,7 @@ class CreateApartmentsTable extends Migration
             $table->integer('surface');
             $table->integer('floorNumber');
             $table->text('transactionType');
+            $table->string('propertyType');
             $table->bigInteger('price');
             $table->timestamps();
         });

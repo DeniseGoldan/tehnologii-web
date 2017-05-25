@@ -26,6 +26,7 @@ class CreateHousesTable extends Migration
             $table->integer('numberOfRooms');
             $table->integer('surface');
             $table->integer('numberOfFloors');
+            $table->string('propertyType');
             $table->text('transactionType');
             $table->bigInteger('price');
             $table->timestamps();

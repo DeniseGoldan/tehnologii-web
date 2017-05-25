@@ -33,6 +33,9 @@ Route::get('properties/ShowFiltered','PagesController@indexFiltered');
 
 Route::get('properties/all','PropertyController@showAll');
 
+Route::get('properties/{id}','PropertyController@show');
+
 Route::resource('properties','PropertyController');
+
 
 

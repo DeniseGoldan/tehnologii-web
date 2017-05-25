@@ -20,9 +20,12 @@ class PropertyController extends Controller
         return view('pages.home');
     }
 
-    public function indexByUserId($id)
+    public function indexByPropertyId($propertyId)
     {
-        
+        $house = House::find($propertyId);
+        $apartment = Apartment::find($propertyId);
+        $property = $house->merge($apartment);
+        return view('pages.property')->withProperties($property);
     }
 
     public function indexByFilter(Request $request)
@@ -38,8 +41,9 @@ class PropertyController extends Controller
     }
 
     public function showAll(){
-        $properties = array_merge(Apartment::all(),House::all()) ;
-        //$properties = $properties[]=House::all();
+        $houses = House::all();
+        $apartments = Apartment::all();
+        $properties = $houses->merge($apartments);
         return view('pages.results')->withProperties($properties);
 
     }
@@ -70,6 +74,7 @@ class PropertyController extends Controller
         $fields = $request->get('propertyType');
         $keyValueArray = array();
         $keyValueArray['title'] = $request->title;
+        $keyValueArray['propertyType'] = $request->propertyType;
         $keyValueArray['description'] =  $request->description;
         $keyValueArray['numberOfRooms'] = $request->numberOfRooms;
         $keyValueArray['surface'] = $request->surface;
@@ -118,19 +123,14 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::find($id);
-        $house = House::find($id);
-        if(isset($apartment))
-        {
-             return View::make('apartment.show')
-            ->with('apartment', $apartment);
-        }
-        if(isset($house))
-        {
-             return View::make('house.show')
-            ->with('house', $apartment);
-        }
-       
+        $house = null;
+        $house = House::where('id', '=', $id)->take(1)->get();
+        $apartment = null;
+        $apartment = Apartment::where('id', '=', $id)->take(1)->get();
+        if($house == null)
+            $property = $house;
+        else $property = $apartment;
+       return view('pages.property')->withProperties($property);
     }
 
     /**

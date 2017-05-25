@@ -42,23 +42,27 @@
 			<div class="well property-info">
 				<div class ="text-center" style="float: left;width:33%;">
 					<h4><strong>Surface</strong></h4>
-					<h5>100 m2</h5>
+					<h5>{{$property->surface}} m2</h5>
 				</div>
+				@if($property->propertyType=='apartment')
+
 				<div class ="text-center" style="float: left;width:33%;">
 					<h4><strong>Floor</strong></h4>
-					<h5>4</h5>
+					<h5>{{$property->floorNumber}}</h5>
 				</div>
+				@elseif($property->propertyType=='house')
 				<div class ="text-center" style="float: left;width:33%;">
-					<h4><strong>Rooms</strong></h4>
-					<h5>3</h5>
+					<h4><strong>Number of floors</strong></h4>
+					<h5>{{$property->numberOfFloors}}</h5>
 				</div>
+				@endif
 				<br style="clear: left;" />
 			</div>
 		</div>
 		<div class="col-sm-4 text-right">
 			<!--Info about the property-->
-			<h3>For sale</h3>
-			<h2>10.250.000&euro;</h2>
+			<h3>For {{$property->transactionType}}</h3>
+			<h2>{{$property->price}}&euro;</h2>
 			<!--Contact the owner-->
 			<div class="text-center well owner-info">
 				<img src="../img/user.png" class="img-responsive center-block user-placeholder">
@@ -82,7 +86,7 @@
 		<!--Location of the property on the map-->
 		<div class="well">
 			<h3 class="location-tag">Location of the property on the map</h3>
-			<h4 class="location-tag"><strong>Address </strong>Kisselef St., Bucharest, Romania</h4>
+			<h4 class="location-tag"><strong>Address </strong>{{$property->address}}</h4>
 		</div>
 		<div style="width:100%; height: 400px; overflow: hidden; ">
 			<div id="map" class="property-mark-on-map"></div>

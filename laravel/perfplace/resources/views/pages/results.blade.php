@@ -21,32 +21,42 @@
 
 	</div>
 	<!--Property number 1-->
+		@foreach($properties as $index => $property)
 		
-		@foreach($properties as $property)
-
 			<div class="well container-fluid col-sm-12" method="post" id="houseListForm">
 				<div class="container-fluid col-sm-4">
-					<div id="myCarousel_1" class="myCarousel carousel slide" data-ride="carousel">
+					<div id="#myCarousel{{$index}}" class="myCarousel carousel slide" data-ride="carousel">
 						<!-- Indicators -->
 						<ol class="carousel-indicators">
-							<li data-target="#myCarousel_1" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel_1" data-slide-to="1"></li>
+							<li data-target="#myCarousel{{$index}}" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel{{$index}}" data-slide-to="1"></li>
+							<li data-target="#myCarousel{{$index}}" data-slide-to="2"></li>
+							<li data-target="#myCarousel{{$index}}" data-slide-to="3"></li>
+							<li data-target="#myCarousel{{$index}}" data-slide-to="4"></li>
 						</ol>
-						<!-- Wrapper for slides -->
+
 						<div class="carousel-inner" role="listbox">
-							<div class="item active">
-								<img src="https://img2.imonet.ro/X3H7/3H71000A5S2/apartament-de-vanzare-5-camere-bucuresti-herastrau-76117272_620x465.jpg" alt="1">
-							</div>
-							<div class="item">
-								<img src="https://img2.imonet.ro/X3H7/3H71000A5S2/apartament-de-vanzare-5-camere-bucuresti-herastrau-76117274_620x465.jpg" alt="2">
-							</div>
+								@if($property->getImage(1)!=false)
+								
+								<div class="item active">
+									<img src = "{{$property->getImage(1)}}" alt="1">
+								</div>
+								@endif
+
+								@for($i = 2 ; $i <= 5 ;$i++)
+								@if($property->getImage($i)!=false)
+								<div class="item">
+									<img src = "{{$property->getImage($i)}}" alt="1">
+								</div>
+								@endif
+								@endfor
 						</div>
 						<!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel_1" role="button" data-slide="prev">
+						<a class="left carousel-control" href="#myCarousel{{$index}}" role="button" data-slide="prev">
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 							<span class="sr-only">Previous</span>
 						</a>
-						<a class="right carousel-control" href="#myCarousel_1" role="button" data-slide="next">
+						<a class="right carousel-control" href="#myCarousel{{$index}}" role="button" data-slide="next">
 							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 							<span class="sr-only">Next</span>
 						</a>
@@ -60,8 +70,8 @@
 							</div>
 							<div class ="text-right" style="float: left; width:20%; padding-top:25px; padding-right:25px;">
 								<p data-placement="top" data-toggle="tooltip" title="View">
-									<a href="/property">
-									<button class="btn btn-success btn-lg" data-title="View" action="/property">
+									<a href="{{url('properties/'.$property->id)}}">
+									<button class="btn btn-success btn-lg" data-title="View" action={{ url('properties/'.$property->id)}}>
 										<span class="glyphicon glyphicon-eye-open"></span>
 									</button>
 									</a>
@@ -70,16 +80,23 @@
 							<br style="clear: left;">
 						</div>
 						<h4 ><strong>Address </strong>{{$property->address}}</h4>
-						<h4><strong>For sale</strong> {{$property->price}}&euro;</h4>
+						<h4><strong>For {{$property->transactionType}}</strong> {{$property->price}}&euro;</h4>
 						<div class="add-line-on-top">
 							<div class ="text-center" style="float: left;width:33%;">
 								<h4><strong>Surface</strong></h4>
 								<h5>{{$property->surface}}</h5>
 							</div>
+							@if($property->propertyType=='apartment')
 							<div class ="text-center" style="float: left;width:33%;">
 								<h4><strong>Floor</strong></h4>
-								<h5>3rd</h5>
+								<h5>{{$property->floorNumber}}</h5>
 							</div>
+							@elseif($property->propertyType=='house')
+							<div class ="text-center" style="float: left;width:33%;">
+								<h4><strong>Number of floors</strong></h4>
+								<h5>{{$property->numberOfFloors}}</h5>
+							</div>
+							@endif
 							<div class ="text-center" style="float: left;width:33%;">
 								<h4><strong>Rooms</strong></h4>
 								<h5>{{$property->numberOfRooms}}</h5>
