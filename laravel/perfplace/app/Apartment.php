@@ -8,24 +8,25 @@
 	{
 	    protected $fillable = ['id','userId','title','description','numberOfRooms','surface','price','propertyType','transactionType','latitude','longitude','country','city','address','floorNumber'];
 
-	    public function getImage($imageNumber){
+	    public function getImage($imageNumber) {
 
-	        if(Storage::disk('local')->exists('public/propertyPictures/' . $this->id . '_' .  $imageNumber . '.jpg')) {
-	            return url('storage/propertyPictures/'.$this->id.'_'.$imageNumber.'.jpg');
-	        } 
-	        else if(Storage::disk('local')->exists('public/propertyPictures/' . $this->id . '_' .  $imageNumber . '.png')){
-	            return url('storage/propertyPictures/'.$this->id.'_'.$imageNumber.'.png');
-	        }
-	        else if(Storage::disk('local')->exists('public/propertyPictures/' . $this->id . '_' .  $imageNumber . '.bmp')){
-	            return url('storage/propertyPictures/'.$this->id.'_'.$imageNumber.'.bmp');
-	        }
-	        else 
-	        {       
-                return false;
-	        }
+			$pathChunk = 'propertyPictures/' . $this->id . '_' .  $imageNumber;
 
-    	}
-
-	 	
+			$possibleImagePaths = array (
+				$pathChunk . '.jpg',
+				$pathChunk . '.jpeg',
+				$pathChunk . '.png',
+				$pathChunk . '.svg',
+				$pathChunk . '.bmp'
+			);
+				
+			foreach ($possibleImagePaths as $imagePath) {
+				if (Storage::disk('local') -> exists('public/'.$imagePath)) {			
+					return url('storage/' . $imagePath);
+				}
+			}
+			
+			return false;
+		}
 	}
 ?>
