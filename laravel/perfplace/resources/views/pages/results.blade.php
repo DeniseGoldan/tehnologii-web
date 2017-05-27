@@ -25,7 +25,7 @@
 		
 			<div class="well container-fluid col-sm-12" method="post" id="houseListForm">
 				<div class="container-fluid col-sm-4">
-					<div id="#myCarousel{{$index}}" class="myCarousel carousel slide" data-ride="carousel">
+					<div id="myCarousel{{$index}}" class="myCarousel carousel slide" data-ride="carousel">
 						<!-- Indicators -->
 						<ol class="carousel-indicators">
 							<li data-target="#myCarousel{{$index}}" data-slide-to="0" class="active"></li>
@@ -40,20 +40,22 @@
 								<div class="item active">
 									<img src = "https://www.w3schools.com/css/img_fjords.jpg" alt="1">
 								</div>
-								@for($i = 1 ; $i <= 5 ;$i++)
+								@for($i = 2 ; $i <= 5 ;$i++)
 			
+									@if($property->getImage($i)!=false)
 									<div class="item">
+										<img src = "{{$property->getImage($i)}}" alt="{{$i}}">
 									</div>
 									@endif
 								@endfor
 						</div>
 						<!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel{{$index}}" role="button" data-slide="prev">
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<a class="left carousel-control" href="#myCarousel{{$index}}" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>
 							<span class="sr-only">Previous</span>
 						</a>
-						<a class="right carousel-control" href="#myCarousel{{$index}}" role="button" data-slide="next">
-							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<a class="right carousel-control" href="#myCarousel{{$index}}" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right" aria-hidden="false"></span>
 							<span class="sr-only">Next</span>
 						</a>
 					</div>
