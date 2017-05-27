@@ -28,28 +28,31 @@
 					<div id="myCarousel{{$index}}" class="myCarousel carousel slide" data-ride="carousel">
 						<!-- Indicators -->
 						<ol class="carousel-indicators">
-							<li data-target="#myCarousel{{$index}}" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel{{$index}}" data-slide-to="1"></li>
-							<li data-target="#myCarousel{{$index}}" data-slide-to="2"></li>
-							<li data-target="#myCarousel{{$index}}" data-slide-to="3"></li>
-							<li data-target="#myCarousel{{$index}}" data-slide-to="4"></li>
+
+							@php
+								$dataSlideIndex = 0;
+							@endphp
+
+							@for($i=1;$i<=5;$i++)
+								@if($property->getImage($i)!=false)
+									<li data-target="#myCarousel{{$index}}" data-slide-to="{{$dataSlideIndex++}}" @if($dataSlideIndex == 1 ) class="active"  @endif ></li>
+								@endif
+							@endfor
 						</ol>
 
 						<div class="carousel-inner" role="listbox">
-								
-								<div class="item active">
-									<img src = "https://www.w3schools.com/css/img_fjords.jpg" alt="1">
-								</div>
-								@for($i = 2 ; $i <= 5 ;$i++)
-			
+								@php $isActive = false; @endphp
+								@for($i = 1 ; $i <= 5 ;$i++)
+									
 									@if($property->getImage($i)!=false)
-									<div class="item">
-										<img src = "{{$property->getImage($i)}}" alt="{{$i}}">
+									<div class="item @if($isActive == false) active @php $isActive = true; @endphp @endif">
+										<img src = "{{$property->getImage($i)}}" alt="{{$i-1}}">
 									</div>
 									@endif
 								@endfor
 						</div>
 						<!-- Left and right controls -->
+						@if($dataSlideIndex != 0)
 						<a class="left carousel-control" href="#myCarousel{{$index}}" data-slide="prev">
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>
 							<span class="sr-only">Previous</span>
@@ -58,6 +61,7 @@
 							<span class="glyphicon glyphicon-chevron-right" aria-hidden="false"></span>
 							<span class="sr-only">Next</span>
 						</a>
+						@endif
 					</div>
 				</div>
 				<div class="container-fluid col-sm-8">
