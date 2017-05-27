@@ -24,7 +24,7 @@ class CreatePropertyRequest extends FormRequest
      */
     public function rules()
     {
-        
+        // "bail" =  stop running validation rules on an attribute after the first validation failure
         $rules = 
                 [
                 'title' => 'bail|required|min:5|max:100',

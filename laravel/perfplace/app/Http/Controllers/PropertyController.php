@@ -8,45 +8,40 @@ use App\House;
 use App\User;
 use Session;
 
-class PropertyController extends Controller
-{
+class PropertyController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        
+    public function index() {
         return view('pages.home');
     }
 
-    public function indexByFilter(Request $request)
-    {
+    public function indexByFilter(Request $request) {
         $propertyTypes = $request->input('propertyType');
         $results = array();
         foreach ($propertyTypes as $type) {
             if(type == 'apartmentCheck'){
-                
+                // -- NOT IMPLEMENTED --
             }
         }
-
     }
 
-    public function showAll(){
+    public function showAll() {
         $houses = House::all();
         $apartments = Apartment::all();
         $properties = $houses->merge($apartments);
         return view('pages.results')->withProperties($properties);
-
     }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('pages.add');
     }
 
@@ -56,11 +51,7 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePropertyRequest $request)
-    {
-        // Validate Request
-
-        // "bail" =  stop running validation rules on an attribute after the first validation failure
+    public function store(CreatePropertyRequest $request) {
 
         // Save the property to the database
         $property = null;
@@ -78,34 +69,30 @@ class PropertyController extends Controller
         $keyValueArray['country'] = $request->country;
         $keyValueArray['city'] = $request->city;
         $keyValueArray['address'] = $request->address;
-        $property=null;
-        if(strcmp($fields,'apartment')==0){
+        $property = null;
+
+        if(strcmp($fields,'apartment')==0) {
             $keyValueArray['floorNumber'] = $request->floorNumber;
             $property = Apartment::create($keyValueArray);
-        }else{
+        } else {
             $keyValueArray['numberOfFloors'] = $request->numberOfFloors;
             $property = House::create($keyValueArray);
         }
 
-       
-        //////////////////////////////
         $picture = '';
         if ($request->hasFile('images')) {
             $files = $request->file('images');
             $counter=0;
             foreach($files as $file){
                 $counter++;
-                $extension = $file->getClientOriginalExtension();
-                $filename=$property->id.'_'.$counter.'.'.$extension;
-                $path = $file->storeAs('propertyPictures',$filename);   
-
+                // Convert file extension to lower before adding them to the database
+                $extension = strtolower($file->getClientOriginalExtension());
+                $filename = $property->id.'_'.$counter.'.'.$extension;
+                $path = $file->storeAs('public/propertyPictures', $filename);   
             }
         }
-
         Session::flash('success','The new property has been succesfully saved!');
-
         return redirect('userProperties');
-
     }
 
     /**
@@ -114,16 +101,15 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $house = null;
         $house = House::find($id);
         $apartment = null;
         $apartment = Apartment::find($id);
-        if($house!=null){
+        if($house != null){
             $property = $house;
         }
-        else if($apartment!=null){
+        else if($apartment != null) {
             $property = $apartment;
         }
         $user = User::find($property->userId);
@@ -136,8 +122,7 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -148,9 +133,8 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        
+    public function update(Request $request, $id){
+        //
     }
 
     /**
@@ -159,9 +143,7 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
-
 }
