@@ -40,12 +40,11 @@
 								<div class="item active">
 									<img src = "https://www.w3schools.com/css/img_fjords.jpg" alt="1">
 								</div>
-								@for($i = 2 ; $i <= 5 ;$i++)
-								@if($property->getImage($i)!=false)
-								<div class="item">
-									<img src = "{{$property->getImage($i)}}" alt="{{$i}}">
-								</div>
-								@endif
+								@for($i = 1 ; $i <= 5 ;$i++)
+			
+									<div class="item">
+									</div>
+									@endif
 								@endfor
 						</div>
 						<!-- Left and right controls -->
