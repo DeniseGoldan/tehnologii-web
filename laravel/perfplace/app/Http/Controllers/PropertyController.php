@@ -7,6 +7,7 @@ use App\Apartment;
 use App\House;
 use App\User;
 use Session;
+use App\Support\Collection;
 
 class PropertyController extends Controller {
 
@@ -15,6 +16,7 @@ class PropertyController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index() {
         return view('pages.home');
     }
@@ -30,10 +32,12 @@ class PropertyController extends Controller {
     }
 
     public function showAll() {
+
         $houses = House::all();
         $apartments = Apartment::all();
-        $properties = $houses->merge($apartments);
-        return view('pages.results')->withProperties($properties);
+        $mergedCollections = $houses->merge($apartments);
+        $properties = ( new Collection( $mergedCollections ) )->paginate(5);
+        return view ('pages.results')->withProperties($properties);
     }
 
     /**
