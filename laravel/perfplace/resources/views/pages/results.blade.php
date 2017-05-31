@@ -60,7 +60,7 @@
 
 					<!-- Left and right controls -->
 
-					@if($dataSlideIndex != 0)
+					@if($dataSlideIndex >1 )
 						<a class="left carousel-control" href="#myCarousel{{$index}}" data-slide="prev">
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>
 							<span class="sr-only">Previous</span>
@@ -81,7 +81,7 @@
 						</div>
 						<div class ="text-right" style="float: left; width:20%; padding-top:25px; padding-right:25px;">
 							<p data-placement="top" data-toggle="tooltip" title="View">
-								<a href="{{url('properties/'.$property->id)}}">
+								<a href="{{route('properties.show',$property->id)}}">
 									<button class="btn btn-success btn-lg" data-title="View" action={{ url('properties/'.$property->id)}}>
 										<span class="glyphicon glyphicon-eye-open"></span>
 									</button>

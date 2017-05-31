@@ -611,6 +611,8 @@ function displayMarkers(map,markers) {
 
 function initMap() {
 
+    var latitudeValueFromGET = null;
+    var longitudeValueFromGET = null;
     var latitudeValueFromGET = decodeURIComponent(window.location.search.match(/(\?|&)latitude\=([^&]*)/)[2]);
     var longitudeValueFromGET = decodeURIComponent(window.location.search.match(/(\?|&)longitude\=([^&]*)/)[2]);
     var center = new google.maps.LatLng(0, 0);
