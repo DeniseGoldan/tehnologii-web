@@ -78,7 +78,7 @@
 				<div class ="text-center" style="float: left;width:33%;">
 					<h4><strong>Number of floors</strong></h4>
 					<h5>{{$property->numberOfFloors}}</h5>
-				</div>
+				</div>	
 				@endif
 				<br style="clear: left;" />
 			</div>
@@ -90,9 +90,10 @@
 			<!--Contact the owner-->
 			<div class="text-center well owner-info">
 				<img src="../img/user.png" class="img-responsive center-block user-placeholder">
-				<h4><strong>Ion Popescu</strong></h4>
-				<h4><span class="glyphicon glyphicon-phone-alt"></span> 012412421</h4>
-				<form class="well " action="post" id="send_mail_form">
+				<h4><strong>{{$user->lastName}} {{$user->firstName}}</strong></h4>
+				<h4><span class="glyphicon glyphicon-phone-alt"></span> {{$user->phone}}</h4>
+				<form class="well " action="{{ url('contactUser') }}" method="post" id="send_mail_form">
+					{{  csrf_field()  }}
 					<h4><strong>Leave a message to the owner</strong></h4>
 					<div class="form-group col-md-12">
 						<input name="emailFrom" placeholder="E-mail" class="form-control" type="email" required>
