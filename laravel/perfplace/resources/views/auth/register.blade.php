@@ -2,7 +2,7 @@
 
 @section('stylesheets')
 
-	<link rel="stylesheet" href="css/registerForm_styles.css">
+	<link rel="stylesheet" href="../css/registerForm_styles.css">
 
 @stop
 
@@ -13,6 +13,7 @@
 	</div>
 
 	<form class="well container-fluid" method="post" id="registerForm">
+		{{csrf_field()}}
 		<h2 class="text-center">Complete the following fields and join us.</h2>
 		<div class="container-fluid col-md-offset-4 col-md-4">
 			<div class="form-group input-group">
@@ -33,7 +34,7 @@
 			</div>
 			<div class="form-group input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></i></span>
-				<input id="confirmPassword" name="confirmPassword" placeholder="Confirm password" class="form-control" type="password">
+				<input id="confirmPassword" name="desiredPassword_confirmation" placeholder="Confirm password" class="form-control" type="password">
 			</div>
 			<div class="form-group input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
@@ -53,6 +54,6 @@
 
 	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
 	<script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
-	<script type="text/javascript" src="js/validations/validateRegisterForm.js"></script>
+	<script type="text/javascript" src="../js/validations/validateRegisterForm.js"></script>
 
 @stop

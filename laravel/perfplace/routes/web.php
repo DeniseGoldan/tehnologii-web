@@ -17,8 +17,6 @@ Route::get('/property','PagesController@getSingleProperty');
 
 Route::get('/user','PagesController@getUserProfile');
 
-Route::get('/register','PagesController@getUserRegister');
-
 Route::get('/results','PagesController@getPropertyResults');
 
 Route::get('/profile','PagesController@getUserProfile');
@@ -40,6 +38,14 @@ Route::get('properties/all','PropertyController@showAll');
 Route::resource('properties','PropertyController');
 
 Route::post ('contactUser','UserController@contactUser');
+
+Route::get('auth/register','Auth\RegisterController@showRegistrationForm');
+
+Route::post('auth/register','auth\RegisterController@register');
+
+Route::post('auth/login','auth\LoginController@login');
+
+Route::get('auth/logout','auth\LoginController@logout');
 
 //Route::post('properties/{id}/send', 'ContactUser@send');
 

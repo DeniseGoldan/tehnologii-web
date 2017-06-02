@@ -11,33 +11,37 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <ul class="nav navbar-nav">
-        <li><a href="/properties/create">Add Property</a></li>
-        <li><a href="/userProperties">My Properties</a></li>
-        
-      </ul>
+      
+      @if(Auth::check())
+        <ul class="nav navbar-nav">
+          <li><a href="/properties/create">Add Property</a></li>
+          <li><a href="/userProperties">My Properties</a></li>
+          
+        </ul>
+      @endif
       
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="/profile">Profile</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">Already have an account?</li>
               <li>
                 <!-- Begin Sign in form -->
-                <form class="well container-fluid center" method="post" id="signInForm">
+                {!! Form::open(['action' =>'auth\LoginController@login', 'method' => 'POST','class' => 'well container-fluid center', 'id' => 'signInForm']) !!}
+
                   <div class="form-group input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="signInUsername" name="signInUsername" placeholder="Username" class="form-control" type="text">
+                    <input id="username" name="username" placeholder="Username" class="form-control" type="text">
                   </div>
                   <div class="form-group input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="signInPassword" name="signInPassword" placeholder="Password" class="form-control" type="password">
+                    <input id="password" name="password" placeholder="Password" class="form-control" type="password">
                   </div>
+                  {{Form::checkbox('remember')}}{{Form::label('remember',"Remember Me")}}
                   <input type="submit" name="signInButton" class="submit btn btn-default center-block custom-sign-in-button" value="Sign in" onclick="">
-                </form>
+
+                {!!Form::close()!!}
               </li>
               <!-- End of Sign in form -->
               <!-- Begin Register -->

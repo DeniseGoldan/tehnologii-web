@@ -2,21 +2,20 @@
 
 namespace App;
 
-use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
     use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'firstName','lastName', 'phone','email', 'password',
+        'username','firstName','lastName', 'phone','email', 'password', 
     ];
 
     /**
