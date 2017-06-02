@@ -20,6 +20,24 @@
         </ul>
       @endif
       
+      @if(Auth::check())
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{Auth::user()->username}}<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href = {{ url('user') }}>Edit your profile</a></li>
+                <li><a href = {{ url('auth/logout') }}>Log out</a></li>
+              </ul>
+          </li>
+      </ul>
+
+      @endif      
+
+
+
+      @if(!Auth::check())
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
@@ -46,11 +64,12 @@
               <!-- End of Sign in form -->
               <!-- Begin Register -->
               <li class="dropdown-header">New here?</li>
-              <li><a href="/register">Join us</a></li>
+              <li><a href="auth/register">Join us</a></li>
               <!--End Register-->
             </ul>
         </li>
       </ul>
+      @endif
     </div>
   </div>
 </nav>

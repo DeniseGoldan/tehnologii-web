@@ -116,7 +116,8 @@ class PropertyController extends Controller {
         else if($apartment != null) {
             $property = $apartment;
         }
-        $user = User::find($property->userId);
+        if(isset($property))
+            $user = User::find($property->userId);
         return view('pages.property')->with('property',$property)->with('user',$user);
     }
 
@@ -138,7 +139,60 @@ class PropertyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        //
+        $house = null;
+        $house = House::find($request->id);
+        $apartment = null;
+        $apartment = Apartment::find($request->id);
+        if($house != null){
+            $property = $house;
+        }
+        else if($apartment != null) {
+            $property = $apartment;
+        }
+
+        $fields = $request->get('propertyType');
+        $keyValueArray = array();
+        $keyValueArray['title'] = $request->title;
+        $keyValueArray['propertyType'] = $request->propertyType;
+        $keyValueArray['description'] =  $request->description;
+        $keyValueArray['numberOfRooms'] = $request->numberOfRooms;
+        $keyValueArray['surface'] = $request->surface;
+        $keyValueArray['price'] = $request->price;
+        $keyValueArray['transactionType'] = $request->transactionType;
+        $keyValueArray['latitude'] = $request->latitude;
+        $keyValueArray['longitude'] = $request->longitude;
+        $keyValueArray['country'] = $request->country;
+        $keyValueArray['city'] = $request->city;
+        $keyValueArray['address'] = $request->address;
+        $property = null;
+
+        if(strcmp($fields,'apartment')==0) {
+            $keyValueArray['floorNumber'] = $request->floorNumber;
+            $property = Apartment::create($keyValueArray);
+        } else {
+            $keyValueArray['numberOfFloors'] = $request->numberOfFloors;
+            $property = House::create($keyValueArray);
+        }
+        for($i = 1 ; $i<=5 ; $i++){
+            if($property->getImage($i)!=false){
+                Storage::delete($property->getImage($i));
+            }
+        }
+
+        $picture = '';
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            $counter=0;
+            foreach($files as $file){
+                $counter++;
+                // Convert file extension to lower before adding them to the database
+                $extension = strtolower($file->getClientOriginalExtension());
+                $filename = $property->id.'_'.$counter.'.'.$extension;
+                $path = $file->storeAs('public/propertyPictures', $filename);   
+            }
+        }
+        Session::flash('success','The new property has been succesfully modified!');
+        return redirect('userProperties');
     }
 
     /**
