@@ -36,13 +36,17 @@ Route::resource('properties','PropertyController');
 
 Route::post ('contactUser','UserController@contactUser');
 
+//Authentication routes
 Route::get('auth/register','Auth\RegisterController@showRegistrationForm');
-
 Route::post('auth/register','auth\RegisterController@register');
-
 Route::post('auth/login','auth\LoginController@login');
-
 Route::get('auth/logout','auth\LoginController@logout');
+
+//Forgot password routes
+Route::get('password/reset/{token}','Auth\ResetPasswordController@showResetForm');
+Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('password/reset',['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@reset']);
 
 //Route::post('properties/{id}/send', 'ContactUser@send');
 

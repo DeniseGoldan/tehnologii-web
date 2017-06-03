@@ -57,14 +57,18 @@
                     <input id="password" name="password" placeholder="Password" class="form-control" type="password">
                   </div>
                   {{Form::checkbox('remember')}}{{Form::label('remember',"Remember Me")}}
+
                   <input type="submit" name="signInButton" class="submit btn btn-default center-block custom-sign-in-button" value="Sign in" onclick="">
 
                 {!!Form::close()!!}
+
               </li>
               <!-- End of Sign in form -->
               <!-- Begin Register -->
+
               <li class="dropdown-header">New here?</li>
               <li><a href="auth/register">Join us</a></li>
+              <li><a href="{{url('password/reset')}}">Forgot My Password</a></li>
               <!--End Register-->
             </ul>
         </li>
