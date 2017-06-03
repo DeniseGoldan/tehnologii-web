@@ -32,12 +32,20 @@ class PropertyController extends Controller {
     }
 
     public function showAll() {
-
         $houses = House::all();
         $apartments = Apartment::all();
         $mergedCollections = $houses->merge($apartments);
         $properties = ( new Collection( $mergedCollections ) )->paginate(5);
         return view ('pages.results')->withProperties($properties);
+    }
+
+    // TODO: add query criteria (property must belong to logged in user inorder for it to be displayed)
+    public function showUserProperties() {
+        $houses = House::all();
+        $apartments = Apartment::all();
+        $mergedCollections = $houses->merge($apartments);
+        $properties = ( new Collection( $mergedCollections ) )->paginate(5);
+        return view ('pages.userProperties')->withProperties($properties);
     }
 
     /**
