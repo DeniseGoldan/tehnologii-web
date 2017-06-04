@@ -15,7 +15,7 @@
       @if(Auth::check())
         <ul class="nav navbar-nav">
           <li><a href="/properties/create">Add Property</a></li>
-          <li><a href="/userProperties">My Properties</a></li>
+          <li><a href="/myProperties">My Properties</a></li>
           
         </ul>
       @endif

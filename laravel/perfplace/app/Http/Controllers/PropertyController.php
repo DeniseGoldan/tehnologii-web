@@ -9,6 +9,7 @@ use App\User;
 use Session;
 use Storage;
 use App\Support\Collection;
+use Auth;
 
 class PropertyController extends Controller {
 
@@ -40,10 +41,9 @@ class PropertyController extends Controller {
         return view ('pages.results')->withProperties($properties);
     }
 
-    // TODO: add query criteria (property must belong to logged in user inorder for it to be displayed)
     public function showUserProperties() {
-        $houses = House::all();
-        $apartments = Apartment::all();
+        $houses = House::all()->where('userId', Auth::user()->id);
+        $apartments = Apartment::all()->where('userId', Auth::user()->id);
         $mergedCollections = $houses->merge($apartments);
         $properties = ( new Collection( $mergedCollections ) )->paginate(5);
         return view ('pages.userProperties')->withProperties($properties);
@@ -82,6 +82,7 @@ class PropertyController extends Controller {
         $keyValueArray['country'] = $request->country;
         $keyValueArray['city'] = $request->city;
         $keyValueArray['address'] = $request->address;
+        $keyValueArray['userId'] = Auth::user()->id;
         $property = null;
 
         if(strcmp($fields,'apartment')==0) {

@@ -21,7 +21,7 @@ Route::get('/results','PagesController@getPropertyResults');
 
 Route::get('/profile','PagesController@getUserProfile');
 
-Route::get('/userProperties','PropertyController@showUserProperties');
+Route::get('/myProperties','PropertyController@showUserProperties');
 
 Route::get('/editProperty','PagesController@getEditProperty');
 

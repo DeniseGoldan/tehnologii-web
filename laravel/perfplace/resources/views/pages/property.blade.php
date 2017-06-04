@@ -17,37 +17,38 @@
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
-							@php
-								$dataSlideIndex = 0;
-							@endphp
+					@php
+						$dataSlideIndex = 0;
+					@endphp
 
-							@for($i=1;$i<=5;$i++)
-								@if($property->getImage($i)!=false)
-									<li data-target="#myCarousel" data-slide-to="{{$dataSlideIndex++}}" @if($dataSlideIndex == 1 ) class="active"  @endif ></li>
-								@endif
-							@endfor
+					@for($i=1;$i<=5;$i++)
+						@if($property->getImage($i)!=false)
+							<li data-target="#myCarousel" data-slide-to="{{$dataSlideIndex++}}" @if($dataSlideIndex == 1 ) class="active"  @endif ></li>
+						@endif
+					@endfor
 				</ol>
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-								@php $isActive = false; @endphp
+					@php $isActive = false; @endphp
 
-								@for($i = 1 ; $i <= 5 ;$i++)
-									
-									@if($property->getImage($i)!=false)
-									<div class="item @if($isActive == false) active @php $isActive = true; @endphp @endif">
-										<img src = "{{$property->getImage($i)}}" alt="{{$i-1}}">
-									</div>
-									@endif
-								@endfor
+					@for($i = 1 ; $i <= 5 ;$i++)
+						
+						@if($property->getImage($i)!=false)
+						<div class="item @if($isActive == false) active @php $isActive = true; @endphp @endif">
+							<img src = "{{$property->getImage($i)}}" alt="{{$i-1}}">
+						</div>
+						@endif
+						
+					@endfor
 
-								@if($dataSlideIndex == 0)
-									<div class="item active">
-										<img src = "https://www.transparenttextures.com/patterns/asfalt-light.png" alt="0">
-									</div>	
-								@endif
+					@if($dataSlideIndex == 0)
+						<div class="item active">
+							<img src = "https://www.transparenttextures.com/patterns/asfalt-light.png" alt="0">
+						</div>	
+					@endif
 				</div>
 				<!-- Left and right controls -->
-				@if($dataSlideIndex >1	)
+				@if( $dataSlideIndex > 1 )
 						<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>
 							<span class="sr-only">Previous</span>
@@ -68,13 +69,13 @@
 					<h4><strong>Rooms</strong></h4>
 					<h5>{{$property->numberOfRooms}}</h5>
 				</div>
-				@if($property->propertyType=='apartment')
+				@if( $property->propertyType == 'apartment' )
 
 				<div class ="text-center" style="float: left;width:33%;">
 					<h4><strong>Floor</strong></h4>
 					<h5>{{$property->floorNumber}}</h5>
 				</div>
-				@elseif($property->propertyType=='house')
+				@elseif( $property->propertyType == 'house' )
 				<div class ="text-center" style="float: left;width:33%;">
 					<h4><strong>Number of floors</strong></h4>
 					<h5>{{$property->numberOfFloors}}</h5>
@@ -113,17 +114,13 @@
 			<h3 class="location-tag">Location of the property on the map</h3>
 			<h4 class="location-tag"><strong>Address </strong>{{$property->address}}</h4>
 			<div name="LatLng">
-						<p hidden name="latitude" id="latitude">{{$property->latitude}}</span>
-						<p hidden name="longitude" id="longitude">{{$property->longitude}}</span>
+				<p hidden name="latitude" id="latitude">{{$property->latitude}}</span>
+				<p hidden name="longitude" id="longitude">{{$property->longitude}}</span>
 			</div>
 		<div style="width:100%; height: 400px; overflow: hidden; ">
 			<div id="map" class="property-mark-on-map"></div>
 		</div>
 	</div>
-
-
-
-
 
 @stop
 
@@ -132,7 +129,5 @@
 	<script type="text/javascript" src="/js/singlePropertyMarkOnMap.js"></script>
 
 	<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQCQ1quNQm1Geb__wZNXjJrPqT6VzyaNY&callback=initMap"></script>
-
-	
 
 @stop

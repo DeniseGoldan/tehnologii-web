@@ -3,6 +3,7 @@
 @section('stylesheets')
 
 	{{Html::style('css/myProperties_styles.css')}}
+	{{Html::style('css/sweetalert.css')}}
 
 @stop
 
@@ -98,10 +99,14 @@
 							</div>
 							<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:45px;">
 								<p data-placement="top" data-toggle="tooltip" title="Delete">
-									<button onClick="confirmDeletion(<?php $property->id ?>)" 
-									class="btn btn-danger btn-lg" data-title="Delete">
+								{!! Form::open(['route' => 'properties.destroy',
+								'id'=> 'addPropertyForm',
+								'class'=>'well container-fluid','enctype'=>'multipart/form-data']) !!}
+									<a data-id="{{$property->id}}" class="delete-button btn btn-danger btn-lg" data-title="Delete"
+									data-token="{{ csrf_token() }}">
 										<span class="glyphicon glyphicon-trash"></span>
-									</button>
+									</a>	
+								{!! Form::close() !!}
 								</p>
 							</div>
 						</div>
@@ -135,15 +140,11 @@
 			</div>
 		@endforeach
 	@endif
+@stop
 	
 <?php echo $properties->render(); ?>
 
-<script>
-function confirmDeletion(type, id, types) {
-    if (confirm("Are you sure you want to delete this property?")) { 
-       document.location.href='www.google.com'; // REPLACE with call to delete property method
-    }
-}
-</script>
-	
+@section('scripts')
+	{{Html::script('js/sweetalert.min.js')}}
+	{{Html::script('/js/deleteWithPopUpUsingAjax.js')}}
 @stop
