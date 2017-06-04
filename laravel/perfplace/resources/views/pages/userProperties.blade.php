@@ -104,17 +104,20 @@
 										<span class="glyphicon glyphicon-trash"></span>
 									</a>	
 
-									<script src = 'js/sweetalert.min.js'></script>
+									<script src = 'js/sweetalert-dev.js'></script>
 									<script>
 										$(document).on('click', '.delete-button', function (e) {
 										    e.preventDefault();
 										    var id = $(this).data('id');
 										    swal({
-										            title: "Are you sure you want to delete this property?" + id,
-										            type: "error",
-										            confirmButtonClass: "btn-danger",
-										            confirmButtonText: "Yes",
-										            showCancelButton: true,
+										          title: "Are you sure you want to delete this property?",   
+												  type: "warning",
+												  showCancelButton: true,
+												  confirmButtonColor: "#DD6B55",
+												  confirmButtonText: "Yes",
+												  cancelButtonText: "No",
+												  closeOnConfirm: false,
+												  closeOnCancel: false
 										        },
 										        function() {
 										            $.ajax({
@@ -163,7 +166,6 @@
 				</div>
 			</div>
 		@endforeach
-	@endif
+	@endif	
+	<?php echo $properties->render(); ?>
 @stop
-	
-<?php echo $properties->render(); ?>
