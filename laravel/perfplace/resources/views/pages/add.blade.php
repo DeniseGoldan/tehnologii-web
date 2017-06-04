@@ -38,21 +38,27 @@
 					<legend>Details</legend>
 					<div class="form-group">
 						<div class="input-group width-to-100-percent">
+							<label>Title</label>
 							<input type="text" class="form-control" id="title" placeholder="Title" name="title">
 						</div>
 						<div class="input-group width-to-100-percent">
+							<label>Description</label>
 							<textarea class="form-control" rows="4" id="description" placeholder="Description" name="description"></textarea>
 						</div>
 						<div class="input-group width-to-100-percent">
+							<label>Number of rooms</label>
 							<input type="number"  min="1" class="form-control numberInput" name="numberOfRooms" id="numberOfRooms" placeholder="Number of rooms">
 						</div>
 						<div class="input-group width-to-100-percent">
+							<label>Surface (square meters)</label>
 							<input type="text" class="form-control numberInput" name="surface" id="surface" placeholder="Surface (square meters)">
 						</div>
 						<div  class="input-group width-to-100-percent">
+							<label class="hidden" id="label_numberOfFloors">Number of floors</label>
 							<input type="number"  min="1" class="form-control hidden" name="numberOfFloors" id="numberOfFloors" placeholder="Number of floors">
 						</div>
 						<div class="input-group width-to-100-percent">
+							<label id = "label_floorNumber">Floor number</label>
 							<input type="number"  min="0" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number">
 						</div>
 					</div>
@@ -74,6 +80,7 @@
 					<legend>Price</legend>
 					<div class="form-group">
 						<div class="input-group width-to-100-percent">
+							<label>Price</label>
 							<input id="price" type="text" class="form-control numberInput" name="price" placeholder="Price (euro)">
 						</div>
 					</div>
@@ -123,11 +130,11 @@
 							<label for="file-input-5">
 								<img id="pic-5" src="/img/housePlaceholder.jpg" height="90" width="90">
 							</label>
-							<input id="file-input-1" type="file" name="images[]" />
-                            <input id="file-input-2" type="file" name="images[]"/>
-                            <input id="file-input-3" type="file" name="images[]"/>
-                            <input id="file-input-4" type="file" name="images[]"/>
-                            <input id="file-input-5" type="file" name="images[]"/>
+							<input id="file-input-1" type="file" name="image1"/>
+                            <input id="file-input-2" type="file" name="image2"/>
+                            <input id="file-input-3" type="file" name="image3"/>
+                            <input id="file-input-4" type="file" name="image4"/>
+                            <input id="file-input-5" type="file" name="image5"/>
 						</div>
 					</div>
 				</div>

@@ -20,20 +20,7 @@
 		<div class="container-fluid">
 			<div class="col-sm-3">
 				<!--Select the type of property-->
-				<fieldset>
-					<legend>Property type</legend>
-					<div class="form-group">
-						<div class="radio">
-							<label><input type="radio" value="house" name="propertyType" id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" value="apartment" name="propertyType" id="apartmentCheck" onclick="houseOrApartmentCheck();" checked ="checked">Apartment</label>
-						</div>
-					</div>
-				</fieldset>
-				<!--Details about property-->
-				<fieldset>
-					<legend>Details</legend>
+					<legend>{{ ucfirst($property->propertyType)}} details</legend>
 					<div class="form-group">
 						<div class="input-group width-to-100-percent">
 							<label>Title</label>
@@ -53,14 +40,18 @@
 							<label>Surface (square meters)</label>
 							<input type="text" class="form-control numberInput" name="surface" id="surface" placeholder="Surface (square meters)" value = "{{$property->surface}}">
 						</div>
+						@if(strcmp($property->propertyType,'house')==0)
 						<div  class="input-group width-to-100-percent">
-							<label class="hidden" id="label_numberOfFloors">Number of floors</label>
-							<input type="number"  min="1" class="form-control hidden" name="numberOfFloors" id="numberOfFloors" placeholder="Number of floors" value = "{{$property->numberOfFloors}}">
+							<label id="label_numberOfFloors">Number of floors</label>
+							<input type="number"  min="1" class="form-control" name="numberOfFloors" id="numberOfFloors" placeholder="Number of floors" value = "{{$property->numberOfFloors}}">
 						</div>
+						@endif
+						@if(strcmp($property->propertyType,'apartment')==0)
 						<div class="input-group width-to-100-percent">
 							<label id = "label_floorNumber">Floor number</label>
 							<input type="number"  min="0" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number" value = "{{$property->floorNumber}}">
 						</div>
+						@endif
 					</div>
 				</fieldset>
 				<!--Select if the property is for sale or for rent-->
@@ -116,25 +107,44 @@
 					<div >
 						<div class="image-upload">
 							<label for="file-input-1">
-								<img id="pic-1" src="/img/housePlaceholder.jpg" height="90" width="90">
-							</label>
+								@if($property->getImage(1)!=false)
+									<img id="pic-1" src="{{$property->getImage(1)}}"" height="90" width="90">
+								@else
+									<img id="pic-1" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@endif
 							<label for="file-input-2">
-								<img id="pic-2" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@if($property->getImage(2)!=false)
+									<img id="pic-2" src="{{$property->getImage(2)}}"" height="90" width="90">
+								@else
+									<img id="pic-2" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@endif
 							</label>
 							<label for="file-input-3">
-								<img id="pic-3" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@if($property->getImage(3)!=false)
+									<img id="pic-3" src="{{$property->getImage(3)}}"" height="90" width="90">
+								@else
+									<img id="pic-3" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@endif
 							</label>
 							<label for="file-input-4">
-								<img id="pic-4" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@if($property->getImage(4)!=false)
+									<img id="pic-4" src="{{$property->getImage(4)}}"" height="90" width="90">
+								@else
+									<img id="pic-4" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@endif
 							</label>
 							<label for="file-input-5">
-								<img id="pic-5" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@if($property->getImage(5)!=false)
+									<img id="pic-5" src="{{$property->getImage(5)}}"" height="90" width="90">
+								@else
+									<img id="pic-5" src="/img/housePlaceholder.jpg" height="90" width="90">
+								@endif
 							</label>
-							<input id="file-input-1" type="file" name="images[]"/>
-                            <input id="file-input-2" type="file" name="images[]"/>
-                            <input id="file-input-3" type="file" name="images[]"/>
-                            <input id="file-input-4" type="file" name="images[]"/>
-                            <input id="file-input-5" type="file" name="images[]"/>
+							<input id="file-input-1" type="file" name="image1"/>
+                            <input id="file-input-2" type="file" name="image2"/>
+                            <input id="file-input-3" type="file" name="image3"/>
+                            <input id="file-input-4" type="file" name="image4"/>
+                            <input id="file-input-5" type="file" name="image5"/>
 						</div>
 					</div>
 				</div>
@@ -151,22 +161,11 @@
 				</div>
 			</div>
 			{!! Form::close() !!}
-				<div class="col-sm-1">
-					<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:40px;">
-						<p data-placement="top" data-toggle="tooltip" title="Delete">
-							<button class="btn btn-danger btn-lg" data-title="Delete">
-								<span class="glyphicon glyphicon-trash"></span>
-							</button>
-						</p>
-					</div>
-				</div>
 		</div>
 
 @stop
 
 @section('scripts')
-
-	{{Html::script('js/editPropertyHideShow.js')}}
 	{{Html::script('js/editPropertyGmap.js')}}
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places&callback=initMap" async defer></script>

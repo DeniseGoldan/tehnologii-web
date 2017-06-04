@@ -93,15 +93,11 @@ class PropertyController extends Controller {
             $property = House::create($keyValueArray);
         }
 
-        $picture = '';
-        if ($request->hasFile('images')) {
-            $files = $request->file('images');
-            $counter=0;
-            foreach($files as $file){
-                $counter++;
-                // Convert file extension to lower before adding them to the database
+        for($i=1;$i<=5;$i++){
+            if($request->hasFile('image'.$i)){
+                $file = $request->file('image'.$i);
                 $extension = strtolower($file->getClientOriginalExtension());
-                $filename = $property->id.'_'.$counter.'.'.$extension;
+                $filename = $property->id.'_'.$i.'.'.$extension;
                 $path = $file->storeAs('public/propertyPictures', $filename);   
             }
         }
@@ -171,61 +167,41 @@ class PropertyController extends Controller {
         else if($apartment != null) {
             $property = $apartment;
         }
-        $oldPropertyType = $property->propertyType;
-        $newPropertyType = $request->get('propertyType');
+        $propertyType = $property->propertyType;
 
-        if($newPropertyType == $oldPropertyType){
-            $property->title = $request->input('title');
-            $property->propertyTypeitle = $request->input('propertyType');
-            $property->description = $request->input('description');
-            $property->numberOfRooms = $request->input('numberOfRooms');
-            $property->surface = $request->input('surface');;
-            $property->price = $request->input('price');
-            $property->transactionType = $request->input('transactionType');
-            $property->latitude = $request->input('latitude');
-            $property->longitude = $request->input('longitude');
-            $property->country = $request->input('country');
-            $property->city = $request->input('city');
-            $property->address = $request->input('address');
-        }
-        else if(strcmp($newPropertyType,'apartment')==0&&strcmp($newPropertyType,'house')==0){
-
-        }
-        else if(strcmp($newPropertyType,'house')==0&&strcmp($newPropertyType,'apartment')==0){
-
-        }
-        if(strcmp($newPropertyType,'apartment')==0) {
+        $property->title = $request->input('title');
+        $property->propertyTypeitle = $request->input('propertyType');
+        $property->description = $request->input('description');
+        $property->numberOfRooms = $request->input('numberOfRooms');
+        $property->surface = $request->input('surface');;
+        $property->price = $request->input('price');
+        $property->transactionType = $request->input('transactionType');
+        $property->latitude = $request->input('latitude');
+        $property->longitude = $request->input('longitude');
+        $property->country = $request->input('country');
+        $property->city = $request->input('city');
+        $property->address = $request->input('address');
+        if(strcmp($propertyType,'apartment')==0) {
             $property->floorNumber = $request->input('floorNumber');
             $property->numberOfFloors = null;
         } else {
             $property->numberOfFloors = $request->input('numberOfFloors');
             $property->floorNumber = null;
         }
-        for($i = 1 ; $i<=5 ; $i++){
-            $path = $property->getImagePath($i);
-            if($path !=false){
 
-                Storage::delete($path);
-            }
-        }
         $property->save();
-        $picture = '';
-        if ($request->hasFile('images')) {
-            $files = $request->file('images');
-            var_dump($files);
-            $counter=0;
-            foreach($files as $file){
-                $counter++;
-                var_dump($file);
-                // Convert file extension to lower before adding them to the database
+
+          for($i=1;$i<=5;$i++){
+            if($request->hasFile('image'.$i)){
+                $file = $request->file('image'.$i);
                 $extension = strtolower($file->getClientOriginalExtension());
-                $filename = $property->id.'_'.$counter.'.'.$extension;
+                $filename = $property->id.'_'.$i.'.'.$extension;
                 $path = $file->storeAs('public/propertyPictures', $filename);   
             }
         }
 
-        // Session::flash('success','The new property has been succesfully modified!');
-        // return redirect('userProperties');
+         Session::flash('success','The new property has been succesfully modified!');
+         return redirect('userProperties');
     }
 
     /**
@@ -244,6 +220,13 @@ class PropertyController extends Controller {
         }
         else if($apartment != null) {
             $property = $apartment;
+        }
+        for($i = 1 ; $i<=5 ; $i++){
+            $path = $property->getImagePath($i);
+            if($path !=false){
+
+                Storage::delete($path);
+            }
         }
         $property->delete();
     }
