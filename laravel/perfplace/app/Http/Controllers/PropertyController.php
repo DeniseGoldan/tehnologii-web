@@ -105,8 +105,9 @@ class PropertyController extends Controller {
                 $path = $file->storeAs('public/propertyPictures', $filename);   
             }
         }
+        
         Session::flash('success','The new property has been succesfully saved!');
-        return redirect('userProperties');
+        return redirect('myProperties');
     }
 
     /**

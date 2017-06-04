@@ -99,14 +99,38 @@
 							</div>
 							<div class ="text-right" style="float: left; width:33%; padding-top:5px; padding-right:45px;">
 								<p data-placement="top" data-toggle="tooltip" title="Delete">
-								{!! Form::open(['route' => 'properties.destroy',
-								'id'=> 'addPropertyForm',
-								'class'=>'well container-fluid','enctype'=>'multipart/form-data']) !!}
-									<a data-id="{{$property->id}}" class="delete-button btn btn-danger btn-lg" data-title="Delete"
-									data-token="{{ csrf_token() }}">
+								
+									<a data-id="{{$property->id}}" class="delete-button btn btn-danger btn-lg" data-title="Delete">
 										<span class="glyphicon glyphicon-trash"></span>
 									</a>	
-								{!! Form::close() !!}
+
+									<script src = 'js/sweetalert.min.js'></script>
+									<script>
+										$(document).on('click', '.delete-button', function (e) {
+										    e.preventDefault();
+										    var id = $(this).data('id');
+										    swal({
+										            title: "Are you sure you want to delete this property?" + id,
+										            type: "error",
+										            confirmButtonClass: "btn-danger",
+										            confirmButtonText: "Yes",
+										            showCancelButton: true,
+										        },
+										        function() {
+										            $.ajax({
+										                type: "DELETE",
+										                url: '/properties/' + id,
+										                data: { "_token" : "{{ csrf_token() }}" },
+										                success: function () {
+										                    swal("Success",
+										                    	"The property has been deleted.",
+										                    	"success");
+										                    location.reload();
+										                }         
+										            });
+										    });
+										})
+									</script> 
 								</p>
 							</div>
 						</div>
@@ -143,8 +167,3 @@
 @stop
 	
 <?php echo $properties->render(); ?>
-
-@section('scripts')
-	{{Html::script('js/sweetalert.min.js')}}
-	{{Html::script('/js/deleteWithPopUpUsingAjax.js')}}
-@stop
