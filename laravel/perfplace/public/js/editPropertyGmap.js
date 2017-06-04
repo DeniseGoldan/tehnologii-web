@@ -1,9 +1,19 @@
 var marker;
 var map;
 function initMap() {
+	var latitude = document.getElementById("latitude").value;
+	var longitude = document.getElementById("longitude").value;
+	var myLatLng = new google.maps.LatLng(latitude,longitude);
+
 	map = new google.maps.Map(document.getElementById('googleMap'), {
-		center: {lat: -33.8688, lng: 151.2195},
+		center: myLatLng,
 		zoom: 13
+	});
+	marker = new google.maps.Marker({
+		map: map,
+		position: myLatLng,
+		anchorPoint: new google.maps.Point(0, -29),
+		draggable:true
 	});
 	var input = document.getElementById('placeAutocomplete');
 
@@ -17,11 +27,8 @@ function initMap() {
 	var infowindow = new google.maps.InfoWindow();
 	var infowindowContent = document.getElementById('infowindow-content');
 	infowindow.setContent(infowindowContent);
-	marker = new google.maps.Marker({
-		map: map,
-		anchorPoint: new google.maps.Point(0, -29),
-		draggable:true
-	});
+	infowindowContent.children['place-address'].textContent = document.getElementById("address").value;
+	infowindow.open(map, marker);
 
 	autocomplete.addListener('place_changed', function() {
 		infowindow.close();
@@ -62,8 +69,7 @@ function initMap() {
     	 document.getElementById("longitude").value = this.getPosition().lng();
     	 //Get the formated address from Reverse Geocoding API
         var geocoder = new google.maps.Geocoder;
-    	var latlng = {lat: this.getPosition().lat(), lng: this.getPosition().lng()};
-
+    	var latlng = {lat: this.getPosition().lat(), lng: this.getPosition().lng()}; 		  	
  		geocoder.geocode({'location': latlng}, function(results, status) {
         if(status == google.maps.GeocoderStatus.OK) {
           if(results[0]) {

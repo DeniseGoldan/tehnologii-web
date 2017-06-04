@@ -7,6 +7,7 @@ use App\Apartment;
 use App\House;
 use App\User;
 use Session;
+use Storage;
 use App\Support\Collection;
 
 class PropertyController extends Controller {
@@ -110,14 +111,14 @@ class PropertyController extends Controller {
         $house = House::find($id);
         $apartment = null;
         $apartment = Apartment::find($id);
+        $property = null;
         if($house != null){
             $property = $house;
         }
         else if($apartment != null) {
             $property = $apartment;
         }
-        if(isset($property))
-            $user = User::find($property->userId);
+        $user = User::find($property->userId);
         return view('pages.property')->with('property',$property)->with('user',$user);
     }
 
@@ -128,7 +129,18 @@ class PropertyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        //
+        $house = null;
+        $house = House::find($id);
+        $apartment = null;
+        $apartment = Apartment::find($id);
+        $property = null;
+        if($house != null){
+            $property = $house;
+        }
+        else if($apartment != null) {
+            $property = $apartment;
+        }
+        return view('pages.editProperty')->with('property',$property);
     }
 
     /**
@@ -138,61 +150,72 @@ class PropertyController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(CreatePropertyRequest $request, $id){
         $house = null;
-        $house = House::find($request->id);
+        $house = House::find($id);
         $apartment = null;
-        $apartment = Apartment::find($request->id);
+        $apartment = Apartment::find($id);
         if($house != null){
             $property = $house;
         }
         else if($apartment != null) {
             $property = $apartment;
         }
+        $oldPropertyType = $property->propertyType;
+        $newPropertyType = $request->get('propertyType');
 
-        $fields = $request->get('propertyType');
-        $keyValueArray = array();
-        $keyValueArray['title'] = $request->title;
-        $keyValueArray['propertyType'] = $request->propertyType;
-        $keyValueArray['description'] =  $request->description;
-        $keyValueArray['numberOfRooms'] = $request->numberOfRooms;
-        $keyValueArray['surface'] = $request->surface;
-        $keyValueArray['price'] = $request->price;
-        $keyValueArray['transactionType'] = $request->transactionType;
-        $keyValueArray['latitude'] = $request->latitude;
-        $keyValueArray['longitude'] = $request->longitude;
-        $keyValueArray['country'] = $request->country;
-        $keyValueArray['city'] = $request->city;
-        $keyValueArray['address'] = $request->address;
-        $property = null;
+        if($newPropertyType == $oldPropertyType){
+            $property->title = $request->input('title');
+            $property->propertyTypeitle = $request->input('propertyType');
+            $property->description = $request->input('description');
+            $property->numberOfRooms = $request->input('numberOfRooms');
+            $property->surface = $request->input('surface');;
+            $property->price = $request->input('price');
+            $property->transactionType = $request->input('transactionType');
+            $property->latitude = $request->input('latitude');
+            $property->longitude = $request->input('longitude');
+            $property->country = $request->input('country');
+            $property->city = $request->input('city');
+            $property->address = $request->input('address');
+        }
+        else if(strcmp($newPropertyType,'apartment')==0&&strcmp($newPropertyType,'house')==0){
 
-        if(strcmp($fields,'apartment')==0) {
-            $keyValueArray['floorNumber'] = $request->floorNumber;
-            $property = Apartment::create($keyValueArray);
+        }
+        else if(strcmp($newPropertyType,'house')==0&&strcmp($newPropertyType,'apartment')==0){
+
+        }
+        if(strcmp($newPropertyType,'apartment')==0) {
+            $property->floorNumber = $request->input('floorNumber');
+            $property->numberOfFloors = null;
         } else {
-            $keyValueArray['numberOfFloors'] = $request->numberOfFloors;
-            $property = House::create($keyValueArray);
+            $property->numberOfFloors = $request->input('numberOfFloors');
+            $property->floorNumber = null;
         }
         for($i = 1 ; $i<=5 ; $i++){
-            if($property->getImage($i)!=false){
-                Storage::delete($property->getImage($i));
+            $path = $property->getImagePath($i);
+            if($path !=false){
+
+                Storage::delete($path);
             }
         }
-
+        $property->save();
         $picture = '';
         if ($request->hasFile('images')) {
             $files = $request->file('images');
+            var_dump($files);
             $counter=0;
             foreach($files as $file){
                 $counter++;
+                var_dump($file);
                 // Convert file extension to lower before adding them to the database
                 $extension = strtolower($file->getClientOriginalExtension());
                 $filename = $property->id.'_'.$counter.'.'.$extension;
                 $path = $file->storeAs('public/propertyPictures', $filename);   
             }
         }
-        Session::flash('success','The new property has been succesfully modified!');
-        return redirect('userProperties');
+
+        // Session::flash('success','The new property has been succesfully modified!');
+        // return redirect('userProperties');
     }
 
     /**
@@ -202,6 +225,16 @@ class PropertyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        //
+        $house = null;
+        $house = House::find($id);
+        $apartment = null;
+        $apartment = Apartment::find($id);
+        if($house != null){
+            $property = $house;
+        }
+        else if($apartment != null) {
+            $property = $apartment;
+        }
+        $property->delete();
     }
 }

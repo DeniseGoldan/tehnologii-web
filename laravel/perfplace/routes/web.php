@@ -31,18 +31,17 @@ Route::get('properties/ShowFiltered','PagesController@indexFiltered');
 
 Route::get('properties/all','PropertyController@showAll');
 
+ Route::resource('properties','PropertyController');
 
-Route::resource('properties','PropertyController');
+ //Route::post ('contactUser','UserController@contactUser');
 
-Route::post ('contactUser','UserController@contactUser');
+ Route::get('auth/register','Auth\RegisterController@showRegistrationForm');
 
-Route::get('auth/register','Auth\RegisterController@showRegistrationForm');
+ Route::post('auth/register','auth\RegisterController@register');
 
-Route::post('auth/register','auth\RegisterController@register');
+ Route::post('auth/login','auth\LoginController@login');
 
-Route::post('auth/login','auth\LoginController@login');
-
-Route::get('auth/logout','auth\LoginController@logout');
+ Route::get('auth/logout','auth\LoginController@logout');
 
 //Route::post('properties/{id}/send', 'ContactUser@send');
 

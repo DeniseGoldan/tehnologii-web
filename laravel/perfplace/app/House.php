@@ -27,6 +27,25 @@
             
             return false;
         }
+        public function getImagePath($imageNumber) {
+
+            $pathChunk = 'propertyPictures/' . $this->id . '_' .  $imageNumber;
+
+            $possibleImagePaths = array (
+                $pathChunk . '.jpg',
+                $pathChunk . '.jpeg',
+                $pathChunk . '.png',
+                $pathChunk . '.svg',
+                $pathChunk . '.bmp'
+            );
+                
+            foreach ($possibleImagePaths as $imagePath) {
+                if (Storage::disk('local') -> exists('public/'.$imagePath)) {           
+                    return 'public/'.$imagePath;
+                }
+            }
+            return false;
+        }
     }
 ?>
 
