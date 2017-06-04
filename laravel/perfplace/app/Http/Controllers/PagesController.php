@@ -27,7 +27,7 @@ class PagesController extends Controller{
 	public function getUserProperties(){
 		return view('pages.userProperties');
 	}
-
+	
 	public function getEditProperty(){
 		return view('pages.editProperty');
 	}
