@@ -124,6 +124,8 @@
 		@endforeach
 	@endif
 	
-<?php echo $properties->render(); ?>
+<div class="text-center">
+		{!! $properties->links();!!}
+</div>
 
 @stop

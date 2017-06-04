@@ -67,7 +67,7 @@
               <!-- Begin Register -->
 
               <li class="dropdown-header">New here?</li>
-              <li><a href="auth/register">Join us</a></li>
+              <li><a href="{{route('auth.register')}}">Join us</a></li>
               <li><a href="{{url('password/reset')}}">Forgot My Password</a></li>
               <!--End Register-->
             </ul>

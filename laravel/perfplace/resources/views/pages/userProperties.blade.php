@@ -119,18 +119,27 @@
 												  closeOnConfirm: false,
 												  closeOnCancel: false
 										        },
-										        function() {
-										            $.ajax({
-										                type: "DELETE",
-										                url: '/properties/' + id,
-										                data: { "_token" : "{{ csrf_token() }}" },
-										                success: function () {
-										                    swal("Success",
-										                    	"The property has been deleted.",
-										                    	"success");
-										                    location.reload();
-										                }         
-										            });
+										        function(isConfirm) {
+										        	if(isConfirm){
+											            $.ajax({
+											                type: "DELETE",
+											                url: '/properties/' + id,
+											                data: { "_token" : "{{ csrf_token() }}" },
+											                success: function () {
+											                    swal({
+											                    	title: "Success",
+											                    	text: "The property has been deleted.",
+											                    	type: "success"
+											                    	},
+											                    	function(){
+											                    		 location.reload() = 'login.html';
+											                    });
+											                    
+											                }         
+											            });
+										        	}else{
+										        		swal("Cancelled", "Your property has not been deleted!", "error");
+										        	}
 										    });
 										})
 									</script> 
@@ -167,5 +176,7 @@
 			</div>
 		@endforeach
 	@endif	
-	<?php echo $properties->render(); ?>
+	<div class="text-center">
+		{!! $properties->links();!!}
+	</div>
 @stop
