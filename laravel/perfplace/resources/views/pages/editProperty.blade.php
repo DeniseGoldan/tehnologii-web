@@ -112,6 +112,7 @@
 								@else
 									<img id="pic-1" src="/img/housePlaceholder.jpg" height="90" width="90">
 								@endif
+							</label>
 							<label for="file-input-2">
 								@if($property->getImage(2)!=false)
 									<img id="pic-2" src="{{$property->getImage(2)}}"" height="90" width="90">

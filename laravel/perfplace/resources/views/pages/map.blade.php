@@ -13,7 +13,7 @@
 	<div class="container-fluid well">
             <div class="row">
                 <div class="container-fluid col-sm-3">
-                <form class="myWell" method="POST" id="filterForm">
+                <form class="myWell" method="GET" id="filterForm">
                     <h3>Apply filters</h3>
                     <fieldset>
                         <h4 class="filter-name">Transaction</h4>
