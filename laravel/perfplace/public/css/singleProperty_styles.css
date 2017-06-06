@@ -9,7 +9,17 @@ body {
 
 	/*Properties for the font of the body*/
 	font-family: 'Montserrat Alternates';
-	margin-top: 40px;
+	margin-top: 10px;
+}
+
+.price {
+	color: #116466;
+	font-weight: bold;
+}
+
+.transaction-type {
+	font-style: italic;
+	font-family: 'Montserrat Alternates';
 }
 
 .nav {
@@ -18,8 +28,8 @@ body {
 }
 
 .well {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	background-color: rgba(245, 245, 245, 0.8);
 	border-radius: 0 !important; /*Get rid of rounded corners*/
 }
@@ -55,10 +65,6 @@ h1 {
 	justify-content: space-between;
 }
 
-.owner-info {
-	margin-top: 20px;
-}
-
 /*Menu related*/
 .custom-sign-in-button {
 	font-size: 15px;
@@ -75,32 +81,41 @@ h1 {
 }
 
 #myCarousel .carousel-inner .item {
-	height:200px;
-	max-height:200px;
+	height:150px;
+	max-height:150px;
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	#myCarousel .carousel-inner .item {
-		height:300px;
-		max-height:300px;
+		height:250px;
+		max-height:250px;
 	}
+	.owner-info {
+	margin-top: 70px;
+}
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 	#myCarousel .carousel-inner .item {
-		height:400px;
-		max-height:400px;
+		height:350px;
+		max-height:350px;
 	}
+	.owner-info {
+	margin-top: 70px;
+}
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 	#myCarousel .carousel-inner .item {
-		height:500px;
-		max-height:500px;
+		height:450px;
+		max-height:450px;
 	}
+	.owner-info {
+	margin-top: 100px;
+}
 }
 
 #myCarousel .carousel-inner .item img {
