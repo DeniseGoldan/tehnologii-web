@@ -27,13 +27,13 @@ Route::get('/editProperty','PagesController@getEditProperty');
 
 Route::get('/map','PagesController@getMap');
 
-Route::get('properties/ShowFiltered','PagesController@indexFiltered');
+Route::get('properties/showFiltered','PagesController@indexFiltered');
 
 Route::get('properties/all','PropertyController@showAll');
 
- Route::resource('properties','PropertyController');
+Route::resource('properties','PropertyController');
 
- //Route::post ('contactUser','UserController@contactUser');
+//Route::post ('contactUser','UserController@contactUser');
 
 //Authentication routes
 Route::get('auth/register','Auth\RegisterController@showRegistrationForm');
