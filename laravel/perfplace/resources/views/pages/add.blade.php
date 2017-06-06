@@ -94,7 +94,7 @@
 						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
 						<input name="search" placeholder="Enter a city" id="placeAutocomplete" name="placeAutocomplete" class="form-control" type="text">
 					</div>
-					<div id="googleMap" style="width:100%;height:500px;"></div>
+					<div id="googleMap" style="width:100%;height:485px;"></div>
 					<div id="infowindow-content">
 						<span id="place-name"  class="title"></span><br>
 						<span id="place-address"></span>
@@ -107,9 +107,7 @@
 						<input name="address" type="hidden" id="address">
 					</div>
 				</fieldset>
-			</div>
-		</div>
-		<div class="container-fluid">
+				<div class="container-fluid">
 			<fieldset>
 				<legend class="add-padding-to-photos">Photos</legend>
 				<div class="form-group">
@@ -146,11 +144,13 @@
 			</fieldset>
 			<!--Submit data for further validation-->
 			<div class="row">
-				<div class="col-sm-offset-6 col-sm-4">
+			<br>
+				<div class="col-sm-offset-4 col-sm-4">
 					<input type="submit" name="submitButton" class="submit btn btn-default " value="Submit" onclick="validateAddPropertyForm()">
 				</div>
 			</div>
 		</div>
+	</div>
 	{!! Form::close() !!}
 @stop
 
