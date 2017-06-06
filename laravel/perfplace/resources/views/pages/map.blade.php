@@ -13,7 +13,7 @@
 	<div class="container-fluid well">
             <div class="row">
                 <div class="container-fluid col-sm-3">
-                <form class="myWell" method="GET" id="filterForm">
+                <form class="myWell" method="POST" id="filterForm">
                     <h3>Apply filters</h3>
                     <fieldset>
                         <h4 class="filter-name">Transaction</h4>
@@ -60,10 +60,13 @@
                             </div>
                         </fieldset>
 
+                        <input name="country" type="hidden" id="country">
+                        <input name="city" type="hidden" id="city">
+
                         <p data-placement="top" data-toggle="tooltip" title="Add pins of the filtered houses on the map">
                             <input type="submit" value="Show filtered homes" class="submit btn btn-success add-margin-top" name="map">
                         </p>
-                        </form>
+                    </form>
                         
                         <form class="myWell1" method="GET" action="/results" id="listForm">
                         <p data-placement="top" data-toggle="tooltip" title="Go to a page where you can preview the filtered houses">
@@ -79,6 +82,7 @@
                             <input name="search" placeholder="Enter location" id="pac-input" class="form-control" type="text">
                         </fieldset>
                         <div id="googleMap" style="width:100%;height:550px;"></div>
+                    </div>
                         <div class="input-group">
                             <div class="input-group-btn">
                                 <button type="button" id="pollutionLayer"  class="btn-sm  btn-default" onclick="togglePollution()" style="background-color:#ffc800;">Pollution</button>

@@ -679,7 +679,6 @@ function setCityAndCountryInHTML(lat,lng){
         geocoder.geocode({'location': latlng}, function(results, status) {
         if(status == google.maps.GeocoderStatus.OK) {
           if(results[0]) {
-            document.getElementById("address").value = results[0].formatted_address;
             for(var i = 0; i < results[0].address_components.length; i++) {
               if(results[0].address_components[i].types[0] == "country") {
                 document.getElementById("country").value =  results[0].address_components[i].long_name;
