@@ -32,6 +32,9 @@ class PropertyController extends Controller {
             }
         }
     }
+    public function getFiltered(){
+        $houses = House::where('country','=',Input::country())->where('city','=',Input::city());
+    }
 
     public function showAll() {
         $houses = House::all();

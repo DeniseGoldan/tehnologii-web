@@ -624,7 +624,7 @@ function initMap() {
         mapTypeControl: false
     };
     map = new google.maps.Map(document.getElementById("googleMap"),myOptions);
-    console.log(map);
+    setCityAndCountryInHTML(parseFloat(latitudeValueFromGET),parseFloat(longitudeValueFromGET));
     var input = document.getElementById('pac-input');
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -634,7 +634,6 @@ function initMap() {
     autocomplete.bindTo('bounds', map);
     autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
-        var searchedLocation=document.getElementById('searchedLocation');
         if (!place.geometry) {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
@@ -644,7 +643,7 @@ function initMap() {
 
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
-            searchedLocation.value=input.value;
+            map.fitBounds(place.geometry.viewport);
         } else {
             map.setCenter(place.geometry.location);
             map.setZoom(17);  // Why 17? Because it looks good.
@@ -657,14 +656,45 @@ function initMap() {
                 (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
         }
+        var geocoder = new google.maps.Geocoder;
+        var latlng = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+        setCityAndCountryInHTML(place.geometry.location.lat(),place.geometry.location.lng());
+        
     });
+   
+    
     displayMarkers(map,markers);
 }
 
 function focusMap(searchedLocation){
-    console.log(map);
     map.setCenter(center);
     map.setZoom(17);  // Why 17? Because it looks good.
 
 }
 
+function setCityAndCountryInHTML(lat,lng){
+    var geocoder = new google.maps.Geocoder;
+        var latlng = {lat: lat, lng: lng};
+
+        geocoder.geocode({'location': latlng}, function(results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+          if(results[0]) {
+            document.getElementById("address").value = results[0].formatted_address;
+            for(var i = 0; i < results[0].address_components.length; i++) {
+              if(results[0].address_components[i].types[0] == "country") {
+                document.getElementById("country").value =  results[0].address_components[i].long_name;
+                }
+              if(results[0].address_components[i].types[0] == "locality") {
+                document.getElementById("city").value =  results[0].address_components[i].long_name;
+                }
+            }
+            }
+          else {
+            alert("No results");
+            }
+        }
+        else {
+          alert("Status: " + status);
+        }
+      });
+}
