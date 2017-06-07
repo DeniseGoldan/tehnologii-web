@@ -624,7 +624,11 @@ function initMap() {
         mapTypeControl: false
     };
     map = new google.maps.Map(document.getElementById("googleMap"),myOptions);
+
+    addPolution(map,parseFloat(latitudeValueFromGET),parseFloat(longitudeValueFromGET));
+
     setCityAndCountryInHTML(parseFloat(latitudeValueFromGET),parseFloat(longitudeValueFromGET));
+
     var input = document.getElementById('pac-input');
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -638,6 +642,7 @@ function initMap() {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
             window.alert("No details available for input: '" + place.name + "'");
+
             return;
         }
 
@@ -693,7 +698,19 @@ function setCityAndCountryInHTML(lat,lng){
             }
         }
         else {
-          alert("Status: " + status);
+            alert("Status: " + status);
         }
       });
+}
+
+function addPolution(map,lat,lng){
+    var  t  =  new  Date().getTime();  
+    var  waqiMapOverlay  =  new  google.maps.ImageMapType({  
+                  getTileUrl:  function(coord,  zoom)  {  
+                            return  'https://tiles.waqi.info/tiles/usepa-aqi/'  +  zoom  +  "/"  +  coord.x  +  "/"  +  coord.y  +  ".png?token=064051ac3b97df96231f9c7b4a0345f1e41efff5";  
+                  },  
+                  name:  "Air  Quality",  
+        });  
+  
+      map.overlayMapTypes.insertAt(0,waqiMapOverlay);  
 }

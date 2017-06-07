@@ -3,6 +3,7 @@
 @section('stylesheets')
 
 	<link rel="stylesheet" href="css/mapView_styles.css">
+    {{Html::style('css/sweetalert.css')}}
 
 @stop
 
@@ -99,7 +100,8 @@
 @stop
 
 @section('scripts')
-
+    
+     {{Html::script('js/sweetalert-dev.js')}}
 	 <script type="text/javascript" src="js/mapView.js"></script>
      <script type="text/javascript" src="js/mapViewForceNumeric.js"></script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRGPzmuWJ-rKRoTIZnJcNMrfdfmYwg7XQ&libraries=places,visualization&callback=initMap"
