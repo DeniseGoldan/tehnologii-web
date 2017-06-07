@@ -264,7 +264,7 @@ class PropertyController extends Controller {
         }
 
          Session::flash('success','The new property has been succesfully modified!');
-         return redirect('userProperties');
+         return redirect('myProperties');
     }
 
     /**

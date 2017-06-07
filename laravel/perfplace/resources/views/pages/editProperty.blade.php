@@ -59,8 +59,6 @@
 					</div>
 					@endif
 
-				</div>
-
 				<!--Select if the property is for sale or for rent-->
 				<fieldset>
 					<legend>Transaction type</legend>
@@ -190,5 +188,7 @@
 	<script type="text/javascript" src="/js/addPropertyUploadThumbnails.js"></script>
 
 	{{Html::script('js/validations/validateAddPropertyForm.js')}}
+
+@stop
 
 @stop

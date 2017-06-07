@@ -59,6 +59,8 @@ var map=null;
 var pollutionHeatmap=null;
 var noiseHeatmap=null;
 var criminalityHeatmap=null;
+var waqiMapOverlay = null;
+
 
 function getPollutionPoints() {
     return [
@@ -390,6 +392,8 @@ function getPollutionPoints() {
         new google.maps.LatLng(37.785278, -122.400839)
     ];
 }
+
+
 function getNoisePoints(){
     return [
         new google.maps.LatLng(37.781055, -122.405597),
@@ -561,17 +565,13 @@ function toggleHeatmap(heatmap) {
 }
 
 function togglePollution() {
-    if(pollutionHeatmap==null){
-        pollutionHeatmap = new google.maps.visualization.HeatmapLayer({
-            data: getPollutionPoints(),
-            map: map,
-        });
-        pollutionHeatmap.set('gradient', gradientPollution);
-    }
-    else{
-        toggleHeatmap(pollutionHeatmap);
+    if(map.overlayMapTypes.getAt(0) == null){
+        map.overlayMapTypes.insertAt(0,waqiMapOverlay);
+    }else{
+        map.overlayMapTypes.removeAt(0);
     }
 }
+
 function toggleNoise() {
     if(noiseHeatmap==null){
         noiseHeatmap = new google.maps.visualization.HeatmapLayer({
@@ -624,7 +624,11 @@ function initMap() {
         mapTypeControl: false
     };
     map = new google.maps.Map(document.getElementById("googleMap"),myOptions);
+
+    addPolution(map,parseFloat(latitudeValueFromGET),parseFloat(longitudeValueFromGET));
+
     setCityAndCountryInHTML(parseFloat(latitudeValueFromGET),parseFloat(longitudeValueFromGET));
+
     var input = document.getElementById('pac-input');
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -638,6 +642,7 @@ function initMap() {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
             window.alert("No details available for input: '" + place.name + "'");
+
             return;
         }
 
@@ -695,7 +700,21 @@ function setCityAndCountryInHTML(lat,lng){
             }
         }
         else {
-          alert("Status: " + status);
+            alert("Status: " + status);
         }
       });
+}
+
+function addPolution(map,lat,lng){
+    var  t  =  new  Date().getTime();  
+
+    if(waqiMapOverlay == null){
+        waqiMapOverlay  =  new  google.maps.ImageMapType({  
+                      getTileUrl:  function(coord,  zoom)  {  
+                                return  'https://tiles.waqi.info/tiles/usepa-aqi/'  +  zoom  +  "/"  +  coord.x  +  "/"  +  coord.y  +  ".png?token=064051ac3b97df96231f9c7b4a0345f1e41efff5";  
+                      },  
+                      name:  "Air  Quality",  
+            });  
+    }
+    togglePollution();   
 }
