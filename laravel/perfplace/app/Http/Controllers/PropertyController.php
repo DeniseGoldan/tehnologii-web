@@ -10,6 +10,7 @@ use Session;
 use Storage;
 use App\Support\Collection;
 use Auth;
+use Illuminate\Support\Facades\Input;
 
 class PropertyController extends Controller {
 
@@ -23,18 +24,77 @@ class PropertyController extends Controller {
         return view('pages.home');
     }
 
-    public function indexByFilter(Request $request) {
-        $propertyTypes = $request->input('propertyType');
-        $results = array();
-        foreach ($propertyTypes as $type) {
-            if(type == 'apartmentCheck'){
-                // -- NOT IMPLEMENTED --
-            }
+    public function showFiltered() {
+        $country = Input::get('country');
+        $city = Input::get('city');
+        $priceMin = Input::get('priceMin')!=null ? intval(Input::get('priceMin')) : 0;
+        $priceMax = Input::get('priceMax')!=null ? intval(Input::get('priceMax')) : 1000000000;
+        $roomsMin = Input::get('roomsMin')!=null ? intval(Input::get('roomsMin')) : 0;
+        $roomsMax = Input::get('roomsMax')!=null ? intval(Input::get('roomsMax')) : 1000;
+        $surfaceMin = Input::get('surfaceMin')!=null ? intval(Input::get('surfaceMin')) : 0;
+        $surfaceMax = Input::get('surfaceMax')!=null ? intval(Input::get('surfaceMax')) : 100000;
+
+        $houses = null;
+        $apartments = null;
+
+        if(strcmp(Input::get('propertyType'),'apartmentCheck')==0){
+            $apartments = Apartment::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
         }
+        if(strcmp(Input::get('propertyType'),'houseCheck')==0){
+            $houses = House::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
+        }
+        if($houses != null && $apartments!=null){
+            $mergedCollections = $houses->merge($apartments);
+        }
+        else if($houses == null && $apartments!=null){
+            $mergedCollections = $apartments;
+        }
+        else if($houses == !null && $apartments==null){
+            $mergedCollections = $houses;
+        }
+        else {
+            $mergedCollections = array();
+        }
+        $properties = ( new Collection( $mergedCollections ) )->paginate(5);
+        return view ('pages.results')->withProperties($properties);
     }
     public function getFiltered(){
-        $houses = House::where('country','=',Input::country())->where('city','=',Input::city());
-    }
+        //Filters from Input
+        $country = Input::get('country');
+        $city = Input::get('city');
+        $priceMin = Input::get('priceMin')!=null ? intval(Input::get('priceMin')) : 0;
+        $priceMax = Input::get('priceMax')!=null ? intval(Input::get('priceMax')) : 1000000000;
+        $roomsMin = Input::get('roomsMin')!=null ? intval(Input::get('roomsMin')) : 0;
+        $roomsMax = Input::get('roomsMax')!=null ? intval(Input::get('roomsMax')) : 1000;
+        $surfaceMin = Input::get('surfaceMin')!=null ? intval(Input::get('surfaceMin')) : 0;
+        $surfaceMax = Input::get('surfaceMax')!=null ? intval(Input::get('surfaceMax')) : 100000;
+
+        $houses = null;
+        $apartments = null;
+
+        if(strcmp(Input::get('propertyType'),'apartmentCheck')==0){
+            $apartments = Apartment::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
+        }
+        if(strcmp(Input::get('propertyType'),'houseCheck')==0){
+            $houses = House::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
+        }
+        if($houses != null && $apartments!=null){
+            $properties = $houses->merge($apartments);
+        }
+        else if($houses == null && $apartments!=null){
+            $properties = $apartments;
+        }
+        else if($houses == !null && $apartments==null){
+            $properties = $houses;
+        }
+        else {
+            $properties = array();
+        }
+       return response()->json($properties);
+    //      return response()->json(['priceMin'=>$priceMin,'priceMax'=>$priceMax,
+    //                              'roomsMin'=>$roomsMin,'roomsMax'=>$roomsMax,
+    //                              'surfaceMin'=>$surfaceMin,'surfaceMax'=>$surfaceMax,]);
+     }
 
     public function showAll() {
         $houses = House::all();
@@ -76,9 +136,9 @@ class PropertyController extends Controller {
         $keyValueArray['title'] = $request->title;
         $keyValueArray['propertyType'] = $request->propertyType;
         $keyValueArray['description'] =  $request->description;
-        $keyValueArray['numberOfRooms'] = $request->numberOfRooms;
-        $keyValueArray['surface'] = $request->surface;
-        $keyValueArray['price'] = $request->price;
+        $keyValueArray['numberOfRooms'] = intval($request->numberOfRooms);
+        $keyValueArray['surface'] = intval($request->surface);
+        $keyValueArray['price'] = intval($request->price);
         $keyValueArray['transactionType'] = $request->transactionType;
         $keyValueArray['latitude'] = $request->latitude;
         $keyValueArray['longitude'] = $request->longitude;

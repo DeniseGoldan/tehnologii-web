@@ -31,7 +31,12 @@ Route::get('properties/showFiltered','PagesController@indexFiltered');
 
 Route::get('properties/all','PropertyController@showAll');
 
+Route::get('properties/filtered','PropertyController@getFiltered');
+
+Route::get('properties/listView','PropertyController@showFiltered');
+
 Route::resource('properties','PropertyController');
+
 
 //Route::post ('contactUser','UserController@contactUser');
 

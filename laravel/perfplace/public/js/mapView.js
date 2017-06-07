@@ -658,6 +658,8 @@ function initMap() {
         }
         var geocoder = new google.maps.Geocoder;
         var latlng = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+        document.getElementById("latitude").value=latlng.lat;
+        document.getElementById("longitude").value=latlng.lng;
         setCityAndCountryInHTML(place.geometry.location.lat(),place.geometry.location.lng());
         
     });

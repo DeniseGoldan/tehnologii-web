@@ -13,7 +13,7 @@
 	<div class="container-fluid well">
             <div class="row">
                 <div class="container-fluid col-sm-3">
-                <form class="myWell" method="POST" id="filterForm">
+                <form class="myWell" method="GET" id="filterForm">
                     <h3>Apply filters</h3>
                     <fieldset>
                         <h4 class="filter-name">Transaction</h4>
@@ -38,7 +38,7 @@
                                 <label>Between</label>
                                 <input type="text" class="numberInput" id="priceMin" name="priceMin" style="width:50px;">
                                 <label> and </label>
-                                <input type="text" class="numberInput" id="priceMax" name="priceMin" style="width:50px;">
+                                <input type="text" class="numberInput" id="priceMax" name="priceMax" style="width:50px;">
                             </div>
                         </fieldset>
                         <fieldset>
@@ -59,20 +59,25 @@
                                 <input type="text" class="numberInput" id="surfaceMax" name="surfaceMax" style="width:50px;">
                             </div>
                         </fieldset>
-
-                        <input name="country" type="hidden" id="country">
-                        <input name="city" type="hidden" id="city">
+                        <fieldset>
+                             <div name="LatLng">
+                            <input name="latitude" type="hidden" id="latitude">
+                            <input name="longitude" type="hidden" id="longitude">
+                            <input name="country" type="hidden" id="country">
+                            <input name="city" type="hidden" id="city">
+                        <div>
+                        </fieldset>
 
                         <p data-placement="top" data-toggle="tooltip" title="Add pins of the filtered houses on the map">
                             <input type="submit" value="Show filtered homes" class="submit btn btn-success add-margin-top" name="map">
                         </p>
+                        <p data-placement="top" data-toggle="tooltip" title="Go to a page where you can preview the filtered houses">
+                            <button type="submit" formaction="{{URL('/properties/listView')}}" class="submit btn btn-success add-margin-top" name="list">List filtered homes</button>
+                        </p>
                     </form>
                         
                         <form class="myWell1" method="GET" action="/results" id="listForm">
-                        <p data-placement="top" data-toggle="tooltip" title="Go to a page where you can preview the filtered houses">
-
-                            <input type="submit" value="List filtered homes" class="submit btn btn-success add-margin-top" name="list">
-                        </p>
+                        
                         </form>
                         </div>
 

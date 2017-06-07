@@ -67,6 +67,7 @@ function initMap() {
  		geocoder.geocode({'location': latlng}, function(results, status) {
         if(status == google.maps.GeocoderStatus.OK) {
           if(results[0]) {
+          	console.log(results[0]);
     		document.getElementById("address").value = results[0].formatted_address;
             for(var i = 0; i < results[0].address_components.length; i++) {
               if(results[0].address_components[i].types[0] == "country") {
@@ -74,6 +75,7 @@ function initMap() {
               }
               if(results[0].address_components[i].types[0] == "locality") {
                 document.getElementById("city").value =  results[0].address_components[i].long_name;
+                console.log(document.getElementById("city").value);
               }
             }
           }
