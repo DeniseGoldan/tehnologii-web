@@ -58,7 +58,7 @@
 						<input type="number"  min="0" class="form-control" name="floorNumber" id="floorNumber" placeholder="Floor number" value = "{{$property->floorNumber}}">
 					</div>
 					@endif
-
+				</div>
 				<!--Select if the property is for sale or for rent-->
 				<fieldset>
 					<legend>Transaction type</legend>
@@ -188,7 +188,5 @@
 	<script type="text/javascript" src="/js/addPropertyUploadThumbnails.js"></script>
 
 	{{Html::script('js/validations/validateAddPropertyForm.js')}}
-
-@stop
 
 @stop

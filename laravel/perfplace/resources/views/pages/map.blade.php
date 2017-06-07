@@ -77,9 +77,7 @@
                         </p>
                     </form>
                         
-                        <form class="myWell1" method="GET" action="/results" id="listForm">
-                        
-                        </form>
+            
                         </div>
 
                     <div class="container-fluid col-sm-9">
