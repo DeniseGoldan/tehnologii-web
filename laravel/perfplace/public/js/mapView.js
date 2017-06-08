@@ -793,7 +793,7 @@ function addMarkersToMap(locations,map){
         });
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
          return function() {
-            var propertyLink = '<a href = \'../properties/'+locations[i]._id+'\'>View'+locations[i].propertyType+'</a>';
+            var propertyLink = '<a href = \'../properties/'+locations[i]._id+'\'>View '+locations[i].propertyType+'</a>';
             var contentString = 
                 '<h4>'+locations[i].title+'</h4>'+
                 '<h5>'+locations[i].surface+'m²</h5>'+propertyLink;

@@ -33,9 +33,7 @@
 					</div>
 					<div class="input-group width-to-100-percent">
 						<label>Description</label>
-						<textarea class="form-control" rows="4" id="description" placeholder="Description" name="description">
-							{{$property->description}}
-						</textarea>
+						<textarea class="form-control" rows="4" id="description" placeholder="Description" name="description">{{$property->description}}</textarea>
 					</div>
 					<div class="input-group width-to-100-percent">
 						<label>Number of rooms</label>

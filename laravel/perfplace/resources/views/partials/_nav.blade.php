@@ -27,7 +27,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             {{Auth::user()->username}}<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href = {{ url('user') }}>Edit your profile</a></li>
+                <li><a href = {{ url('profile') }}>Edit your profile</a></li>
                 <li><a href = {{ url('auth/logout') }}>Log out</a></li>
               </ul>
           </li>

@@ -15,8 +15,6 @@ Route::get('/','PagesController@getIndex');
 
 Route::get('/property','PagesController@getSingleProperty');
 
-Route::get('/user','PagesController@getUserProfile');
-
 Route::get('/results','PagesController@getPropertyResults');
 
 Route::get('/profile','PagesController@getUserProfile');
@@ -37,6 +35,11 @@ Route::get('properties/listView','PropertyController@showFiltered');
 
 Route::resource('properties','PropertyController');
 
+Route::put('/profile/editNames','UserController@editNames'); 
+
+Route::put('/profile/editContactInformation','UserController@editContactInformation');
+
+Route::put('/profile/changePassword','UserController@changePassword');
 
 //Route::post ('contactUser','UserController@contactUser');
 
