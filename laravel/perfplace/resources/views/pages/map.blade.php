@@ -19,17 +19,21 @@
                     <fieldset>
                         <h4 class="filter-name">Transaction</h4>
                         <div class="container">
-                            <label class="label-for-checkbox"><input type="checkbox" name="transactionType">Buy</label>
-                            <label><input type="checkbox" name="transactionType">Rent</label>
+                            <label class="label-for-checkbox">
+                                <input type="checkbox" name="buyCheck" id="buyCheck">Buy
+                            </label>
+                            <label>
+                                <input type="checkbox" name="rentCheck" id="rentCheck">Rent
+                            </label>
                         </div>
                     </fieldset>
                     <fieldset>
                         <h4 class="filter-name">Property type</h4>
                         <div class="container">
                             <label class="label-for-checkbox">
-                                <input type="checkbox" name="propertyType" value = 'houseCheck' id="houseCheck" onclick="houseOrApartmentCheck();">House</label>
+                                <input type="checkbox" name="houseCheck" id="houseCheck">House</label>
                             <label>
-                                <input type="checkbox" name="propertyType" value = 'apartmentCheck' id="apartmentCheck" onclick="houseOrApartmentCheck();" checked="checked">Apartment
+                                <input type="checkbox" name="apartmentCheck" id="apartmentCheck" checked="checked">Apartment
                             </label>
                             </div>
                         </fieldset>
@@ -70,7 +74,7 @@
                         </fieldset>
 
                         <p data-placement="top" data-toggle="tooltip" title="Add pins of the filtered houses on the map">
-                            <input type="submit" value="Show filtered homes" class="submit btn btn-success add-margin-top" name="map">
+                            <input type="button" value="Show filtered homes" class="submit btn btn-success add-margin-top" name="map" id="showFiltered" onclick="fetchLocations()">
                         </p>
                         <p data-placement="top" data-toggle="tooltip" title="Go to a page where you can preview the filtered houses">
                             <button type="submit" formaction="{{URL('/properties/listView')}}" class="submit btn btn-success add-margin-top" name="list">List filtered homes</button>

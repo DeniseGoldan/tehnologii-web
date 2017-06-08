@@ -25,24 +25,11 @@ class PropertyController extends Controller {
     }
 
     public function showFiltered() {
-        $country = Input::get('country');
-        $city = Input::get('city');
-        $priceMin = Input::get('priceMin')!=null ? intval(Input::get('priceMin')) : 0;
-        $priceMax = Input::get('priceMax')!=null ? intval(Input::get('priceMax')) : 1000000000;
-        $roomsMin = Input::get('roomsMin')!=null ? intval(Input::get('roomsMin')) : 0;
-        $roomsMax = Input::get('roomsMax')!=null ? intval(Input::get('roomsMax')) : 1000;
-        $surfaceMin = Input::get('surfaceMin')!=null ? intval(Input::get('surfaceMin')) : 0;
-        $surfaceMax = Input::get('surfaceMax')!=null ? intval(Input::get('surfaceMax')) : 100000;
-
+        $input = Input::all();
         $houses = null;
         $apartments = null;
-
-        if(strcmp(Input::get('propertyType'),'apartmentCheck')==0){
-            $apartments = Apartment::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
-        }
-        if(strcmp(Input::get('propertyType'),'houseCheck')==0){
-            $houses = House::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
-        }
+        $houses = House::filter($input);
+        $apartments = Apartment::filter($input);
         if($houses != null && $apartments!=null){
             $mergedCollections = $houses->merge($apartments);
         }
@@ -59,25 +46,11 @@ class PropertyController extends Controller {
         return view ('pages.results')->withProperties($properties);
     }
     public function getFiltered(){
-        //Filters from Input
-        $country = Input::get('country');
-        $city = Input::get('city');
-        $priceMin = Input::get('priceMin')!=null ? intval(Input::get('priceMin')) : 0;
-        $priceMax = Input::get('priceMax')!=null ? intval(Input::get('priceMax')) : 1000000000;
-        $roomsMin = Input::get('roomsMin')!=null ? intval(Input::get('roomsMin')) : 0;
-        $roomsMax = Input::get('roomsMax')!=null ? intval(Input::get('roomsMax')) : 1000;
-        $surfaceMin = Input::get('surfaceMin')!=null ? intval(Input::get('surfaceMin')) : 0;
-        $surfaceMax = Input::get('surfaceMax')!=null ? intval(Input::get('surfaceMax')) : 100000;
-
+        $input = Input::all();
         $houses = null;
         $apartments = null;
-
-        if(strcmp(Input::get('propertyType'),'apartmentCheck')==0){
-            $apartments = Apartment::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
-        }
-        if(strcmp(Input::get('propertyType'),'houseCheck')==0){
-            $houses = House::where('country',$country)->where('city',$city)->whereBetween('price',[$priceMin,$priceMax])->whereBetween('numberOfRooms',[$roomsMin,$roomsMax])->whereBetween('surface',[$surfaceMin,$surfaceMax])->get();
-        }
+        $houses = House::filter($input);
+        $apartments = Apartment::filter($input);
         if($houses != null && $apartments!=null){
             $properties = $houses->merge($apartments);
         }
@@ -91,9 +64,6 @@ class PropertyController extends Controller {
             $properties = array();
         }
        return response()->json($properties);
-    //      return response()->json(['priceMin'=>$priceMin,'priceMax'=>$priceMax,
-    //                              'roomsMin'=>$roomsMin,'roomsMax'=>$roomsMax,
-    //                              'surfaceMin'=>$surfaceMin,'surfaceMax'=>$surfaceMax,]);
      }
 
     public function showAll() {
@@ -264,7 +234,7 @@ class PropertyController extends Controller {
         }
 
          Session::flash('success','The new property has been succesfully modified!');
-         return redirect('myProperties');
+         return redirect('userProperties');
     }
 
     /**

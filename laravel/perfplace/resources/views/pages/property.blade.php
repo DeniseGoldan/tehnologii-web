@@ -98,7 +98,7 @@
 				<!--Info about the property-->
 				
 				<div>
-					<h3 class="transaction-type">This property is for {{$property->transactionType}}</h3>
+					<h3 class="transaction-type">This {{$property->propertyType}} is for {{$property->transactionType}}</h3>
 					<h2 class="price">{{number_format($property->price)}}&euro;</h2>				
 				</div>
 

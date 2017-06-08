@@ -56,6 +56,7 @@ var gradientPollution = [
     'rgba(255, 160, 20, 1)'
 ];
 var map=null;
+var markersArray = [];
 var pollutionHeatmap=null;
 var noiseHeatmap=null;
 var criminalityHeatmap=null;
@@ -628,7 +629,6 @@ function initMap() {
     addPolution(map,parseFloat(latitudeValueFromGET),parseFloat(longitudeValueFromGET));
 
     setCityAndCountryInHTML(parseFloat(latitudeValueFromGET),parseFloat(longitudeValueFromGET));
-
     var input = document.getElementById('pac-input');
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -666,7 +666,6 @@ function initMap() {
         document.getElementById("latitude").value=latlng.lat;
         document.getElementById("longitude").value=latlng.lng;
         setCityAndCountryInHTML(place.geometry.location.lat(),place.geometry.location.lng());
-        
     });
    
     
@@ -717,4 +716,97 @@ function addPolution(map,lat,lng){
             });  
     }
     togglePollution();   
+}
+
+function fetchLocations(){
+   var ajaxRequest;  // The variable that makes Ajax possible!
+   try{
+   
+      // Opera 8.0+, Firefox, Safari
+      ajaxRequest = new XMLHttpRequest();
+   }catch (e){
+      
+      // Internet Explorer Browsers
+      try{
+         ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }catch (e) {
+         
+         try{
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }catch (e){
+         
+            // Something went wrong
+            alert("Your browser broke!");
+            return false;
+         }
+      }
+   }
+   
+   // Create a function that will receive data
+   // sent from the server and will update
+   // div section in the same page.
+   ajaxRequest.onreadystatechange = function(){
+   
+      if(ajaxRequest.readyState == 4){
+         var locations= ajaxRequest.responseText;
+         console.log(markersArray);
+         hideMarkers(markersArray);
+         addMarkersToMap(locations,map);
+      }
+   }
+   
+   // Now get the value from user and pass it to
+   // server script.
+   var city = document.getElementById('country').value;
+   var country = document.getElementById('city').value;
+   var priceMin = document.getElementById('priceMin').value;
+   var priceMax = document.getElementById('priceMax').value;
+   var country = document.getElementById('country').value;
+   var city = document.getElementById('city').value;
+   var houseCheck = $('#houseCheck').is(':checked')? "on" : "";
+   var apartmentCheck = $('#apartmentCheck').is(':checked')? "on" : "";
+   var buyCheck = $('#buyCheck').is(':checked') ? "on" : "";
+   var rentCheck = $('#rentCheck').is(':checked')? "on" : "";
+   var roomsMin = document.getElementById('roomsMin').value;
+   var roomsMax = document.getElementById('roomsMax').value;
+   var surfaceMin = document.getElementById('surfaceMin').value;
+   var surfaceMax = document.getElementById('surfaceMax').value;
+   var queryString = "?houseCheck="+houseCheck+"&apartmentCheck="+apartmentCheck+"&rentCheck="+rentCheck+"&buyCheck="+buyCheck;
+   queryString+= "&country=" + country +"&city=" +city ;
+   
+   queryString +=  "&priceMin=" + priceMin + "&priceMax=" + priceMax+"&roomsMin="+roomsMin+"&roomsMax="+roomsMax;
+   queryString +=   "&surfaceMin=" + surfaceMin + "&surfaceMax="+surfaceMax;
+   console.log("../properties/filtered"+queryString);
+   ajaxRequest.open("GET", "/properties/filtered" + queryString, true);
+   ajaxRequest.send(null); 
+}
+
+function addMarkersToMap(locations,map){
+    var locations = $.parseJSON(locations);
+    var marker,i;
+    var infowindow = new google.maps.InfoWindow;
+    for (i = 0; i < locations.length; i++) {
+        LatLng = new google.maps.LatLng(locations[i].latitude,locations[i].longitude);
+        marker = new google.maps.Marker({
+            position: LatLng,
+            map: map
+        });
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+         return function() {
+            var propertyLink = '<a href = \'../properties/'+locations[i]._id+'\'>View'+locations[i].propertyType+'</a>';
+            var contentString = 
+                '<h4>'+locations[i].title+'</h4>'+
+                '<h5>'+locations[i].surface+'m²</h5>'+propertyLink;
+             infowindow.setContent(contentString);
+             infowindow.open(map, marker);
+         }
+    })(marker, i));
+    markersArray.push(marker);
+    }
+}
+function hideMarkers(markersArray){
+    for (var i = 0;i<markersArray.length; i++) {
+        markersArray[i].setMap(null);
+    }
+    markersArray.length = 0;
 }
