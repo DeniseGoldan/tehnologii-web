@@ -1,14 +1,8 @@
 <?php
-
-namespace App;
-use Jenssegers\Mongodb\Eloquent\Model;
-use Storage;
+  namespace App;
+  use Jenssegers\Mongodb\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['id','type','latitude','longitude'];
-
-    public static function addEventFromTwitt($twitt) {
-
-    }
+     protected $fillable = ['type','latitude','longitude','country','city'];
 }
