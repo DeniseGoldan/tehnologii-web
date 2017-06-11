@@ -21,8 +21,7 @@
 		</div>
 		<div style="display:none"><input name="latitude" id="latitude" value=0></div>
 		<div style="display:none"><input name="longitude" id="longitude" value=0></div>
-		<!-- <p id="latitude"></p>
-		<p id="longitude"></p> -->
+
 		<div>
 			<input style="width:50%" type="submit" name="buyButton" class="submit btn btn-default transaction-type" value="Buy" 
 			onclick="validateSearchTextField();">
