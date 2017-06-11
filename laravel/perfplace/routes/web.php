@@ -1,5 +1,5 @@
 <?php
-use App\Services\MarkGeneratorService;
+use App\Services\EventBuilder;
 use App\Twitt;
 
 /*
@@ -61,10 +61,11 @@ Route::post('password/reset',['as' => 'password.reset', 'uses' => 'Auth\ResetPas
 
 Route::get('callGeo',function(){
 	
-	$object = new MarkGeneratorService();
-
-	return $object->lookup('Nicolina Iasi');
+	$object = new EventBuilder();
+	$object->buildEventFromTweet('593d6420d476442ee0302fa7');
 });
+
+Route::get('cityMapInfo','EventController@getEvents');
 
 Route::get('/updateTweetsExample', function()
 {
