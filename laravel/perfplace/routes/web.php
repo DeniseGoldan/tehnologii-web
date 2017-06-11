@@ -59,16 +59,31 @@ Route::post('password/reset',['as' => 'password.reset', 'uses' => 'Auth\ResetPas
 
 Route::get('/dummyTrump', function()
 {
-	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json', 'count' => 100]);
+	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json', 'count' => 5]);
 	$result = json_decode($json, true);
 	//echo $json;
 
-	// for ($index = 0; $index <= 5; $index++) {
-	//     	// echo $result['search_metadata']['query'];
-	// 	echo $result['statuses'][$index]['text'];	
-	// }
+	for ($index = 0; $index <= 4; $index++) {
+	    	// echo $result['search_metadata']['query'];
+		echo $result['statuses'][$index]['text'];
+		echo sprintf('%f', $result['statuses'][$index]['id']);
+		echo "\n";	
+	}
+
 	// MAX ID
-	echo sprintf('%f', $result['search_metadata']['max_id']);
+	echo sprintf('%f', $result['search_metadata']['max_id']); // 873569725925732352
+});
+
+Route::get('/dummy', function()
+{
+	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json', 'since_id' => 873579287445737472 ]);
+	//$result = json_decode($json, true);
+	echo $json;
+
+	//echo $result['statuses'][$index]['text'];
+	// MAX ID
+	//echo sprintf('%f', $result['search_metadata']['max_id']); // 873569725925732352
+	//873579287445737472
 });
 
 
