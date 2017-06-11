@@ -1,5 +1,5 @@
 <?php
-
+use App\Services\MarkGeneratorService;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,18 +57,18 @@ Route::post('password/reset',['as' => 'password.reset', 'uses' => 'Auth\ResetPas
 
 //Route::post('properties/{id}/send', 'ContactUser@send');
 
+Route::get('callGeo',function(){
+	
+	$object = new MarkGeneratorService();
+
+	return $object->lookup('Nicolina Iasi');
+});
+
 Route::get('/dummyTrump', function()
 {
 	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json', 'count' => 100]);
 	$result = json_decode($json, true);
-	//echo $json;
-
-	// for ($index = 0; $index <= 5; $index++) {
-	//     	// echo $result['search_metadata']['query'];
-	// 	echo $result['statuses'][$index]['text'];	
-	// }
-	// MAX ID
-	echo sprintf('%f', $result['search_metadata']['max_id']);
+	echo $json;
 });
 
 
