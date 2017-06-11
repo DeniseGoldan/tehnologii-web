@@ -1,6 +1,7 @@
 <?php
 use App\Services\EventBuilder;
 use App\Twitt;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,36 +67,46 @@ Route::get('callGeo',function(){
 
 Route::get('cityMapInfo','EventController@getEvents');
 
-Route::get('/dummyTrump', function()
+Route::get('/updateTweetsExample', function()
 {
-	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json', 'count' => 5]);
-	$result = json_decode($json, true);
-	//echo $json;
+	$hashtags = array("pollution","noise","attack");
+	// twitter text regex form
+	$patterns = array();
+	$patterns[0] = '/#([A-Za-z0-9]+[A-Za-z0-9]+)/';
+	$patterns[1] = '/#/';
 
-	for ($index = 0; $index <= 4; $index++) {
-	    	// echo $result['search_metadata']['query'];
-		echo $result['statuses'][$index]['text'];
-		echo sprintf('%f', $result['statuses'][$index]['id']);
-		echo "\n";	
+	foreach ($hashtags as $hashtag) {
+
+		$currentSearchHashtags = "#PerfectPlaceFinder,#".$hashtag;
+		$json = Twitter::getSearch(['q' => $currentSearchHashtags, 'format' => 'json', 'count' => 100]);
+		$result = json_decode($json, true);
+		$numberOfTweets = $result['search_metadata']['count'];
+
+		for ($index = 0; $index < $numberOfTweets; $index++) {
+
+			try {
+
+				$fullText = $result['statuses'][$index]['text'];
+				$address = trim(preg_replace($patterns, "", $fullText));
+				echo "The hashtag #".$hashtag." is associated to the follwing address: [".$address."].<br>";
+
+				// Add twitt to database
+				$twittData = array();
+				$twittData['type'] = $hashtag;
+				$twittData['text'] = $address;
+				$newTwitt = Twitt::create($twittData);	
+
+			} catch (Exception $e) {
+    			//
+			}
+		}
 	}
-
-	// MAX ID
-	echo sprintf('%f', $result['search_metadata']['max_id']); // 873569725925732352
 });
 
 Route::get('/dummy', function()
 {
-	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json', 'since_id' => 873579287445737472 ]);
-	//$result = json_decode($json, true);
+	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json' ]);
 	echo $json;
-
-	// 	echo $result['statuses'][$index]['text'];	
-	//echo $result['statuses'][$index]['text'];
-	// }
-	// MAX ID
-	// MAX ID
-	//echo sprintf('%f', $result['search_metadata']['max_id']); // 873569725925732352
-	//873579287445737472
 });
 
 
