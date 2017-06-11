@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use Jessengers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateTwittsTable extends Migration
@@ -15,6 +15,8 @@ class CreateTwittsTable extends Migration
     {
         Schema::create('twitts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
+            $table->string('text');
             $table->timestamps();
         });
     }

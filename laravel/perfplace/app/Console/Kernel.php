@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Thujohn\Twitter\Facades\Twitter;
+use App\Twitt;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\TwitterHelper::class,
     ];
 
     /**
@@ -24,7 +27,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call('\App\Http\Requests\TwittUpdater@updateTweets')->hourly();
+        //$schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $twittData = array();
+            $twittData['type'] = "sss";
+            $twittData['text'] = "ssssaa";
+            $newTwitt = Twitt::create($twittData); 
+        })->everyMinute();
     }
 
     /**
