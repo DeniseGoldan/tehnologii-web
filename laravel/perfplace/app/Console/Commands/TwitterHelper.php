@@ -39,7 +39,7 @@ class TwitterHelper extends Command
      */
     public function handle()
     {
-        $hashtags = array("pollution","noise","attack");
+        $hashtags = array("pollution","noise","criminality");
         // twitter text regex form
         $patterns = array();
         $patterns[0] = '/#([A-Za-z0-9]+[A-Za-z0-9]+)/';
@@ -50,7 +50,8 @@ class TwitterHelper extends Command
             $currentSearchHashtags = "#PerfectPlaceFinder,#".$hashtag;
             $json = Twitter::getSearch(['q' => $currentSearchHashtags, 'format' => 'json', 'count' => 100]);
             $result = json_decode($json, true);
-            $numberOfTweets = $result['search_metadata']['count'];
+                    print_r($json);
+            $numberOfTweets = count($result['statuses']);
 
             for ($index = 0; $index < $numberOfTweets; $index++) {
 

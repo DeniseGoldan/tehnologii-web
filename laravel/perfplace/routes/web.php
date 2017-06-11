@@ -69,7 +69,7 @@ Route::get('cityMapInfo','EventController@getEvents');
 
 Route::get('/updateTweetsExample', function()
 {
-	$hashtags = array("pollution","noise","attack");
+	$hashtags = array("pollution","noise","criminality");
 	// twitter text regex form
 	$patterns = array();
 	$patterns[0] = '/#([A-Za-z0-9]+[A-Za-z0-9]+)/';
@@ -80,6 +80,7 @@ Route::get('/updateTweetsExample', function()
 		$currentSearchHashtags = "#PerfectPlaceFinder,#".$hashtag;
 		$json = Twitter::getSearch(['q' => $currentSearchHashtags, 'format' => 'json', 'count' => 100]);
 		$result = json_decode($json, true);
+		print_r($json);
 		$numberOfTweets = $result['search_metadata']['count'];
 
 		for ($index = 0; $index < $numberOfTweets; $index++) {
@@ -102,6 +103,8 @@ Route::get('/updateTweetsExample', function()
 		}
 	}
 });
+
+Route::get('/populate', 'EventController@getTweets');
 
 Route::get('/dummy', function()
 {

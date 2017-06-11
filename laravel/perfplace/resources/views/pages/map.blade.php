@@ -68,7 +68,7 @@
                         </fieldset>
                         <div class="container">
                             <p class="btn1" data-placement="top" data-toggle="tooltip" title="Add pins of the filtered properties on the map">
-                                <input type="button" value="Show on map" class="submit btn btn-success add-margin-top" name="map" id="showFiltered" onclick="fetchLocations()">
+                                <input type="button" value="Show on map" class="submit btn btn-success add-margin-top" name="map" id="showFiltered" onclick="loadPlacesAJAX()">
                             </p>
                             <p class="btn2" data-placement="top" data-toggle="tooltip" title="Go to a page where you can view the results">
                                 <button type="submit" formaction="{{URL('/properties/listView')}}" class="submit btn btn-success add-margin-top" name="list">List  homes</button>

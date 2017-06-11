@@ -47,38 +47,42 @@ function toggleHeatmap(heatmap) {
     heatmap.setMap(heatmap.getMap() ? null : map);
 }
 
-function togglePollution(pollutionPoints) {
+function togglePollution() {
     if(pollutionHeatmap==null){
-        noiseHeatmap = new google.maps.visualization.HeatmapLayer({
+
+        pollutionHeatmap = new google.maps.visualization.HeatmapLayer({
             data: pollutionPoints,
             map: map
         });
-        noiseHeatmap.set('gradient', gradientNoise);
+        pollutionHeatmap.set('gradient', gradientPollution);
+        pollutionHeatmap.setOptions({radius:30});
     }
     else{
-        toggleHeatmap(noiseHeatmap);
+        toggleHeatmap(pollutionHeatmap);
     }
 }
 
-function toggleNoise(noisePoints) {
+function toggleNoise() {
     if(noiseHeatmap==null){
         noiseHeatmap = new google.maps.visualization.HeatmapLayer({
             data: noisePoints,
             map: map
         });
         noiseHeatmap.set('gradient', gradientNoise);
+        pollutionHeatmap.setOptions({radius:25});
     }
     else{
         toggleHeatmap(noiseHeatmap);
     }
 }
-function toggleCriminality(criminalityPoints) {
+function toggleCriminality() {
     if(criminalityHeatmap==null){
         criminalityHeatmap = new google.maps.visualization.HeatmapLayer({
             data: criminalityPoints,
             map: map
         });
         criminalityHeatmap.set('gradient',gradientCriminality);
+        pollutionHeatmap.setOptions({radius:20});
     }
     else{
         toggleHeatmap(criminalityHeatmap);
@@ -151,7 +155,7 @@ function initMap() {
         setCityAndCountryInHTML(place.geometry.location.lat(),place.geometry.location.lng(),loadPlacesAJAX);
     });
    
-        //togglePollution(pollutionMarkers);
+    //togglePollution(pollutionPoints);
     //displayMarkers(map,markers);
 }
 
@@ -163,9 +167,15 @@ function focusMap(searchedLocation){
 
 function loadPlacesAJAX(){
     fetchLocations();
-    var pollutionMarkers=getEventPoints("pollution");
-    var noiseMarkers=getEventPoints("noise");
-    var criminalityMarkers=getEventPoints("criminality");
+    pollutionPoints=[];
+    noisePoints=[];
+    criminalityPoints=[];
+    noiseHeatmap==null
+    pollutionHeatmap==null
+    criminalityHeatmap==null
+    getEventPoints("pollution");
+    getEventPoints("noise");
+    getEventPoints("criminality");
 }
 
 function setCityAndCountryInHTML(lat,lng,callback){
@@ -347,7 +357,6 @@ function addToEventPointsList(eventType,locations){
         for(var i=0;i<locations.length;i++){
             pollutionPoints.push(new google.maps.LatLng(locations[i].latitude,locations[i].longitude));
         }
-        console.log(pollutionPoints);
     }
     else if(eventType=="noise"){
         for(var i=0;i<locations.length;i++){
