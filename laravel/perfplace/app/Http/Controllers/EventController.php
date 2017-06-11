@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Input;
 class EventController extends Controller
 {
     public function getEvents(){
-    	$events = Event::where('country',Input::get('country'))->where('city',Input::get('city'))->where('type',Input::get('type'))->get();
+    	$events = Event::where('country',Input::get('country'))->where('city',Input::get('city'))->where('type',Input::get('type'))->select('latitude','longitude')->get();
     	return response()->json($events);
     }
 }
