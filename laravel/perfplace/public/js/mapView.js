@@ -607,7 +607,6 @@ function displayMarkers(map,markers) {
             map: map
         });
     }
-
 }
 
 function initMap() {
@@ -794,9 +793,18 @@ function addMarkersToMap(locations,map){
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
          return function() {
             var propertyLink = '<a href = \'../properties/'+locations[i]._id+'\'>View '+locations[i].propertyType+'</a>';
+            var transactionType = locations[i].transactionType.toLowerCase();
+            var transactionStatement = '<p>For '+transactionType+
+                ' at a price of '+locations[i].price+' €';
+            if (transactionType.localeCompare('rent') == 0){
+                transactionStatement += '/month.</p>'
+            } else {
+                transactionStatement += '.</p>'
+            }
             var contentString = 
                 '<h4>'+locations[i].title+'</h4>'+
-                '<h5>'+locations[i].surface+'m²</h5>'+propertyLink;
+                transactionStatement+
+                '<p>'+'Surface: '+locations[i].surface+'m²</p>'+propertyLink;
              infowindow.setContent(contentString);
              infowindow.open(map, marker);
          }
