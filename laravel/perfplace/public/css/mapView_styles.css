@@ -55,11 +55,13 @@ body {
 	margin-top: 5px;
 }
 
+/*
 .container-fluid {
 	padding: 0;
 	padding-left: 5px; 
 	overflow-x: hidden;
 }
+*/
 
 .right-padding {
 	padding-right:25px;

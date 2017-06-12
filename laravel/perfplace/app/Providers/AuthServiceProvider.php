@@ -23,7 +23,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         $this->registerPolicies();
+
+        Gate::define('modify-property',function($user,$property){
+            return $user->id == $property->userId;
+        });
 
         //
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePropertyRequest;
 use App\Apartment;
+
+use Illuminate\Support\Facades\Gate;
 use App\Services\Geocoder;
 use App\House;
 use App\User;
@@ -12,6 +14,7 @@ use Storage;
 use App\Support\Collection;
 use Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\RedirectResponse;
 
 class PropertyController extends Controller {
 
@@ -76,6 +79,10 @@ class PropertyController extends Controller {
     }
 
     public function showUserProperties() {
+        if (!Auth::check()){
+            return redirect('/');
+        }
+
         $houses = House::all()->where('userId', Auth::user()->id);
         $apartments = Apartment::all()->where('userId', Auth::user()->id);
         $mergedCollections = $houses->merge($apartments);
@@ -89,6 +96,9 @@ class PropertyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        if (!Auth::check()){
+            return redirect('/');
+        }
         return view('pages.add');
     }
 
@@ -99,7 +109,9 @@ class PropertyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePropertyRequest $request) {
-
+        if (!Auth::check()){
+            return redirect('/');
+        }
         // Save the property to the database
         $property = null;
         $fields = $request->get('propertyType');
@@ -160,6 +172,7 @@ class PropertyController extends Controller {
         }
         $user = User::find($property->userId);
         return view('pages.property')->with('property',$property)->with('user',$user);
+
     }
 
     /**
@@ -180,7 +193,15 @@ class PropertyController extends Controller {
         else if($apartment != null) {
             $property = $apartment;
         }
-        return view('pages.editProperty')->with('property',$property);
+
+
+        if(Gate::allows('modify-property' ,$property)){
+            return view('pages.editProperty')->with('property',$property);
+        }else{
+            return redirect('/');
+        }
+
+        
     }
 
     /**
@@ -191,6 +212,10 @@ class PropertyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(CreatePropertyRequest $request, $id){
+
+        
+
+
         $house = null;
         $house = House::find($id);
         $apartment = null;
@@ -201,6 +226,11 @@ class PropertyController extends Controller {
         else if($apartment != null) {
             $property = $apartment;
         }
+
+        if(!Gate::allows('modify-property' ,$property)){
+            return redirect('/');
+        }
+
         $propertyType = $property->propertyType;
 
         $property->title = $request->input('title');
@@ -252,9 +282,15 @@ class PropertyController extends Controller {
         if($house != null){
             $property = $house;
         }
+
         else if($apartment != null) {
             $property = $apartment;
         }
+
+        if(!Gate::allows('modify-property' ,$property)){
+            return redirect('/');
+        }
+        
         for($i = 1 ; $i<=5 ; $i++){
             $path = $property->getImagePath($i);
             if($path !=false){
