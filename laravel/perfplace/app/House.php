@@ -50,12 +50,12 @@
         public static function filter($input){
             $country = $input['country'];
             $city = $input['city'];
-            $priceMin = $input['priceMin']!=null ? intval($input['priceMin']) : 0;
-            $priceMax = $input['priceMax']!=null ? intval($input['priceMax']) : 1000000000;
-            $roomsMin = $input['roomsMin']!=null ? intval($input['roomsMin']) : 0;
-            $roomsMax = $input['roomsMax']!=null ? intval($input['roomsMax']) : 1000;
-            $surfaceMin = $input['surfaceMin']!=null ? intval($input['surfaceMin']) : 0;
-            $surfaceMax = $input['surfaceMax']!=null ? intval($input['surfaceMax']) : 100000;
+            $priceMin = isset($input['priceMin']) ? intval($input['priceMin']) : 0;
+            $priceMax = isset($input['priceMax']) ? intval($input['priceMax']) : 1000000000;
+            $roomsMin = isset($input['roomsMin']) ? intval($input['roomsMin']) : 0;
+            $roomsMax = isset($input['roomsMax']) ? intval($input['roomsMax']) : 1000;
+            $surfaceMin = isset($input['surfaceMin']) ? intval($input['surfaceMin']) : 0;
+            $surfaceMax = isset($input['surfaceMax']) ? intval($input['surfaceMax']) : 100000;
             if(!isset($input['houseCheck'])||strcmp($input['houseCheck'],'on')!=0){
                 return null;
             }

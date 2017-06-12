@@ -310,7 +310,7 @@ function getEventPoints(eventType) {
    var country = document.getElementById('country').value;
    var type = eventType;
    var queryString = "?country="+country+"&city="+city+"&type="+type;
-   ajaxRequest.open("GET", "/cityMapInfo" + queryString, true);
+   ajaxRequest.open("GET", "/api/cityMapInfo" + queryString, true);
    ajaxRequest.send(null); 
 }
 function addMarkersToMap(locations,map){

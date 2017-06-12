@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePropertyRequest;
 use App\Apartment;
-use App\MarkOnGMap;
 use App\Services\Geocoder;
 use App\House;
 use App\User;
@@ -44,8 +43,8 @@ class PropertyController extends Controller {
         else {
             $mergedCollections = array();
         }
-        $row = new MarkOnGMap;
         $properties = ( new Collection( $mergedCollections ) )->paginate(5);
+        $properties = $properties->appends(Input::except('page'));
         return view ('pages.results')->withProperties($properties);
     }
     public function getFiltered(){

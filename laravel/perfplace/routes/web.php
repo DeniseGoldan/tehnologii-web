@@ -1,7 +1,4 @@
 <?php
-use App\Services\EventBuilder;
-use App\Twitt;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,57 +56,7 @@ Route::post('password/reset',['as' => 'password.reset', 'uses' => 'Auth\ResetPas
 
 //Route::post('properties/{id}/send', 'ContactUser@send');
 
-Route::get('/exists',function(){
-	
-	$twittAlreadyExists=Twitt::where('twittId','324afsd54')->get();
-	var_dump(count($twittAlreadyExists));
-});
 
-Route::get('cityMapInfo','EventController@getEvents');
 
-Route::get('/updateTweetsExample', function()
-{
-	$hashtags = array("pollution","noise","criminality");
-	// twitter text regex form
-	$patterns = array();
-	$patterns[0] = '/#([A-Za-z0-9]+[A-Za-z0-9]+)/';
-	$patterns[1] = '/#/';
-
-	foreach ($hashtags as $hashtag) {
-
-		$currentSearchHashtags = "#PerfectPlaceFinder,#".$hashtag;
-		$json = Twitter::getSearch(['q' => $currentSearchHashtags, 'format' => 'json', 'count' => 100]);
-		$result = json_decode($json, true);
-		print_r($json);
-		$numberOfTwitts = $result['search_metadata']['count'];
-
-		for ($index = 0; $index < $numberOfTwitts; $index++) {
-
-			try {
-
-				$fullText = $result['statuses'][$index]['text'];
-				$address = trim(preg_replace($patterns, "", $fullText));
-				echo "The hashtag #".$hashtag." is associated to the follwing address: [".$address."].<br>";
-
-				// Add twitt to database
-				$twittData = array();
-				$twittData['type'] = $hashtag;
-				$twittData['text'] = $address;
-				$newTwitt = Twitt::create($twittData);	
-
-			} catch (Exception $e) {
-    			//
-			}
-		}
-	}
-});
-
-Route::get('/debug', 'EventController@getTweets');
-
-Route::get('/dummy', function()
-{
-	$json = Twitter::getSearch(['q' => "#PerfectPlaceFinder", 'format' => 'json' ]);
-	echo $json;
-});
 
 
