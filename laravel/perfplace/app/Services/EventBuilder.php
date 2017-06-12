@@ -66,7 +66,7 @@ class EventBuilder {
 		$twitt = Twitt::find($id);
 		$location = $this->lookup($twitt->text);
 		$mark = new Event;
-		$mark->latitude = $location['randomLatitude'];
+		$mark->latitude = $location['randomLatitude'];			
 		$mark->longitude= $location['randomLongitude'];
 		$mark->country = $location['country'];
 		$mark->city= $location['city'];
@@ -75,10 +75,10 @@ class EventBuilder {
 	}
 
 	public function buildEvents($id){
+		echo $id;
 		$twitts = Twitt::where('_id','>',$id)->get();
 		foreach($twitts as $twitt){
-			var_dump($twitt);
-			echo 'papanasi';
+			echo 'papansi';
 			$this->buildEventFromTweet($twitt->id);
 		}
 	}
