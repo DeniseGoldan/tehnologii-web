@@ -13,10 +13,16 @@ use Session;
 class UserController extends Controller
 {
     public function show($id) {
+
         $user = User::find($id);
         return $user;
     }
     public function editNames(UpdateNamesRequest $request) {
+
+        if (!Auth::check()){
+            return redirect('/');
+        }
+
         $user = Auth::user();
         $user->username = $request->input('username');
         $user->firstName = $request->input('firstName');
@@ -34,6 +40,11 @@ class UserController extends Controller
         return redirect('/profile');
     }
     public function changePassword(ChangePasswordRequest $request) {
+
+        if (!Auth::check()){
+            return redirect('/');
+        }
+
         $user = Auth::user();
         $user->password = Hash::make($request->input('password'));
         $user->save();
@@ -46,6 +57,10 @@ class UserController extends Controller
         return redirect('/profile');
     }
     public function editContactInformation(UpdateContactInformationRequest $request) {
+        
+        if (!Auth::check()){
+            return redirect('/');
+        }
         
         $user = Auth::user();
         $user->phone = $request->input('phone');
