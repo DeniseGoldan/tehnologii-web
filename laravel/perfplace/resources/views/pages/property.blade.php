@@ -42,7 +42,6 @@
 							@endif
 							
 						@endfor
-
 						@if($dataSlideIndex == 0)
 							<div class="item active">
 								<img src = "https://www.transparenttextures.com/patterns/asfalt-light.png" alt="0">
@@ -61,7 +60,6 @@
 							</a>
 					@endif
 				</div>
-
 				<!--Info about the property-->
 				<div class="well property-info">
 					<div class ="text-center" style="float: left;width:33%;">
@@ -85,15 +83,12 @@
 					@endif
 					<br style="clear: left;" />
 				</div>
-
 				<!--Description-->
 				<div class="well">
 					<h3>Short description</h3>
 					<p>{{$property->description}}</p>
 				</div>
-
 			</div>
-
 			<div class="col-sm-3 text-right">
 				<!--Info about the property-->
 				
@@ -101,7 +96,6 @@
 					<h3 class="transaction-type">This {{$property->propertyType}} is for {{$property->transactionType}}</h3>
 					<h2 class="price">{{number_format($property->price)}}&euro;</h2>				
 				</div>
-
 				<!--Contact the owner-->
 				<div class="text-center well owner-info">
 					
@@ -122,9 +116,7 @@
 				</div>
 			</div>	
 		</div>
-
 	</div>
-
 	<div class="well">
 		<!--Location of the property on the map-->
 		<div class="well">
@@ -134,17 +126,11 @@
 				<p hidden name="latitude" id="latitude">{{$property->latitude}}</span>
 				<p hidden name="longitude" id="longitude">{{$property->longitude}}</span>
 			</div>
-		<div style="width:100%; height: 400px; overflow: hidden; ">
-			<div id="map" class="property-mark-on-map"></div>
-		</div>
+		
 	</div>
-
+	<div id="map" style="width: 100%; height: 500px; margin-bottom: 40px"></div>
 @stop
-
 @section('scripts')
-
 	<script type="text/javascript" src="/js/singlePropertyMarkOnMap.js"></script>
-
 	<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQCQ1quNQm1Geb__wZNXjJrPqT6VzyaNY&callback=initMap"></script>
-
 @stop

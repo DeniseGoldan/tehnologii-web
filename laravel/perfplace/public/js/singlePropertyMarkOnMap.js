@@ -4,11 +4,11 @@ function initMap() {
 	var myLatlng = new google.maps.LatLng(latitude,longitude);
 	var mapOptions = {
           center: myLatlng,
-          zoom: 8
+          zoom: 17
         };
 	var map = new google.maps.Map(document.getElementById('map'), {
           center: myLatlng,
-          zoom: 8
+          zoom: 17
         });
 
 	var marker = new google.maps.Marker({
