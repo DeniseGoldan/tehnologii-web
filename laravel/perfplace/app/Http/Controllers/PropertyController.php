@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePropertyRequest;
 use App\Apartment;
+use App\MarkOnGMap;
+use App\Services\Geocoder;
 use App\House;
 use App\User;
 use Session;
@@ -42,6 +44,7 @@ class PropertyController extends Controller {
         else {
             $mergedCollections = array();
         }
+        $row = new MarkOnGMap;
         $properties = ( new Collection( $mergedCollections ) )->paginate(5);
         return view ('pages.results')->withProperties($properties);
     }
@@ -65,7 +68,6 @@ class PropertyController extends Controller {
         }
        return response()->json($properties);
      }
-
     public function showAll() {
         $houses = House::all();
         $apartments = Apartment::all();

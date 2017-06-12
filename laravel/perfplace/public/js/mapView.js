@@ -69,7 +69,7 @@ function toggleNoise() {
             map: map
         });
         noiseHeatmap.set('gradient', gradientNoise);
-        pollutionHeatmap.setOptions({radius:25});
+        noiseHeatmap.setOptions({radius:25});
     }
     else{
         toggleHeatmap(noiseHeatmap);
@@ -82,7 +82,7 @@ function toggleCriminality() {
             map: map
         });
         criminalityHeatmap.set('gradient',gradientCriminality);
-        pollutionHeatmap.setOptions({radius:20});
+        noiseHeatmap.setOptions({radius:20});
     }
     else{
         toggleHeatmap(criminalityHeatmap);

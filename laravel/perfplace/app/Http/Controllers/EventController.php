@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use Illuminate\Support\Facades\Input;
-use App\Console\Commands\TwitterHelper;
+use App\Console\Commands\TwitterEventUpdater;
 class EventController extends Controller
 {
     public function getEvents(){
@@ -13,7 +13,7 @@ class EventController extends Controller
     	return response()->json($events);
     }
     public function getTweets(){
-    	$helper = new TwitterHelper;
+    	$helper=new TwitterEventUpdater;
     	$helper->handle();
     }
 }

@@ -59,10 +59,10 @@ Route::post('password/reset',['as' => 'password.reset', 'uses' => 'Auth\ResetPas
 
 //Route::post('properties/{id}/send', 'ContactUser@send');
 
-Route::get('callGeo',function(){
+Route::get('/exists',function(){
 	
-	$object = new EventBuilder();
-	$object->buildEventFromTweet('593d6420d476442ee0302fa7');
+	$twittAlreadyExists=Twitt::where('twittId','324afsd54')->get();
+	var_dump(count($twittAlreadyExists));
 });
 
 Route::get('cityMapInfo','EventController@getEvents');
@@ -81,9 +81,9 @@ Route::get('/updateTweetsExample', function()
 		$json = Twitter::getSearch(['q' => $currentSearchHashtags, 'format' => 'json', 'count' => 100]);
 		$result = json_decode($json, true);
 		print_r($json);
-		$numberOfTweets = $result['search_metadata']['count'];
+		$numberOfTwitts = $result['search_metadata']['count'];
 
-		for ($index = 0; $index < $numberOfTweets; $index++) {
+		for ($index = 0; $index < $numberOfTwitts; $index++) {
 
 			try {
 
@@ -104,7 +104,7 @@ Route::get('/updateTweetsExample', function()
 	}
 });
 
-Route::get('/populate', 'EventController@getTweets');
+Route::get('/debug', 'EventController@getTweets');
 
 Route::get('/dummy', function()
 {

@@ -2,18 +2,18 @@
 namespace App\Services;
 use App\Event;
 use App\Twitt;
-class EventBuilder
+class EventBuilder {
 
-{
 	public function float_rand($Min, $Max, $round=0){
-    //validate input
+	    //validate input
 
-    $randomfloat = $Min + mt_rand() / mt_getrandmax() * ($Max - $Min);
-    if($round>0)
-        $randomfloat = round($randomfloat,$round);
- 
-    return $randomfloat;
+	    $randomfloat = $Min + mt_rand() / mt_getrandmax() * ($Max - $Min);
+	    if($round>0)
+	        $randomfloat = round($randomfloat,$round);
+	 
+	    return $randomfloat;
 	}
+
 	public function lookup($string){
 	 
 	   	$string = str_replace (" ", "+", urlencode($string));
@@ -61,8 +61,9 @@ class EventBuilder
 	 
 	    return $array;
 	}
-	public function buildEventFromTweet($twittId){
-		$twitt = Twitt::find($twittId);
+
+	public function buildEventFromTweet($id){
+		$twitt = Twitt::find($id);
 		$location = $this->lookup($twitt->text);
 		$mark = new Event;
 		$mark->latitude = $location['randomLatitude'];
@@ -72,8 +73,14 @@ class EventBuilder
 		$mark->type= $twitt->type;
 		$mark->save();
 	}
-	public function buildEvents(){
 
+	public function buildEvents($id){
+		$twitts = Twitt::where('_id','>',$id)->get();
+		foreach($twitts as $twitt){
+			var_dump($twitt);
+			echo 'papanasi';
+			$this->buildEventFromTweet($twitt->id);
+		}
 	}
 
 }

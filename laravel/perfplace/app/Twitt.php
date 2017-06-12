@@ -5,5 +5,5 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class Twitt extends Model
 {
-    protected $fillable = ['type','text'];
+    protected $fillable = ['type','text','twittId'];
 }

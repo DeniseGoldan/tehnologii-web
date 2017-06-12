@@ -15,8 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Inspire::class,
-        \App\Console\Commands\TwitterHelper::class,
+        \App\Console\Commands\TwitterEventUpdater::class,
     ];
 
     /**
@@ -28,12 +27,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //$schedule->command('inspire')->hourly();
-        $schedule->call(function () {
-            $twittData = array();
-            $twittData['type'] = "sss";
-            $twittData['text'] = "ssssaa";
-            $newTwitt = Twitt::create($twittData); 
-        })->everyMinute();
+        $schedule->command('twitts:update')->everyMinute();
     }
 
     /**
