@@ -17,6 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('cityMapInfo','EventController@getEvents');
-
-Route::get('placeScore','EventController@computeScore');
+Route::get('placeScore','EventController@restResponse');

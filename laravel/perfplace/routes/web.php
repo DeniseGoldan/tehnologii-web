@@ -1,4 +1,6 @@
 <?php
+use App\Event;
+use App\Services\EventBuilder;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,8 +57,28 @@ Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail')
 Route::post('password/reset',['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@reset']);
 
 //Route::post('properties/{id}/send', 'ContactUser@send');
+Route::get('cityMapInfo','EventController@getEvents');
 
+Route::get('generatePoints',function(){
+	$types = array('pollution','noise','criminality');
+	$latN = 47.171919;
+    $lngN = 27.564766;
+    $latS = 47.141401;
+    $lngS = 27.620144;
+    $builder = new EventBuilder;
+	foreach($types as $type){
+		for($i=0;$i<10;$i++){
+			$event = new Event;
+			$event->latitude = $builder->float_rand($latN,$latS);
+			$event->longitude = $builder->float_rand($lngN,$lngS);
+			$event->type = $type;
+			$event->country = 'Romania';
+			$event->city = 'Iași';
+			$event->save();
+		}
+	}
 
+});
 
 
 
