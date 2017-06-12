@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Perfect Place Finder - Scholarly Raport</title>
+    <link rel="stylesheet" href="schlarly.css">
+    <link rel="stylesheet" href="http://scholarly.vernacular.io/scholarly.css">
+    <script src="node_modules/prismjs/prism.js" defer></script>
+  </head>
+
+  <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
+
+    <header>
+      <p class="title">Perfect Place Finder - Scholary Raport</p>
+    </header>
+
+    <article id="what" typeof="schema:ScholarlyArticle" resource="#">
+
+      <h1>Perfect Place Finder</h1>
+
+      <section>
+        <ol>
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author" href="https://github.com/DeniseGoldan" typeof="schema:Person">
+							<span property="schema:familyName">Denise</span>
+              <span property="schema:givenName">Goldan</span>
+            </a>
+            <a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"></a>
+            <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+            </sup>
+          </li>
+          <li property="schema:contributor" typeof="sa:ContributorRole">
+            <a property="schema:contributor" href="https://github.com/codrinharpa" typeof="schema:Person">
+							<span property="schema:familyName">Codrin</span>
+              <span property="schema:givenName">Harpa</span>
+            </a>
+            <a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"></a>
+          </li>
+          <li property="schema:contributor" typeof="sa:ContributorRole">
+            <a property="schema:contributor" href="https://github.com/corneliusoficu" typeof="schema:Person">
+							<span property="schema:familyName">Corneliu</span>
+              <span property="schema:givenName">Soficu</span>
+            </a>
+            <a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"></a>
+          </li>
+        </ol>
+        <ol>
+            <a href="https://www.info.uaic.ro/bin/Main/">
+              <span property="schema:name">Facultatea de Informatică Iași, Universitatea "Alexandru Ioan Cuza"</span>
+            </a>
+        </ol>
+      </section>
+
+      <section typeof="sa:Abstract" id="abstract">
+        <h2>Cuprins</h2>
+        <p>1.Descriere</p>
+        <p>2.Tehnologii utilizate</p>
+        <p>3.Diagrama Arhitecturală + Diagrama Funcțională</p>
+        <p>4.Functionalități</p>
+        <p>5.Interfața aplicației</p>
+        <p>6.Bibliografie</p>
+      </section>
+
+      <section typeof="sa:MaterialsAndMethods" id="motivation">
+        <h2>Descriere</h2>
+    		<p>Aplicația <strong>Perfect Place Finder</strong> este menită să
+					gestioneze eficient tranzacții imobiliare.</p>
+				<p>Sistemul permite managementul unor imobile aflate spre vânzare
+					și/sau închiriere, care au asociate, printre altele, o descriere,
+					prețul, adresa, precum și date de contact ale proprietarului sau
+					agenției.</p>
+				<p>Utilizatorul interesat de cumpărarea/închirierea unei locuințe
+				 va putea efectua diverse operațiuni asupra hărții puse la dispoziție:
+			  poate selecta zona de interes, poate filtra rezultatele dupa anumite
+				criterii prestabilite (e.g., preț, suprafață, numar de camere).</p>
+				<p>În procesul de selecție al unei locuințe, utilizatoul aplicației
+				poate atașa hărții straturi suplimentare ce vizează criminalitatea
+				înregistrată în aria de interes, poluarea si zgomotul.</p>
+		</section>
+
+		<section typeof="sa:MaterialsAndMethods">
+      <h2>Tehnologii utilizate</h2>
+			<figure typeof="sa:Image">
+				<img src="tehnologii_utilizate_procente.png">
+				<figcaption>
+					Statistici referitoare la utilizarea limbajelor de programare.
+				</figcaption>
+			</figure>
+			<figure typeof="schema:Table">
+        <table>
+          <tr>
+            <td><strong>Back end</strong></td>
+            <td>PHP, Laravel Framework, Moloquent (Jens Segers), Twitter API for Laravel (Thujohn)</td>
+          </tr>
+          <tr>
+            <td><strong>Front end</strong></td>
+            <td>HTML, CSS, Bootstrap, Javascript, AJAX, Google Maps APIs</td>
+          </tr>
+          <tr>
+            <td><strong>Database</strong></td>
+            <td>MongoDB</td>
+          </tr>
+          <caption>
+            Lista a tuturor tehnologiilor utilizate în cadrul proiectului.
+          </caption>
+        </table>
+      </figure>
+		</section>
+
+		<section typeof="sa:MaterialsAndMethods">
+      <h2>Arhitectură</h2>
+			<p>La baza aplicației se afla design pattern-ul MVC.</p>
+			<p>
+        Model
+      </p>
+      <ul>
+        <li>
+          manipulează operațiunile logice și de utilizare de informație
+        </li>
+        <li>
+          am definit modele pentru proprietăți, twitt-uri, utilizatori și evenimente
+        </li>
+      </ul>
+			<p>
+        View
+      </p>
+      <ul>
+        <li>
+        	interfața grafică ce interacționează cu utilizatorul final
+        </li>
+        <li>
+          reprezentată de o suita de fișiere templetizate
+        </li>
+      </ul>
+			<p>
+        Controller
+      </p>
+      <ul>
+        <li>
+          element prin intermediul caruia controlăm accesul la aplicația noastră
+        </li>
+				<li>
+					capabil de a manipula rute, fișiere, clase, metode și funcții
+        </li>
+      </ul>
+
+			<figure typeof="sa:Image">
+				<img src="diagrama_aplicatiei.png">
+				<figcaption>
+					Diagrama UML a Aplicaţiei <strong>Perfect Place Finder</strong>
+				</figcaption>
+			</figure>
+
+		  <section typeof="sa:ReferenceList" id="references">
+        <h2>References</h2>
+        <dl>
+          <dt>Laravel</dt>
+          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+              resource="https://laravel.com/docs/5.4/">
+            <cite property="schema:name"><a
+              href="https://laravel.com/docs/5.4/">The PHP Framework For Web Artisans</a></cite>
+          </dd>
+					<dt>Moloquent</dt>
+          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+              resource="https://github.com/jenssegers/laravel-mongodb">
+            <cite property="schema:name"><a
+              href="https://github.com/jenssegers/laravel-mongodb">A MongoDB based Eloquent model and Query builder for Laravel</a></cite>
+          </dd>
+					<dt>Twitter API</dt>
+          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+              resource="https://github.com/thujohn/twitter">
+            <cite property="schema:name"><a
+              href="https://github.com/thujohn/twitter">Twitter API for Laravel</a></cite>
+          </dd>
+					<dt>Google Maps APIs</dt>
+          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+              resource="https://developers.google.com/maps/documentation/">
+            <cite property="schema:name"><a
+              href="https://developers.google.com/maps/documentation/">Google Maps for every platform</a></cite>
+          </dd>
+        </dl>
+      </section>
+
+	   </article>
+
+  </body>
+</html>
