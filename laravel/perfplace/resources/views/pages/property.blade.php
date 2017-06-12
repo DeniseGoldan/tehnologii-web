@@ -134,10 +134,10 @@
 				<p hidden name="latitude" id="latitude">{{$property->latitude}}</span>
 				<p hidden name="longitude" id="longitude">{{$property->longitude}}</span>
 			</div>
-		<div style="width:100%; height: 400px; overflow: hidden; ">
-			<div id="map" class="property-mark-on-map"></div>
-		</div>
+		
 	</div>
+
+	<div id="map" style="width: 100%; height: 500px; margin-bottom: 40px"></div>
 
 @stop
 
