@@ -77,7 +77,8 @@
 				criterii prestabilite (e.g., preț, suprafață, numar de camere).</p>
 				<p>În procesul de selecție al unei locuințe, utilizatoul aplicației
 				poate atașa hărții straturi suplimentare ce vizează criminalitatea
-				înregistrată în aria de interes, poluarea si zgomotul.</p>
+				înregistrată în aria de interes, poluarea si zgomotul, date obținute
+				prin procesarea twitt-urilor.</p>
 		</section>
 
 		<section typeof="sa:MaterialsAndMethods">
@@ -111,40 +112,6 @@
 
 		<section typeof="sa:MaterialsAndMethods">
       <h2>Arhitectură</h2>
-			<p>La baza aplicației se afla design pattern-ul MVC.</p>
-			<p>
-        Model
-      </p>
-      <ul>
-        <li>
-          manipulează operațiunile logice și de utilizare de informație
-        </li>
-        <li>
-          am definit modele pentru proprietăți, twitt-uri, utilizatori și evenimente
-        </li>
-      </ul>
-			<p>
-        View
-      </p>
-      <ul>
-        <li>
-        	interfața grafică ce interacționează cu utilizatorul final
-        </li>
-        <li>
-          reprezentată de o suita de fișiere templetizate
-        </li>
-      </ul>
-			<p>
-        Controller
-      </p>
-      <ul>
-        <li>
-          element prin intermediul caruia controlăm accesul la aplicația noastră
-        </li>
-				<li>
-					capabil de a manipula rute, fișiere, clase, metode și funcții
-        </li>
-      </ul>
 
 			<figure typeof="sa:Image">
 				<img src="diagrama_aplicatiei.png">
@@ -152,6 +119,74 @@
 					Diagrama UML a Aplicaţiei <strong>Perfect Place Finder</strong>
 				</figcaption>
 			</figure>
+
+			<p>La baza aplicației se afla design pattern-ul MVC.</p>
+			<h4>Model</h4>
+      <ul>
+        <li>manipulează operațiunile logice și de utilizare de informație</li>
+        <li>am definit modele pentru proprietăți, twitt-uri, utilizatori și evenimente</li>
+      </ul>
+			<h4>View</h4>
+      <ul>
+        <li>interfața grafică ce interacționează cu utilizatorul final</li>
+        <li>reprezentată de o suita de fișiere templetizate</li>
+      </ul>
+			<h4>Controller</h4>
+      <ul>
+        <li>element prin intermediul căruia controlăm accesul la aplicația noastră</li>
+				<li>capabil de a manipula rute, fișiere, clase, metode și funcții</li>
+      </ul>
+
+			<p>În cadrul aplicației ne folosim de un mecanism care ajuta la filtrarea
+				cererilor HTTP preluate de aplicație, numit <strong>Middleware</strong>.
+				Exista un	middleware care verifică dacă utilizatorul este autentficat.
+				Dacă nu este autentificat, middleware-ul îl redirectează către pagina
+				principala a aplicației, nepermițându-i acces la pagini ce necesita
+				autentificare.</p>
+
+		<figure typeof="sa:Image">
+			<img src="pagina_principala.png">
+			<figcaption>
+				Pagina principală
+			</figcaption>
+		</figure>
+
+		<p>O categorie de utilizatori care nu au nevoie de cont pentru a beneficia
+			 de serviciile aplicației este dată de cei care îsi caută o locuintă.
+			 Acesta poate interactiona cu pagina aplicației unde poate selecta
+			 diverse criterii de filtrare al proprietăților înregistrate în aplicație.
+		</p>
+
+		<figure typeof="sa:Image">
+			<img src="heat_map.png">
+			<figcaption>
+				Hartă pusă la dispoziția celor interesați de cumpărarea/închirierea unei locuințe
+			</figcaption>
+		</figure>
+
+		<p>Un utilizator autentificat poate accesa o suită de pagini care ajută la
+			gestionarea proprietăților puse de acesta spre vânzare/cumpărare, dar și
+			a datelor cu caracter personal, cum ar fi numele, prenumele, datele de
+			contact.
+		</p>
+
+		<figure typeof="sa:Image">
+			<img src="profil.png">
+			<figcaption>
+				Pagina de vizualizare și editare a datelor personale
+			</figcaption>
+		</figure>
+
+		<p>Framework-ul Laravel favorizează protecția împotriva atacurilor de tip
+			<strong>Cross-site request forgery</strong>, ce exploatează încrederea pe
+			care o are un site în utilizatorii săi. Mecanismul de protecție constă in crearea
+			unei sesiuni și a unui token. Daca token-ul va fi valid, actiunile de pe
+			pagina accesată vor fi executate. În caz contrar, se va refuza accesul
+			la acele actiuni.
+		</p>
+
+		</section>
+
 
 		  <section typeof="sa:ReferenceList" id="references">
         <h2>References</h2>
