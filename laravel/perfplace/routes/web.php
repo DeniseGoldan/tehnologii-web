@@ -42,7 +42,7 @@ Route::put('/profile/editContactInformation','UserController@editContactInformat
 
 Route::put('/profile/changePassword','UserController@changePassword');
 
-//Route::post ('contactUser','UserController@contactUser');
+Route::post ('contactUser','UserController@contactUser');
 
 //Authentication routes
 Route::get('auth/register','Auth\RegisterController@showRegistrationForm');

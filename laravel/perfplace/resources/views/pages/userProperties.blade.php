@@ -152,7 +152,7 @@
 						<div class="add-line-on-top">
 							<div class ="text-center" style="float: left;width:33%;">
 								<h4><strong>Surface</strong></h4>
-								<h5>{{$property->surface}}</h5>
+								<h5>{{$property->surface}} m²</h5>
 							</div>
 							@if($property->propertyType == 'apartment')
 								<div class ="text-center" style="float: left;width:33%;">

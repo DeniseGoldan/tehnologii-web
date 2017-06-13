@@ -75,25 +75,24 @@ class UserController extends Controller
         }
         return redirect('/profile');
     }
-/*
+
     public function contactUser (Request $request) {
         $this->validate($request,
             [
                 'emailFrom' => 'required|email',
                 'content' => 'min:20'
-            ]
-            );
+            ]);
         $data = array (
             'emailFrom' => $request->emailFrom,
             'content' => $request->content
             );
-           Mail::send('emails.contact', $data, function($message) use ($data){
-                $message->from($data['emailFrom']);
-                $message->to("andrei.harpa.ah@gmail.com");
+           Mail::send('emails.contact', $data, function($message){
+                $message->from('vasile.vasilescu@gmail.com');
+                $message->to("corneliu.soficu@gmail.com");
                 $message->subject('Someone is interested in your Property');
            });
         Session::flash('success','Your email was sent');
-        return redirect('/');﻿
+        return redirect()->back();
     }
-    */
+    
 }
