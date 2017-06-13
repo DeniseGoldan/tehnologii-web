@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-GB">
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -9,17 +8,10 @@
     <link rel="stylesheet" href="http://scholarly.vernacular.io/scholarly.css">
     <script src="node_modules/prismjs/prism.js" defer></script>
   </head>
-
   <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
-
-    <header>
-      <p class="title">Perfect Place Finder - Scholary Raport</p>
-    </header>
-
+    <header><p class="title">Perfect Place Finder - Scholary Raport</p></header>
     <article id="what" typeof="schema:ScholarlyArticle" resource="#">
-
       <h1>Perfect Place Finder</h1>
-
       <section>
         <ol>
           <li property="schema:author" typeof="sa:ContributorRole">
@@ -47,178 +39,201 @@
           </li>
         </ol>
         <ol>
-            <a href="https://www.info.uaic.ro/bin/Main/">
-              <span property="schema:name">Facultatea de Informatică Iași, Universitatea "Alexandru Ioan Cuza"</span>
-            </a>
+          <a href="https://www.info.uaic.ro/bin/Main/">
+            <span property="schema:name">Facultatea de Informatică Iași, Universitatea "Alexandru Ioan Cuza"</span>
+          </a>
         </ol>
       </section>
-
       <section typeof="sa:Abstract" id="abstract">
         <h2>Cuprins</h2>
-        <p>1.Descriere</p>
-        <p>2.Tehnologii utilizate</p>
-        <p>3.Diagrama Arhitecturală + Diagrama Funcțională</p>
-        <p>4.Functionalități</p>
-        <p>5.Interfața aplicației</p>
-        <p>6.Bibliografie</p>
+        <p>1. Descriere</p>
+        <p>2. Tehnologii utilizate</p>
+        <p>3. Arhitectură și interfață</p>
+        <p>4. API</p>
+        <p>5. Versionare</p>
+        <p>6. Resurse</p>
       </section>
-
       <section typeof="sa:MaterialsAndMethods" id="motivation">
         <h2>Descriere</h2>
     		<p>Aplicația <strong>Perfect Place Finder</strong> este menită să
 					gestioneze eficient tranzacții imobiliare.</p>
 				<p>Sistemul permite managementul unor imobile aflate spre vânzare
 					și/sau închiriere, care au asociate, printre altele, o descriere,
-					prețul, adresa, precum și date de contact ale proprietarului sau
+					adresă, un preț, precum și date de contact ale proprietarului/
 					agenției.</p>
 				<p>Utilizatorul interesat de cumpărarea/închirierea unei locuințe
-				 va putea efectua diverse operațiuni asupra hărții puse la dispoziție:
-			  poate selecta zona de interes, poate filtra rezultatele dupa anumite
-				criterii prestabilite (e.g., preț, suprafață, numar de camere).</p>
+				 	va putea efectua diverse operațiuni asupra hărții puse la dispoziție.
+			  	Va putea selecta zona de interes și filtra rezultatele dupa anumite
+					criterii prestabilite (e.g., preț, suprafață, numar de camere).</p>
 				<p>În procesul de selecție al unei locuințe, utilizatoul aplicației
-				poate atașa hărții straturi suplimentare ce vizează criminalitatea
-				înregistrată în aria de interes, poluarea si zgomotul, date obținute
-				prin procesarea twitt-urilor.</p>
-		</section>
-
-		<section typeof="sa:MaterialsAndMethods">
-      <h2>Tehnologii utilizate</h2>
-			<figure typeof="sa:Image">
-				<img src="tehnologii_utilizate_procente.png">
-				<figcaption>
-					Statistici referitoare la utilizarea limbajelor de programare.
-				</figcaption>
-			</figure>
-			<figure typeof="schema:Table">
-        <table>
-          <tr>
-            <td><strong>Back end</strong></td>
-            <td>PHP, Laravel Framework, Moloquent (Jens Segers), Twitter API for Laravel (Thujohn)</td>
-          </tr>
-          <tr>
-            <td><strong>Front end</strong></td>
-            <td>HTML, CSS, Bootstrap, Javascript, AJAX, Google Maps APIs</td>
-          </tr>
-          <tr>
-            <td><strong>Database</strong></td>
-            <td>MongoDB</td>
-          </tr>
-          <caption>
-            Lista a tuturor tehnologiilor utilizate în cadrul proiectului.
-          </caption>
-        </table>
-      </figure>
-		</section>
-
-		<section typeof="sa:MaterialsAndMethods">
-      <h2>Arhitectură</h2>
-
-			<figure typeof="sa:Image">
-				<img src="diagrama_aplicatiei.png">
-				<figcaption>
-					Diagrama UML a Aplicaţiei <strong>Perfect Place Finder</strong>
-				</figcaption>
-			</figure>
-
-			<p>La baza aplicației se afla design pattern-ul MVC.</p>
-			<h4>Model</h4>
-      <ul>
-        <li>manipulează operațiunile logice și de utilizare de informație</li>
-        <li>am definit modele pentru proprietăți, twitt-uri, utilizatori și evenimente</li>
-      </ul>
-			<h4>View</h4>
-      <ul>
-        <li>interfața grafică ce interacționează cu utilizatorul final</li>
-        <li>reprezentată de o suita de fișiere templetizate</li>
-      </ul>
-			<h4>Controller</h4>
-      <ul>
-        <li>element prin intermediul căruia controlăm accesul la aplicația noastră</li>
-				<li>capabil de a manipula rute, fișiere, clase, metode și funcții</li>
-      </ul>
-
-			<p>În cadrul aplicației ne folosim de un mecanism care ajuta la filtrarea
-				cererilor HTTP preluate de aplicație, numit <strong>Middleware</strong>.
-				Exista un	middleware care verifică dacă utilizatorul este autentficat.
-				Dacă nu este autentificat, middleware-ul îl redirectează către pagina
-				principala a aplicației, nepermițându-i acces la pagini ce necesita
-				autentificare.</p>
-
-		<figure typeof="sa:Image">
-			<img src="pagina_principala.png">
-			<figcaption>
-				Pagina principală
-			</figcaption>
-		</figure>
-
-		<p>O categorie de utilizatori care nu au nevoie de cont pentru a beneficia
-			 de serviciile aplicației este dată de cei care îsi caută o locuintă.
-			 Acesta poate interactiona cu pagina aplicației unde poate selecta
-			 diverse criterii de filtrare al proprietăților înregistrate în aplicație.
-		</p>
-
-		<figure typeof="sa:Image">
-			<img src="heat_map.png">
-			<figcaption>
-				Hartă pusă la dispoziția celor interesați de cumpărarea/închirierea unei locuințe
-			</figcaption>
-		</figure>
-
-		<p>Un utilizator autentificat poate accesa o suită de pagini care ajută la
-			gestionarea proprietăților puse de acesta spre vânzare/cumpărare, dar și
-			a datelor cu caracter personal, cum ar fi numele, prenumele, datele de
-			contact.
-		</p>
-
-		<figure typeof="sa:Image">
-			<img src="profil.png">
-			<figcaption>
-				Pagina de vizualizare și editare a datelor personale
-			</figcaption>
-		</figure>
-
-		<p>Framework-ul Laravel favorizează protecția împotriva atacurilor de tip
-			<strong>Cross-site request forgery</strong>, ce exploatează încrederea pe
-			care o are un site în utilizatorii săi. Mecanismul de protecție constă in crearea
-			unei sesiuni și a unui token. Daca token-ul va fi valid, actiunile de pe
-			pagina accesată vor fi executate. În caz contrar, se va refuza accesul
-			la acele actiuni.
-		</p>
-
-		</section>
-
-
-		  <section typeof="sa:ReferenceList" id="references">
-        <h2>References</h2>
-        <dl>
-          <dt>Laravel</dt>
-          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
-              resource="https://laravel.com/docs/5.4/">
-            <cite property="schema:name"><a
-              href="https://laravel.com/docs/5.4/">The PHP Framework For Web Artisans</a></cite>
-          </dd>
+					poate atașa hărții straturi suplimentare. Acestea vizează <strong>criminalitatea</strong>
+					înregistrată în aria de interes, <strong>poluarea</strong> si <strong>zgomotul</strong>, date obținute
+					prin procesarea twitt-urilor.</p>
+			</section>
+			<section typeof="sa:MaterialsAndMethods">
+	      <h2>Tehnologii utilizate</h2>
+				<figure typeof="sa:Image">
+					<img src="tehnologii_utilizate_procente.png">
+					<figcaption>
+						Statistici referitoare la utilizarea limbajelor de programare
+					</figcaption>
+				</figure>
+				<figure typeof="schema:Table">
+	        <table>
+	          <tr>
+	            <td><strong>Back end</strong></td>
+	            <td>PHP, Laravel Framework, MongoDB based Eloquent model and Query builder (Jens Segers), Twitter API for Laravel (Thujohn)</td>
+	          </tr>
+	          <tr>
+	            <td><strong>Front end</strong></td>
+	            <td>HTML, CSS, Bootstrap, Javascript, AJAX, Google Maps APIs</td>
+	          </tr>
+	          <tr>
+	            <td><strong>Database</strong></td>
+	            <td>MongoDB</td>
+	          </tr>
+	          <caption>
+	            Listă a tehnologiilor utilizate în cadrul aplicației
+	          </caption>
+	        </table>
+	      </figure>
+			</section>
+			<section typeof="sa:MaterialsAndMethods">
+	      <h2>Arhitectură și interfață</h2>
+				<figure typeof="sa:Image">
+					<img src="diagrama_aplicatiei.png">
+					<figcaption>
+						Diagrama UML a Aplicaţiei <strong>Perfect Place Finder</strong>
+					</figcaption>
+				</figure>
+				<p>La baza aplicației se afla design pattern-ul MVC.</p>
+				<h4>Model</h4>
+	      <ul>
+	        <li>manipulează operațiunile logice și de utilizare de informație</li>
+	        <li>am definit modele pentru proprietăți, twitt-uri, utilizatori și evenimente</li>
+	      </ul>
+				<h4>View</h4>
+	      <ul>
+	        <li>interfața grafică ce interacționează cu utilizatorul final</li>
+	        <li>reprezentată de o suită de fișiere templetizate</li>
+	      </ul>
+				<h4>Controller</h4>
+	      <ul>
+	        <li>element prin intermediul căruia controlăm accesul la aplicația noastră</li>
+					<li>capabil de a manipula rute, fișiere, clase, metode și funcții</li>
+	      </ul>
+				<p>În cadrul aplicației ne folosim de un mecanism care ajuta la filtrarea
+					cererilor HTTP preluate de aplicație, numit <strong>Middleware</strong>.
+					Exista un	middleware care verifică dacă utilizatorul este autentficat.
+					Dacă nu este autentificat, middleware-ul îl redirectează către pagina
+					principala a aplicației, nepermițându-i acces la pagini ce necesita
+					autentificare.</p>
+				<figure typeof="sa:Image">
+					<img src="pagina_principala.png">
+					<figcaption>
+						Pagina principală
+					</figcaption>
+				</figure>
+				<p>O categorie de utilizatori care nu au nevoie de cont pentru a beneficia
+					 de serviciile aplicației este dată de cei care îsi caută o locuintă.
+					 Aceștia pot interactiona cu o pagină dedicată selectării
+					 diverselor criterii de filtrare al proprietăților înregistrate în aplicație.
+				</p>
+				<figure typeof="sa:Image">
+					<img src="heat_map.png">
+					<figcaption>
+						Hartă pusă la dispoziția celor interesați de cumpărarea/închirierea unei locuințe
+					</figcaption>
+				</figure>
+				<p>Un utilizator autentificat poate accesa o suită de pagini care ajută la
+					gestionarea proprietăților puse de acesta spre vânzare/cumpărare, dar și
+					a datelor cu caracter personal, cum ar fi numele, prenumele, datele de
+					contact.
+				</p>
+				<figure typeof="sa:Image">
+					<img src="profil.png">
+					<figcaption>
+						Pagina de vizualizare și editare a datelor personale
+					</figcaption>
+				</figure>
+				<figure typeof="sa:Image">
+					<img src="my_properties.png">
+					<figcaption>
+						Pagina de management al proprietăților adăugate
+					</figcaption>
+				</figure>
+				<p>Framework-ul Laravel favorizează protecția împotriva atacurilor de tip
+					<strong>Cross-site request forgery</strong>, ce exploatează încrederea pe
+					care o are un site în utilizatorii săi. Mecanismul de protecție constă in crearea
+					unei sesiuni și a unui token. Daca token-ul va fi valid, actiunile de pe
+					pagina accesată vor fi executate. În caz contrar, se va refuza accesul
+					la acele actiuni.
+				</p>
+			</section>
+			<section typeof="sa:MaterialsAndMethods">
+	      <h2>API</h2>
+				<p>Prin API-ul aplicației Perfect Place Finder, având ca argument un
+					punct valid, caracterizat prin latitudine și longitudine, furnizăm un scor
+					al poluării, zgomotului și criminalității, calculat în funcție de
+					intensitatea acestor elemente. În calcularea scorului, ne folosim de informațiile
+					agregate din apelurile către Twitter API.
+				</p>
+				<h3>Exemplu</h3>
+				<p>Pentru urmatorul apel, <code>"/api/placeScore?latitude=47.1585&longitude=27.6014"</code>,
+				obținem:</p>
+				<aside typeof="schema:WPSideBar">
+					<p>{</p>
+					<p style="text-indent: 1em;">"location": {</p>
+					<p style="text-indent: 3em;">"latitude": "47.1585",</p>
+					<p style="text-indent: 3em;">"longitude": "27.6014",</p>
+					<p style="text-indent: 3em;">"city": "Iași",</p>
+					<p style="text-indent: 3em;">"country": "Romania"</p>
+					<p style="text-indent: 2em;">},</p>
+					<p style="text-indent: 3em;">"scores": {</p>
+					<p style="text-indent: 3em;">"pollution": 5,</p>
+					<p style="text-indent: 3em;">"noise": 3,</p>
+					<p style="text-indent: 3em;">"criminality": 1</p>
+					<p style="text-indent: 2em;">}</p>
+					<p>}</p>
+				</aside>
+			</section>
+			<section typeof="sa:MaterialsAndMethods">
+	      <h2>Versionare</h2>
+				<p>Am folosit <strong>GitHub</strong> pe post de serviciu de hosting al proiectului. Am utilizat
+					<strong>SourceTree</strong> și aplicația <strong>GitHub for Windows</strong>
+					pentru a rezolva conflictele și pentru a face modicări/adăugări/ștergeri
+					a unui sau a mai multor fișiere	din cadrul repository-ului. Am ales să
+					atasăm fiecărui commit un mesaj scurt si clar.</p>
+			</section>
+			<section typeof="sa:ReferenceList" id="references">
+	      <h2>Resurse</h2>
+	      <dl>
+	        <dt>Laravel</dt>
+	        <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+	            resource="https://laravel.com/docs/5.4/">
+	          <cite property="schema:name"><a
+	            href="https://laravel.com/docs/5.4/">The PHP Framework For Web Artisans</a></cite>
+	        </dd>
 					<dt>Moloquent</dt>
-          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
-              resource="https://github.com/jenssegers/laravel-mongodb">
-            <cite property="schema:name"><a
-              href="https://github.com/jenssegers/laravel-mongodb">A MongoDB based Eloquent model and Query builder for Laravel</a></cite>
-          </dd>
+	        <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+	            resource="https://github.com/jenssegers/laravel-mongodb">
+	          <cite property="schema:name"><a
+	            href="https://github.com/jenssegers/laravel-mongodb">A MongoDB based Eloquent model and Query builder for Laravel</a></cite>
+	        </dd>
 					<dt>Twitter API</dt>
-          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
-              resource="https://github.com/thujohn/twitter">
-            <cite property="schema:name"><a
-              href="https://github.com/thujohn/twitter">Twitter API for Laravel</a></cite>
-          </dd>
+	        <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+	            resource="https://github.com/thujohn/twitter">
+	          <cite property="schema:name"><a
+	            href="https://github.com/thujohn/twitter">Twitter API for Laravel</a></cite>
+	        </dd>
 					<dt>Google Maps APIs</dt>
-          <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
-              resource="https://developers.google.com/maps/documentation/">
-            <cite property="schema:name"><a
-              href="https://developers.google.com/maps/documentation/">Google Maps for every platform</a></cite>
-          </dd>
-        </dl>
-      </section>
-
-	   </article>
-
+	        <dd id="ref-sa-ontology" typeof="schema:ScholarlyArticle"
+	            resource="https://developers.google.com/maps/documentation/">
+	          <cite property="schema:name"><a
+	            href="https://developers.google.com/maps/documentation/">Google Maps for every platform</a></cite>
+	        </dd>
+	      </dl>
+	    </section>
+		</article>
   </body>
 </html>
