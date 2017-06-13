@@ -12,6 +12,15 @@ use Mail;
 use Session;
 class UserController extends Controller
 {
+
+    public function getUserProfile(){
+        if(Auth::check()){
+            return view('pages.user');
+        }else{
+            return redirect('/');
+        }
+    }
+
     public function show($id) {
 
         $user = User::find($id);

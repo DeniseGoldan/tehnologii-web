@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('title','Properties map')
+
 @section('stylesheets')
 
     <link rel="stylesheet" href="css/mapView_styles.css">
@@ -31,7 +33,7 @@
                             <h4 class="filter-name">Property type</h4>
                             <div class="container">
                                 <label class="label-for-checkbox">
-                                    <input type="checkbox" name="houseCheck" id="houseCheck">House</label>
+                                    <input type="checkbox" name="houseCheck" id="houseCheck" checked="checked">House</label>
                                 <label>
                                     <input type="checkbox" name="apartmentCheck" id="apartmentCheck" checked="checked">Apartment
                                 </label>

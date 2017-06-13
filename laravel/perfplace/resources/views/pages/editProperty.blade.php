@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title','Edit property')
+@section('title','Edit your property')
 
 @section('stylesheets')
 	

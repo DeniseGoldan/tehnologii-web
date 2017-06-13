@@ -18,7 +18,7 @@ Route::get('/property','PagesController@getSingleProperty');
 
 Route::get('/results','PagesController@getPropertyResults');
 
-Route::get('/profile','PagesController@getUserProfile');
+
 
 Route::get('/myProperties','PropertyController@showUserProperties');
 
@@ -36,12 +36,11 @@ Route::get('properties/listView','PropertyController@showFiltered');
 
 Route::resource('properties','PropertyController');
 
+//User related
+Route::get('/profile','UserController@getUserProfile');
 Route::put('/profile/editNames','UserController@editNames'); 
-
 Route::put('/profile/editContactInformation','UserController@editContactInformation');
-
 Route::put('/profile/changePassword','UserController@changePassword');
-
 Route::post ('contactUser','UserController@contactUser');
 
 //Authentication routes

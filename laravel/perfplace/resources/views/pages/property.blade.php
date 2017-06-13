@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title','Single Property')
+@section('title',$property->title)
 
 @section('stylesheets')
 

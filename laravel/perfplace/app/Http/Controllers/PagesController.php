@@ -11,9 +11,7 @@ class PagesController extends Controller{
 		return view('pages.property');
 	}
 
-	public function getUserProfile(){
-		return view('pages.user');
-	}
+	
 
 	public function getUserRegister(){
 		return view('pages.register');

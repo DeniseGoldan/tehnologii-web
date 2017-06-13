@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('title','My Properties')
+
 @section('stylesheets')
 
 	{{Html::style('css/myProperties_styles.css')}}

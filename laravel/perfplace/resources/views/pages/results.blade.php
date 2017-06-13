@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('title','Properties')
+
 @section('stylesheets')
 
 	{{Html::style('css/filteringResults_styles.css')}}

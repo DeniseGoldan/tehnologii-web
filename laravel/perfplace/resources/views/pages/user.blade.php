@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('title',Auth::user()->firstName.' '.Auth::user()->lastName)
+
 @section('stylesheets')
 	
 	<link rel="stylesheet" href="css/profile_styles.css">
